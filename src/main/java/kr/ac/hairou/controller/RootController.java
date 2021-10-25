@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RootController {
 	@RequestMapping("/")
 	public String index() {
-		System.out.println("asdf");
 		return "index.tiles";
 	}
 }
