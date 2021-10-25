@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<!-- tiles 적용 -->
+	<definition name="defaultLayout" template="/WEB-INF/views/inc/layout/defaultLayout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/inc/parts/header.jsp" />
+		<put-attribute name="nav" value="/WEB-INF/views/inc/parts/nav.jsp" />
+		<put-attribute name="main" value="" />
+		<put-attribute name="footer" value="/WEB-INF/views/inc/parts/footer.jsp" />
+	</definition>
+ 
+	<definition name="*.tiles" extends="defaultLayout">
+		<put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
+	</definition>
+	
+	<definition name="*/*.tiles" extends="defaultLayout">
+		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp" />
+	</definition>
+</tiles-definitions>

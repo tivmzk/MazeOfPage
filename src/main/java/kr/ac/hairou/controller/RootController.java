@@ -8,6 +8,6 @@ public class RootController {
 	@RequestMapping("/")
 	public String index() {
 		System.out.println("asdf");
-		return "index";
+		return "index.tiles";
 	}
 }
