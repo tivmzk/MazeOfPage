@@ -11,11 +11,11 @@
 		<put-attribute name="footer" value="/WEB-INF/views/inc/parts/footer.jsp" />
 	</definition>
  
-	<definition name="*.tiles" extends="defaultLayout">
+	<definition name="*.main" extends="defaultLayout">
 		<put-attribute name="main" value="/WEB-INF/views/{1}.jsp" />
 	</definition>
 	
-	<definition name="*/*.tiles" extends="defaultLayout">
+	<definition name="*/*.main" extends="defaultLayout">
 		<put-attribute name="main" value="/WEB-INF/views/{1}/{2}.jsp" />
 	</definition>
 </tiles-definitions>
