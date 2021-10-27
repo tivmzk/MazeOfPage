@@ -5,9 +5,9 @@
 	<div class="logo">
 		<h1 class="text-black">Maze of Page</h1>
 	</div>
-	<div class="flex border-main-3 round">
+	<div class="flex border-3 border-color-main round">
 		<div class="flex item-center">
-			<select class="search-category">
+			<select class="search-select">
 				<option>제목</option>
 				<option>작성자</option>
 				<option>태그</option>

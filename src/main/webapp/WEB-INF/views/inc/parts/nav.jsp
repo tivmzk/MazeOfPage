@@ -6,5 +6,6 @@
 		<li><a href="#">프로필</a></li>
 		<li><a href="#">북마크</a></li>
 		<li><a href="#">글쓰기</a></li>
+		<li><a href="#">장르</a></li>
 	</ul>
 </div>

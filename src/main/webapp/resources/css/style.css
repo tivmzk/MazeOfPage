@@ -1,214 +1,225 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calligraffitti&display=swap");
 
-:root{
-	--color-main: #112e80;
-	--color-dark-main: #0b1a70;
-	--color-hightlight-main: #12498C;
-	--color-hightlight-sub: #DAE3F3;
-	--color-footer: #595959;
-	--color-gray: #A6A6A6;
-	--color-accent: #0695c2;
-	--color-point-text: #63a4f3;
-	--color-gold: #FFD700;
-	--color-gold-border: #FBBB05;
-	--color-silver: #C0C0C0;
-	--color-silver-border: #9DABBF;
-	--color-copper: #BD3B07;
-	--color-copper-border: #7C3602;
-	--color-black: #000;
-	--color-white: #fff;
-	
-	--size-wrapper: 1000px;
-	--size-padding: 10px;
-	--size-input-height: 40px;
-	
-	--size-icon-small: 22px;
-	
-	--font-size-logo: 34px;
-	--font-size-xsmall: 12px;
-	--font-size-small: 14px;
-	--font-size-normal: 16px;
-	--font-size-large: 18px;
-	--font-size-xlarge: 24px;
-	
-	--font-weight-light: 300;
-	--font-weight-normal: 400;
-	--font-weight-bold: 700;
-	
-	--border-bold-size: 3px;
-	--border-light-size: 1px;
-	
-	--font-logo: 'Calligraffitti', cursive;
-	--font-default: 'Noto Sans KR', sans-serif;
-	
-}
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	font-family: var(--font-default);
-	font-size: var(--font-size-normal);
-	font-weight: var(--font-weight-normal);
-}
+:root {
+  --color-main: #112e80;
+  --color-dark-main: #0b1a70;
+  --color-hightlight-main: #12498c;
+  --color-hightlight-sub: #dae3f3;
+  --color-footer: #595959;
+  --color-gray: #a6a6a6;
+  --color-light-gray: #cccccc;
+  --color-accent: #0695c2;
+  --color-point-text: #63a4f3;
+  --color-gold: #ffd700;
+  --color-gold-border: #fbbb05;
+  --color-silver: #c0c0c0;
+  --color-silver-border: #9dabbf;
+  --color-copper: #bd3b07;
+  --color-copper-border: #7c3602;
+  --color-black: #000;
+  --color-white: #fff;
 
-#header{
-	padding: 15px 0;
+  --size-wrapper: 1000px;
+  --size-padding: 10px;
+  --size-input-height: 40px;
+
+  --size-icon-small: 22px;
+
+  --font-size-logo: 34px;
+  --font-size-xsmall: 12px;
+  --font-size-small: 14px;
+  --font-size-normal: 16px;
+  --font-size-large: 18px;
+  --font-size-xlarge: 24px;
+
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  --border-bold-size: 3px;
+  --border-light-size: 1px;
+
+  --font-logo: "Calligraffitti", cursive;
+  --font-default: "Noto Sans KR", sans-serif;
 }
-#nav{
-	background: var(--color-main);
-}
-#nav ul{
-	list-style: none;
-}
-#nav ul li a{
-	color: var(--color-white);
-	text-decoration: none;
-	padding: 15px 25px;
-	display: block;
-	text-align: center;
-	width: 95px;
-}
-#nav ul li a:hover{
-	background: var(--color-hightlight-main)	
-}
-#nav ul li a:active{
-	background: var(--color-dark-main)	
-}
-#footer{
-	background: var(--color-footer);
-	padding: 20px 0;
-}
-#footer p{
-	font-size: var(--font-size-xsmall);
-	font-weight: var(--font-weight-light);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-default);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
 }
 
-.wrapper{
-	width: 1000px;
-	margin: 0 auto;
-	padding: 0 var(--size-padding);
+/* 컨테이너 */
+#header {
+  padding: 15px 0;
+}
+#nav {
+  background: var(--color-main);
+}
+#nav ul {
+  list-style: none;
+}
+#nav ul li a {
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 15px 25px;
+  display: block;
+  text-align: center;
+  width: 95px;
+}
+#nav ul li a:hover {
+  background: var(--color-hightlight-main);
+}
+#nav ul li a:active {
+  background: var(--color-dark-main);
+}
+#footer {
+  background: var(--color-footer);
+  padding: 20px 0;
+}
+#footer p {
+  font-size: var(--font-size-xsmall);
+  font-weight: var(--font-weight-light);
+}
+.wrapper {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0 var(--size-padding);
 }
 
-.logo h1{
-	font-family: var(--font-logo);
-	font-size: var(--font-size-logo);
-	font-weight: 900;
+/* border 관련 */
+.border-3 {
+  border: var(--border-bold-size) solid var(--color-black);
+}
+.border-1 {
+  border: var(--border-light-size) solid var(--color-black);
+}
+.border-y-3 {
+  border-top: var(--border-bold-size) solid var(--color-black);
+  border-bottom: var(--border-bold-size) solid var(--color-black);
+}
+.border-color-main {
+  border-color: var(--color-main);
+}
+.border-color-sub {
+  border-color: var(--color-point-text);
+}
+.border-color-gray {
+  border-color: var(--color-gray);
+}
+.border-color-light-gray {
+  border-color: var(--color-light-gray);
+}
+.border-collapse {
+  border-collapse: collapse;
 }
 
-
-.border-main-3{
-	border: var(--border-bold-size) var(--color-main) solid;
+/* padding 관련 */
+.p-2 {
+  padding: 2px;
 }
-.border-main-1{
-	border: var(--border-light-size) var(--color-main) solid;
+.p-5 {
+  padding: 5px;
 }
-.border-sub-3{
-	border: var(--border-bold-size) var(--color-accent) solid;
+.p-10 {
+  padding: 10px;
 }
-.border-sub-1{
-	border: var(--border-light-size) var(--color-accent) solid;
+.px-2 {
+  padding: 0 2px;
 }
-
-.py-10{
-	padding-top: 10px;
-	padding-bottom: 10px;
+.py-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
-.py-20{
-	padding-top: 20px;
-	padding-bottom: 20px;
-}
-
-.round{
-	border-radius: 5px;
+.py-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.search-box{
-	position: relative;
-	border: none;
-	border-left: var(--border-bold-size) solid var(--color-main);
-}
-.search-box .icon{
-	background-image: url("../svg/search.svg");
-	background-repeat: no-repeat;
-	background-size: contain;
-	display: inline-block;
-	width: var(--size-icon-small);
-	height: var(--size-icon-small);
-	position: absolute;
-	right: 0px;
-	top: calc((var(--size-input-height) - var(--size-icon-small)) / 2);
-	margin-right: var(--size-padding);
-}
-.search-category{
-	border: none;
-	border-radius: 0;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	background-image: url("../svg/drop_down.svg");
-	background-repeat: no-repeat;
-	background-position: right;
-	display: inline-block;
-	width: 80px;
-	font-size: var(--font-size-normal);
-	padding: var(--size-padding);
-}
-.search-category:focus{
-	outline: none;
-	border: none;
-}
-.input-text{
-	height: var(--size-input-height);
-	font-size: var(--font-size-normal);
-	outline: none;
-	border: none;
-}
-.search-box .input-text{
-	width: 300px;
-	padding-left: var(--size-padding);
-	padding-right: 40px;
-}
-.input-text:focus{
-	outline: none;
-}
-.btn button,
-.btn a{
-	background:var(--color-main);
-	padding: 7px 15px;
-	color: var(--color-white);
-	border: none;
-	border-radius: 5px;
-}
-.btn button:hover,
-.btn a:hover{
-	background:var(--color-hightlight-main);
-}
-.btn button:active,
-.btn a:hover{
-	background:var(--color-dark-main);
+.mb-20 {
+  margin-bottom: 20px;
 }
 
-.text-black{
-	color: var(--color-black);
-}
-.text-white{
-	color: var(--color-white);	
+.round {
+  border-radius: 5px;
 }
 
-.flex{
-	display: flex;
+.center-box {
+  margin: 0 auto;
 }
-.justify-between{
-	justify-content: space-between;
+
+.w-100p {
+  width: 100%;
 }
-.justify-center{
-	justify-content: center;
+.w-90p {
+  width: 90%;
 }
-.item-center{
-	align-items: center;
+.w-80p {
+  width: 80%;
 }
-.dir-col{
-	flex-direction: column;
+.w-70p {
+  width: 70%;
+}
+.w-60p {
+  width: 60%;
+}
+.w-55p {
+  width: 55%;
+}
+.w-50p {
+  width: 50%;
+}
+.w-40p {
+  width: 40%;
+}
+.w-30p {
+  width: 30%;
+}
+.w-20p {
+  width: 20%;
+}
+.w-10p {
+  width: 10%;
+}
+
+/* 텍스트 관련 */
+.text-black {
+  color: var(--color-black);
+}
+.text-white {
+  color: var(--color-white);
+}
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* flex 관련 */
+.flex {
+  display: flex;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-center {
+  justify-content: center;
+}
+.item-center {
+  align-items: center;
+}
+.dir-col {
+  flex-direction: column;
+}
+.wrap {
+  flex-wrap: wrap;
+}
+.flex-50 {
+  flex-flow: 1 1 50%;
 }

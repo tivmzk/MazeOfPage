@@ -4,12 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="novel">
+	<sql id="search">
+		<where>
+			<if test="option == 1">
+				n.genre=${genre}
+			</if>
+		</where>
+	</sql>
 	<select id="ranking" resultType="Novel">
-		SELECT n.code, n.member, g.contents AS genre, n.title, n.info, n.recom, m.nickname
+		SELECT n.*, m.nickname, g.contents AS genreContents
 		FROM novel n
 		JOIN genre g ON g.code=n.genre
 		JOIN member m ON m.id=n.member
+		<include refid="search" />
 		ORDER BY recom DESC
 		LIMIT 10
 	</select>
+	<insert id="add">
+		INSERT INTO novel
+		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, #{recom})
+	</insert>
 </mapper>

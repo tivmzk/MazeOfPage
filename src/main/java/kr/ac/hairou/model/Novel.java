@@ -3,14 +3,14 @@ package kr.ac.hairou.model;
 public class Novel {
 	private int code;
 	private String member;
-	private String genre;
+	private int genre;
 	private String title;
 	private String info;
 	private int recom;
 	
 	private int rank;
 	private String nickname;
-	
+	private String genreContents;
 	
 	public String getNickname() {
 		return nickname;
@@ -36,11 +36,17 @@ public class Novel {
 	public void setMember(String member) {
 		this.member = member;
 	}
-	public String getGenre() {
+	public int getGenre() {
 		return genre;
 	}
-	public void setGenre(String genre) {
+	public void setGenre(int genre) {
 		this.genre = genre;
+	}
+	public String getGenreContents() {
+		return genreContents;
+	}
+	public void setGenreContents(String genreContents) {
+		this.genreContents = genreContents;
 	}
 	public String getTitle() {
 		return title;

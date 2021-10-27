@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.hairou.model.Novel;
+import kr.ac.hairou.util.SearchOption;
 
 @Repository
 public class NovelDaoImpl implements NovelDao {
@@ -14,8 +15,13 @@ public class NovelDaoImpl implements NovelDao {
 	SqlSession sql;
 	
 	@Override
-	public List<Novel> getRanking() {
-		return sql.selectList("novel.ranking");
+	public List<Novel> getRanking(SearchOption searchOption) {
+		return sql.selectList("novel.ranking", searchOption);
+	}
+
+	@Override
+	public void add(Novel item) {
+		sql.insert("novel.add", item);
 	}
 
 }

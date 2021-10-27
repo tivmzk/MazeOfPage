@@ -5,8 +5,11 @@
   
 <mapper namespace="genre">
 	<select id="list" resultType="Genre">
-		SELECT *
-		FROM genre
-		LIMIT 10
+		SELECT g.code, g.contents, SUM(n.recom) AS recom_total
+		FROM genre g
+		JOIN novel n ON n.genre=g.code
+		GROUP BY g.contents
+		ORDER BY SUM(n.recom) DESC
+		LIMIT 5
 	</select>
 </mapper>
