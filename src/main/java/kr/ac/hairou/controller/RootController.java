@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.hairou.model.Genre;
 import kr.ac.hairou.model.Member;
@@ -57,6 +59,7 @@ public class RootController {
 			System.out.println(item.getCode() + " " + item.getContents());
 			novelService.dummy(item.getCode());
 		}
+		
 		return "redirect:.";
 	}
 	
@@ -74,5 +77,29 @@ public class RootController {
 	public String signup(Member item){
 		memberService.add(item);
 		return "redirect:login";
+	}
+	
+	@ResponseBody
+	@GetMapping("/check_nickname/{nickname}")
+	public boolean checkNickname(@PathVariable String nickname){
+		SearchOption option = new SearchOption(1);
+		option.setKeyword(nickname);
+		List<Member> list = memberService.getList(option);
+		
+		if(list.size() < 1)
+			return true;
+		else
+			return false;
+	}
+	
+	@ResponseBody
+	@GetMapping("/check_id/{id}")
+	public boolean checkId(@PathVariable String id){
+		Member item = memberService.getItem(id);
+		
+		if(item == null)
+			return true;
+		else
+			return false;
 	}
 }

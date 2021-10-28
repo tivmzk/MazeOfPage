@@ -3,8 +3,15 @@ package kr.ac.hairou.util;
 public class SearchOption {
 	private int option;
 	private int genre;
+	private String keyword;
 	
 	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 	public SearchOption(int option, int genre) {
 		this.option = option;
 		this.genre = genre;

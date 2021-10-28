@@ -9,3 +9,4 @@
 <link rel="stylesheet" href="css/elements.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="shortcut icon" href="img/Cat.png" />
+<script src="js/jQuery.js"></script>
