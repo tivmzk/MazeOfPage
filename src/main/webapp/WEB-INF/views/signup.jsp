@@ -9,16 +9,19 @@
 			
 			check('check_nickname', form.nickname, form.check_nickname, '닉네임');
 		});
+		
 		$('#id_confirm').click(function(e){
 			e.preventDefault();
 			
 			const form = document.getElementById("signup_form");
 			
-			check('check_id', form.id, form.check_id, '아이디');
+			check_duplicate('check_id', form.id, form.check_id, '아이디');
 		});
+		
+		$('#signup').click(signup);
 	});
 	
-	function check(url, input_elem, check_elem, msg){
+	function check_duplicate(url, input_elem, check_elem, msg){
 		$.ajax(url+'/'+input_elem.value, {
 			success:function(result){
 				if(result){
@@ -39,17 +42,30 @@
 		const form = document.getElementById("signup_form");
 		/* 특무문자 / 문자 / 숫자 포함 형태의 8 ~ 15자리 이내의 암호 정규식 */
 		const pwRegx = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-		const telRegx = /^\d{3}-\d{3,4}-\d{4}$/;
-
-		if(form.checkId.value != form.id.value){
+		const nickRegx = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/;
+		const idRegx = /^[A-za-z]{5,15}/g;
+		
+		if(!form.nickname.trim()){
+			alert("닉네임을 입력하세요");
+			form.nickname.focus();
+			return;
+		}
+		if(form.check_nickname.value != form.nickname.value){
 			alert("중복검사를 해주세요");
 			return;
 		}
-		if(form.id.value == ""){
+		if(nickRegx.test(form.nickname.value)){
+			alert('닉네임은 한글, 영문, 숫자만 가능하며 2-10자리까지 입니다');
+			return;
+		}
+		
+		if(!form.id.value.trim()){
 			alert("ID를 입력하세요");
 			form.id.focus();
 			return;
 		}
+		
+		
 		if(form.password.value == ""){
 			alert("비밀번호를 입력하세요");
 			form.password.focus();
@@ -138,12 +154,9 @@
 					<div>
 						<input type="password" name="password_confirm" id="password_confirm"/>
 					</div>
-					<div>
-						<button type="button" id="password_confirm_button">확인</button>
-					</div>
 				</div>
 				<div>
-					<button>회원가입</button>
+					<button id="signup_button">회원가입</button>
 				</div>
 			</div>
 		</form>
