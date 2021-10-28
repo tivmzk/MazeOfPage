@@ -6,6 +6,6 @@
 <meta charset="UTF-8">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/header.css">
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/elements.css">
+<link rel="stylesheet" href="css/layout.css">
 <link rel="shortcut icon" href="img/Cat.png" />

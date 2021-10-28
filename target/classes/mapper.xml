@@ -16,5 +16,6 @@
 		<mapper resource="mappers/novel.xml"/>
 		<mapper resource="mappers/genre.xml"/>
 		<mapper resource="mappers/notice.xml"/>
+		<mapper resource="mappers/member.xml"/>
 	</mappers>
 </configuration>

@@ -19,6 +19,6 @@
 		</div>
 	</div>
 	<div class="btn">
-		<button>로그인</button>
+		<a href="/hairou/login">로그인</a>
 	</div>
 </div>

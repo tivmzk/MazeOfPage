@@ -53,44 +53,6 @@
   font-weight: var(--font-weight-normal);
 }
 
-/* 컨테이너 */
-#header {
-  padding: 15px 0;
-}
-#nav {
-  background: var(--color-main);
-}
-#nav ul {
-  list-style: none;
-}
-#nav ul li a {
-  color: var(--color-white);
-  text-decoration: none;
-  padding: 15px 25px;
-  display: block;
-  text-align: center;
-  width: 95px;
-}
-#nav ul li a:hover {
-  background: var(--color-hightlight-main);
-}
-#nav ul li a:active {
-  background: var(--color-dark-main);
-}
-#footer {
-  background: var(--color-footer);
-  padding: 20px 0;
-}
-#footer p {
-  font-size: var(--font-size-xsmall);
-  font-weight: var(--font-weight-light);
-}
-.wrapper {
-  width: 1000px;
-  margin: 0 auto;
-  padding: 0 var(--size-padding);
-}
-
 /* border 관련 */
 .border-3 {
   border: var(--border-bold-size) solid var(--color-black);

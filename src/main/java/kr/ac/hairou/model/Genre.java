@@ -3,14 +3,7 @@ package kr.ac.hairou.model;
 public class Genre {
 	private int code;
 	private String contents;
-	private int recomTotal;
 	
-	public int getRecomTotal() {
-		return recomTotal;
-	}
-	public void setRecomTotal(int recomTotal) {
-		this.recomTotal = recomTotal;
-	}
 	public int getCode() {
 		return code;
 	}

@@ -20,6 +20,7 @@ public class NovelServiceImpl implements NovelService {
 		for(int i = 1; i <= list.size(); i++) {
 			list.get(i - 1).setRank(i);
 		}
+		
 		return list;
 	}
 

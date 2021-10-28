@@ -9,6 +9,9 @@ public class SearchOption {
 		this.option = option;
 		this.genre = genre;
 	}
+	public SearchOption(int option) {
+		this.option = option;
+	}
 	public SearchOption() {
 		option = 0;
 	}
