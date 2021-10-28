@@ -150,13 +150,13 @@
 
 /* 텍스트 관련 */
 .text-black {
-  color: var(--color-black);
+  color: var(--color-black) !important;
 }
 .text-white {
-  color: var(--color-white);
+  color: var(--color-white) !important;
 }
 .text-accent {
-  color: var(--color-accent);
+  color: var(--color-accent) !important;
 }
 
 .text-center {

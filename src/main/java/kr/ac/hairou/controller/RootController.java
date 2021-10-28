@@ -56,7 +56,6 @@ public class RootController {
 	public String dummy(){
 		List<Genre> list = genreService.getList(new SearchOption());
 		for(Genre item : list) {
-			System.out.println(item.getCode() + " " + item.getContents());
 			novelService.dummy(item.getCode());
 		}
 		

@@ -6,19 +6,27 @@
 			e.preventDefault();
 			
 			const form = document.getElementById("signup_form");
+			if(form.nickname.value.trim() == ''){
+				alert('닉네임을 입력하세요.')
+				return;
+			}
 			
-			check('check_nickname', form.nickname, form.check_nickname, '닉네임');
+			check_duplicate('check_nickname', form.nickname, form.check_nickname, '닉네임');
 		});
 		
 		$('#id_confirm').click(function(e){
 			e.preventDefault();
 			
 			const form = document.getElementById("signup_form");
+			if(form.id.value.trim() == ''){
+				alert('아이디를 입력하세요.')
+				return;
+			}
 			
 			check_duplicate('check_id', form.id, form.check_id, '아이디');
 		});
 		
-		$('#signup').click(signup);
+		$('#signup_button').click(signup);
 	});
 	
 	function check_duplicate(url, input_elem, check_elem, msg){
@@ -38,42 +46,96 @@
 		});
 	}
 		
-	function signup(){
+	function signup(e){
+		e.preventDefault();
 		const form = document.getElementById("signup_form");
-		/* 특무문자 / 문자 / 숫자 포함 형태의 8 ~ 15자리 이내의 암호 정규식 */
-		const pwRegx = /^.*(?=^.{8,15}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
-		const nickRegx = /^([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]).{1,10}$/;
-		const idRegx = /^[A-za-z]{5,15}/g;
+
+		const numCheck = function(str){
+			const regx = /[0-9]/;
+			return regx.test(str);
+		}; // 숫자 
+		const charCheck = function(str){
+			const regx = /[a-zA-Z]/;
+			return regx.test(str);
+		}; // 문자 
+
+		const spacialCheck = function(str){
+			const regx = /[~!@#$%^&*()_+|<>?:{}]/;
+			return regx.test(str);
+		}; // 특수문자
+		const spaceCheck = function(str){
+			if(str.search(' ') != -1)
+				return true;
+
+			return false;
+		};
+		const korCheck = function(str){
+			const regx = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+			return regx.test(str);
+		}
+		const lengthBound = function(str, min, max){
+			if(str.length < min || str.length > max)
+				return false;
+
+			return true;
+		};
 		
-		if(!form.nickname.trim()){
+		if(form.nickname.value == ""){
 			alert("닉네임을 입력하세요");
 			form.nickname.focus();
 			return;
 		}
 		if(form.check_nickname.value != form.nickname.value){
-			alert("중복검사를 해주세요");
+			alert("닉네임 중복검사를 해주세요");
 			return;
 		}
-		if(nickRegx.test(form.nickname.value)){
-			alert('닉네임은 한글, 영문, 숫자만 가능하며 2-10자리까지 입니다');
+		if(
+				!lengthBound(form.nickname.value, 3, 20) || 
+				spacialCheck(form.nickname.value) || 
+				spaceCheck(form.nickname.value)
+		){
+			alert('닉네임은 특수문자가 들어갈 수 없으며 3-20자리까지 입니다');
+			form.nickname.focus();
+			form.nickname.select();
 			return;
 		}
 		
-		if(!form.id.value.trim()){
-			alert("ID를 입력하세요");
+		if(form.id.value == ""){
+			alert("아이디를 입력하세요");
 			form.id.focus();
 			return;
 		}
-		
+		if(form.id.value != form.check_id.value){
+			alert("아이디 중복검사를 해주세요.");
+			return;
+		}
+		if(
+			!lengthBound(form.id.value, 5, 20) || 
+			spacialCheck(form.id.value) || 
+			korCheck(form.id.value) ||
+			spaceCheck(form.id.value)
+			){
+			alert("아이디는 특수문자와 한글이 들어갈 수 없으며 5-20자리까지 입니다");
+			form.id.focus();
+			form.id.select();
+			return;
+		}
 		
 		if(form.password.value == ""){
 			alert("비밀번호를 입력하세요");
 			form.password.focus();
 			return;
 		}
-		if(!pwRegx.test(form.password.value)){
-			alert("비밀번호 형식을 확인해 주세요");
+		if(
+			!lengthBound(form.password.value, 8, 20) ||
+			!spacialCheck(form.password.value) ||
+			!charCheck(form.password.value) ||
+			!numCheck(form.password.value) ||
+			spaceCheck(form.password.value)
+			){
+			alert("비밀번호는 영문자, 숫자, 특수문자만 들어있어야하고 8-20자리 까지 입니다.");
 			form.password.focus();
+			form.password.select();
 			return;
 		}
 		if(form.password_confirm.value == ""){
@@ -86,22 +148,6 @@
 			form.password_confirm.value = "";
 			form.password.value = "";
 			form.password.focus();
-			return;
-		}
-		if(form.address.value == ""){
-			alert("주소를 입력하세요");
-			form.address.focus();
-			return;
-		}
-		if(form.tel.value == ""){
-			alert("전화번호를 입력하세요");
-			form.tel.focus();
-			return;
-		}
-		if(!telRegx.test(form.tel.value)){
-			alert("전화번호 형식을 입력하세요");
-			form.tel.focus();
-			form.tel.value = "";
 			return;
 		}
 		

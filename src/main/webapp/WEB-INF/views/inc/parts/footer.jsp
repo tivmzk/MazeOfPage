@@ -7,6 +7,6 @@
 		<p class="text-white">Copyright© Maze of Page All Right Reserved</p>
 	</div>
 	<div class="logo">
-		<h1 class="text-white">Maze of Page</h1>
+		<h1><a href="/hairou/" class="text-white">Maze of Page</a></h1>
 	</div>
 </div>

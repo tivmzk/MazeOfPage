@@ -28,7 +28,7 @@ public class NovelServiceImpl implements NovelService {
 	public void dummy(int genre) {
 		for(int i = 0; i < 10; i++) {
 			Novel item = new Novel();
-			item.setMember("user");
+			item.setMember("user123");
 			item.setGenre(genre);
 			item.setTitle(String.format("장르 %d 소설", genre));
 			item.setInfo(String.format("장르 %d 소설의 내용", genre));
