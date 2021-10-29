@@ -24,4 +24,9 @@ public class NovelDaoImpl implements NovelDao {
 		sql.insert("novel.add", item);
 	}
 
+	@Override
+	public List<Novel> getList(SearchOption option) {
+		return sql.selectList("novel.list", option);
+	}
+
 }

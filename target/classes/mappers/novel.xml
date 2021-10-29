@@ -11,6 +11,7 @@
 			</if>
 		</where>
 	</sql>
+	
 	<select id="ranking" resultType="Novel">
 		SELECT n.*, m.nickname, g.contents AS genreContents
 		FROM novel n
@@ -18,10 +19,17 @@
 		JOIN member m ON m.id=n.member
 		<include refid="search" />
 		ORDER BY recom DESC
-		LIMIT 10
+		LIMIT #{offset}, #{amount}
 	</select>
 	<insert id="add">
 		INSERT INTO novel
 		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, #{recom})
 	</insert>
+	<select id="list" resultType="Novel">
+		SELECT n.*, m.nickname, g.contents AS genreContents
+		FROM novel n
+		JOIN genre g ON g.code=n.genre
+		JOIN member m ON m.id=n.member
+		LIMIT #{offset}, #{amount}	
+	</select>
 </mapper>

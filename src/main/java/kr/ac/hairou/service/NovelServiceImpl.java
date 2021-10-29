@@ -38,4 +38,9 @@ public class NovelServiceImpl implements NovelService {
 		}
 	}
 
+	@Override
+	public List<Novel> getList(SearchOption option) {
+		return dao.getList(option);
+	}
+
 }

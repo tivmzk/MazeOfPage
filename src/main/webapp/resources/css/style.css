@@ -8,7 +8,7 @@
   --color-hightlight-main: #12498c;
   --color-hightlight-sub: #dae3f3;
   --color-footer: #595959;
-  --color-gray: #a6a6a6;
+  --color-gray: rgb(141, 141, 141);
   --color-light-gray: #cccccc;
   --color-accent: #0695c2;
   --color-point-text: #63a4f3;
@@ -18,8 +18,8 @@
   --color-silver-border: #9dabbf;
   --color-copper: #bd3b07;
   --color-copper-border: #7c3602;
-  --color-black: #000;
   --color-white: #fff;
+  --color-black: #202020;
 
   --size-wrapper: 1000px;
   --size-padding: 10px;
@@ -31,8 +31,8 @@
   --font-size-xsmall: 12px;
   --font-size-small: 14px;
   --font-size-normal: 16px;
-  --font-size-large: 18px;
-  --font-size-xlarge: 24px;
+  --font-size-large: 20px;
+  --font-size-xlarge: 28px;
 
   --font-weight-light: 300;
   --font-weight-normal: 400;
@@ -93,6 +93,9 @@
 .px-2 {
   padding: 0 2px;
 }
+.px-10{
+	padding: 0 10px;
+}
 .py-10 {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -148,6 +151,10 @@
   width: 10%;
 }
 
+.w280{
+	width: 280px;
+}
+
 /* 텍스트 관련 */
 .text-black {
   color: var(--color-black) !important;
@@ -162,6 +169,16 @@
 .text-center {
   text-align: center;
 }
+
+.text-ellipsis{
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.overflow-hidden{
+	overflow: hidden;
+}
+
 
 /* flex 관련 */
 .flex {
@@ -183,5 +200,7 @@
   flex-wrap: wrap;
 }
 .flex-50 {
-  flex-flow: 1 1 50%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
 }

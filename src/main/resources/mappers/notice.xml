@@ -8,6 +8,6 @@
 		SELECT *
 		FROM notice
 		ORDER BY date DESC
-		LIMIT 10
+		LIMIT #{offset}, #{amount}
 	</select>
 </mapper>

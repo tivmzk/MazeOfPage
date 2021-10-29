@@ -17,6 +17,7 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
+	<resources mapping="/thumbnail/**" location="file:///D:/thumbnail/" />
 	<resources mapping="*" location="/resources/" />
 
 	<context:component-scan base-package="kr.ac.hairou" />

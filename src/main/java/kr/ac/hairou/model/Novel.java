@@ -12,6 +12,14 @@ public class Novel {
 	private String nickname;
 	private String genreContents;
 	
+	private Thumbnail thumbnail;
+	
+	public Thumbnail getThumbnail() {
+		return thumbnail;
+	}
+	public void setThumbnail(Thumbnail thumbnail) {
+		this.thumbnail = thumbnail;
+	}
 	public String getNickname() {
 		return nickname;
 	}

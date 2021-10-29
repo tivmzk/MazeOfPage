@@ -10,4 +10,6 @@ public interface NovelService {
 	List<Novel> getRanking(SearchOption searchOption);
 	
 	void dummy(int genre);
+
+	List<Novel> getList(SearchOption option);
 }

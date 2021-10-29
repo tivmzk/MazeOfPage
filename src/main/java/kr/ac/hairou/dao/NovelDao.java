@@ -11,4 +11,6 @@ public interface NovelDao {
 
 	void add(Novel item);
 
+	List<Novel> getList(SearchOption option);
+
 }

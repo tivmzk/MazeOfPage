@@ -1,5 +1,6 @@
 package kr.ac.hairou.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.ac.hairou.model.Genre;
+import kr.ac.hairou.model.GenreRank;
 import kr.ac.hairou.model.Member;
 import kr.ac.hairou.model.Notice;
 import kr.ac.hairou.model.Novel;
@@ -35,15 +37,22 @@ public class RootController {
 	@RequestMapping("/")
 	public String index(Model model) {
 		try {
-			List<Novel> rankingList = novelService.getRanking(new SearchOption());
-			List<Genre> genreList = genreService.getList(new SearchOption(1));
-			List<Notice> noticeList = noticeService.getList();
-			List<Novel> genreRankList = novelService.getRanking(new SearchOption(1, genreList.get(0).getCode()));
+			List<Novel> rankingList = novelService.getRanking(new SearchOption(0, 0, 5, 0));
+			List<Novel> novelList = novelService.getList(new SearchOption(0, 0, 2, 0));
+			List<Genre> genreList = genreService.getList(new SearchOption(1, 0, 3, 0));
+			List<Notice> noticeList = noticeService.getList(new SearchOption(0, 0, 5, 0));
+			List<GenreRank> genreRankList = new ArrayList<>();
 			
-			model.addAttribute("novelList", rankingList);
+			for(Genre genre : genreList) {
+				List<Novel> list = novelService.getRanking(new SearchOption(1, genre.getCode(), 5, 0));
+				genreRankList.add(new GenreRank(genre.getContents(), list));
+			}
+			
+			model.addAttribute("rankingList", rankingList);
+			model.addAttribute("novelList", novelList);
 			model.addAttribute("genreList", genreList);
 			model.addAttribute("noticeList", noticeList);
-			model.addAttribute("genreNovelList", genreRankList);
+			model.addAttribute("genreRankList", genreRankList);
 		}
 		catch (Exception e) {
 			e.printStackTrace();

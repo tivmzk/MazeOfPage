@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.hairou.model.Notice;
+import kr.ac.hairou.util.SearchOption;
 
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
@@ -14,8 +15,8 @@ public class NoticeDaoImpl implements NoticeDao {
 	SqlSession sql;
 	
 	@Override
-	public List<Notice> getList() {
-		return sql.selectList("notice.list");
+	public List<Notice> getList(SearchOption option) {
+		return sql.selectList("notice.list", option);
 	}
 
 }

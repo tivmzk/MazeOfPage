@@ -73,144 +73,103 @@
 .btn a:hover {
   background: var(--color-dark-main);
 }
-.section-title {
-  padding-top: 15px;
-  padding-bottom: 10px;
-}
-
-.section-title h2 {
-  color: var(--color-accent);
-  font-size: var(--font-size-xlarge);
-  font-weight: var(--font-weight-bold);
-}
-
-.ranking-item {
-  height: 20%;
-  width: 50%;
-  border-top: none;
-}
-
-.ranking-item div:first-child {
-  width: 20%;
-  border-right: var(--border-light-size) solid var(--color-light-gray);
-}
-
-.ranking-item div:last-child {
-  width: 80%;
-}
-
-.ranking-wrapper {
-  height: 400px;
-}
-
-.ranking-item:nth-child(-n + 5) {
-  border-left: none;
-  border-right: none;
-}
-
-.ranking-item:nth-child(n + 6) {
-  border-right: none;
-}
-
-.ranking-item:nth-child(5n) {
-  border-bottom: none;
-}
-
-.first {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 25px;
-  text-align: center;
-  background: var(--color-gold);
-  border: 2px solid var(--color-gold-border);
-}
-
-.second {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 25px;
-  text-align: center;
-  background: var(--color-silver);
-  border: 2px solid var(--color-silver-border);
-}
-
-.third {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  line-height: 25px;
-  text-align: center;
-  background: var(--color-copper);
-  border: 2px solid var(--color-copper-border);
-}
 
 .text-title a,
 .text-title {
-  color: var(--color-point-text);
+  color: var(--color-black);
   font-size: var(--font-size-large);
+  font-weight: var(--font-weight-bold);
   text-decoration: none;
 }
 
 .text-nickname a,
 .text-nickname {
-  color: var(--color-black);
+  color: var(--color-footer);
   font-size: var(--font-size-normal);
   text-decoration: none;
 }
 
-.text-genre a,
-.text-genre {
+.text-recom a,
+.text-recom {
   color: var(--color-gray);
   font-size: var(--font-size-small);
   text-decoration: none;
 }
-
-.tab-menu {
-  list-style: none;
-  border-bottom: var(--color-main) 1px solid;
+div.visual {
+  background-image: url("/img/visual.jpg");
+  height: 420px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.article-title {
+  padding-bottom: 20px;
+}
+.article-title h2 {
+  color: var(--color-accent);
+  font-size: var(--font-size-xlarge);
+  font-weight: var(--font-weight-bold);
 }
 
-.tab-menu li {
-  width: 20%;
-  text-align: center;
-  padding: 15px 0;
-  border-right: 1px var(--color-gray) solid;
-  color: var(--color-point-text);
-  font-size: var(--font-size-normal);
-  cursor: pointer;
+div.thumbnail-normal {
+  width: 180px;
+  height: 250px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
-.tab-menu li:hover {
-  background: var(--color-light-gray);
+div.thumbnail-normal > img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.rect-button{
+	width: 30px;
+	height: 30px;
+	background: none;
+	border: var(--border-bold-size) var(--color-white) solid;
+}
+div.thumbnail-small {
+	width: 150px;
+	height: 150px;
+	overflow: hidden;
+}
+div.thumbnail-small img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.theme{
+	width: 450px;
+}
+.theme > div:last-child {
+	width: 280px;
+	flex-grow: 1;
+}
+.theme > div:last-child > div:last-child {
+	height: 100px;
+}
+.novel-wrapper{
+	width: 180px;
 }
 
-.tab-menu li:last-child {
-  border-right: none;
+.genre-wrapper{
+	padding: 30px 0;
 }
-
-.novel-list {
-  height: 280px;
+.list{
+	list-style: none;
 }
-
-.novel-list div {
-  height: 20%;
-  border-bottom: 1px var(--color-light-gray) solid;
+.list li span{
+	display: block;
+	padding: 2px 0;
 }
-
-.novel-list div:nth-child(-n + 5) {
-  border-right: 1px var(--color-light-gray) solid;
+.list li span:first-child{
+	font-size: var(--font-size-normal);
+	color: var(--color-black);
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	width: 360px;
 }
-
-.novel-list div:nth-child(5n) {
-  border-bottom: none;
-}
-.notice-list {
-  height: 335px;
-}
-.notice-list div {
-  height: 20%;
-}
-.notice-list div:not(:nth-child(5)) {
-  border-bottom: 1px var(--color-light-gray) solid;
+.list li span:last-child{
+	font-size: var(--font-size-small);
+	color: var(--color-gray);
 }
