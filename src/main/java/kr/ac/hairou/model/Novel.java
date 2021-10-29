@@ -74,4 +74,7 @@ public class Novel {
 	public void setRecom(int recom) {
 		this.recom = recom;
 	}
+	public String getPreview() {
+		return String.format("preview%d.jpg", (int)(Math.random()*17));
+	}
 }

@@ -10,7 +10,7 @@
 			<select class="search-select">
 				<option>제목</option>
 				<option>작성자</option>
-				<option>태그</option>
+				<option>장르</option>
 			</select>
 		</div>
 		<div class="search-box">
@@ -19,6 +19,6 @@
 		</div>
 	</div>
 	<div class="btn">
-		<a href="/hairou/login">로그인</a>
+		<a href="/login">로그인</a>
 	</div>
 </div>
