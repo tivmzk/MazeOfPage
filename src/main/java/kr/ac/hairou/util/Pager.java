@@ -103,7 +103,7 @@ public class Pager {
 	}
 	public String getQuery() {
 		if(search < 1)
-			return "";
+			return "order="+order;
 		
 		return String.format("search=%d&keyword=%s", search, keyword);
 	}

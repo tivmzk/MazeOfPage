@@ -20,8 +20,8 @@
 		<h2 class="text-black">작품</h2>
 	</div>
 	<div class="py-20 border-b-1 border-color-gray">
-		<span class="sort-new active">최신</span>
-		<span class="sort-recom">추천</span>
+		<span class="sort-new ${pager.order==0 ? 'active' : ''}"><a href="?page=1&order=0">최신</a></span>
+		<span class="sort-recom ${pager.order==1 ? 'active' : ''}"><a href="?page=1&order=1">추천</a></span>
 	</div>
 	<div>
 		<article class="flex novel-list py-30">

@@ -15,7 +15,9 @@
 		</div>
 		<div class="search-box">
 			<input type="text" class="input-text">
-			<span class="icon"></span>
+			<div class="icon">
+				<img alt="" src="/svg/search.svg">
+			</div>
 		</div>
 	</div>
 	<div class="btn">

@@ -13,16 +13,20 @@
   border-left: var(--border-bold-size) solid var(--color-main);
 }
 .search-box .icon {
-  background-image: url("../svg/search.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
   display: inline-block;
   width: var(--size-icon-small);
   height: var(--size-icon-small);
   position: absolute;
-  right: 0px;
-  top: calc((var(--size-input-height) - var(--size-icon-small)) / 2);
-  margin-right: var(--size-padding);
+  right: var(--size-padding);
+  top: 50%;
+  transform: translate(0, -50%);
+  overflow: hidden;
+}
+.search-box .icon img{
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+	-webkit-user-drag: none;
 }
 .search-select {
   border: none;
@@ -285,31 +289,33 @@ div.thumbnail-small img{
 .novel-item > div:last-child > div:nth-child(3) {
 	height: 120px;
 }
-.sort-new{
+.sort-new a{
 	color: var(--color-dark-gray);
 	cursor: pointer;
 	padding-right: 10px;
 	padding-left: 30px;
+	text-decoration: none;
 }
-.sort-new:hover{
+.sort-new a:hover{
 	text-decoration: underline;
 }
-.sort-new.active{
+.sort-new.active a{
 	color: var(--color-point-text);
 	background-image: url("/svg/check.svg");
 	background-repeat: no-repeat;
 	background-position: left;
 	background-size: contain;
 }
-.sort-recom{
+.sort-recom a{
 	color: var(--color-dark-gray);
 	cursor: pointer;
 	padding-left: 30px;
+	text-decoration: none;
 }
-.sort-recom:hover{
+.sort-recom a:hover{
 	text-decoration: underline;
 }
-.sort-recom.active{
+.sort-recom.active a{
 	color: var(--color-point-text);
 	color: var(--color-point-text);
 	background-image: url("/svg/check.svg");
