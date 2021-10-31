@@ -6,30 +6,41 @@
 <mapper namespace="novel">
 	<sql id="search">
 		<where>
-			<if test="option == 1">
-				n.genre=${genre}
+			<if test="search == 1">
+				n.title LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="search == 2">
+				n.member LIKE CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="search == 3">
+				n.genre=(SELECT CODE FROM genre WHERE contents LIKE CONCAT('%', #{keyword}, '%'))
 			</if>
 		</where>
 	</sql>
-	
-	<select id="ranking" resultType="Novel">
-		SELECT n.*, m.nickname, g.contents AS genreContents
+	<sql id="order">
+		<if test="order==0">
+			ORDER BY date
+		</if>
+		<if test="order==1">
+			ORDER BY recom DESC
+		</if>
+	</sql>
+	<insert id="add">
+		INSERT INTO novel
+		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, #{recom}, NOW())
+	</insert>
+	<select id="list" resultType="Novel">
+		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark
 		FROM novel n
 		JOIN genre g ON g.code=n.genre
 		JOIN member m ON m.id=n.member
 		<include refid="search" />
-		ORDER BY recom DESC
-		LIMIT #{offset}, #{amount}
+		<include refid="order" />
+		LIMIT #{offset}, #{perPage}
 	</select>
-	<insert id="add">
-		INSERT INTO novel
-		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, #{recom})
-	</insert>
-	<select id="list" resultType="Novel">
-		SELECT n.*, m.nickname, g.contents AS genreContents
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*)
 		FROM novel n
-		JOIN genre g ON g.code=n.genre
-		JOIN member m ON m.id=n.member
-		LIMIT #{offset}, #{amount}	
+		<include refid="search" />
 	</select>
 </mapper>

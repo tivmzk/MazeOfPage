@@ -21,7 +21,7 @@ import kr.ac.hairou.service.GenreService;
 import kr.ac.hairou.service.MemberService;
 import kr.ac.hairou.service.NoticeService;
 import kr.ac.hairou.service.NovelService;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 @Controller
 public class RootController {
@@ -35,16 +35,26 @@ public class RootController {
 	MemberService memberService;
 	
 	@RequestMapping("/")
-	public String index(Model model) {
+	public String index(Model model, Pager pager) {
 		try {
-			List<Novel> rankingList = novelService.getRanking(new SearchOption(0, 0, 5, 0));
-			List<Novel> novelList = novelService.getList(new SearchOption(0, 0, 2, 0));
-			List<Genre> genreList = genreService.getList(new SearchOption(1, 0, 3, 0));
-			List<Notice> noticeList = noticeService.getList(new SearchOption(0, 0, 5, 0));
+			pager.setPerPage(5);
+			pager.setOrder(1);
+			List<Novel> rankingList = novelService.getList(pager);
+			pager.setPerPage(2);
+			pager.setOrder(0);
+			List<Novel> novelList = novelService.getList(pager);
+			pager.setPerPage(3);
+			List<Genre> genreList = genreService.getList(pager);
+			pager.setPerPage(5);
+			List<Notice> noticeList = noticeService.getList(pager);
 			List<GenreRank> genreRankList = new ArrayList<>();
 			
 			for(Genre genre : genreList) {
-				List<Novel> list = novelService.getRanking(new SearchOption(1, genre.getCode(), 5, 0));
+				pager.setPerPage(5);
+				pager.setOrder(1);
+				pager.setKeyword(genre.getContents());
+				pager.setSearch(3);
+				List<Novel> list = novelService.getList(pager);
 				genreRankList.add(new GenreRank(genre.getContents(), list));
 			}
 			
@@ -63,7 +73,7 @@ public class RootController {
 	
 	@GetMapping("/dummy")
 	public String dummy(){
-		List<Genre> list = genreService.getList(new SearchOption());
+		List<Genre> list = genreService.getList(new Pager());
 		for(Genre item : list) {
 			novelService.dummy(item.getCode());
 		}
@@ -90,9 +100,9 @@ public class RootController {
 	@ResponseBody
 	@GetMapping("/check_nickname/{nickname}")
 	public boolean checkNickname(@PathVariable String nickname){
-		SearchOption option = new SearchOption(1);
-		option.setKeyword(nickname);
-		List<Member> list = memberService.getList(option);
+		Pager pager = new Pager();
+		pager.setKeyword(nickname);
+		List<Member> list = memberService.getList(pager);
 		
 		if(list.size() < 1)
 			return true;

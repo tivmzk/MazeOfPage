@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.hairou.dao.MemberDao;
 import kr.ac.hairou.model.Member;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -25,8 +25,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<Member> getList(SearchOption searchOption) {
-		return dao.getList(searchOption);
+	public List<Member> getList(Pager pager) {
+		return dao.getList(pager);
 	}
 
 }

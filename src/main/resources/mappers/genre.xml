@@ -4,17 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="genre">
-	<sql id="rank">
-		<if test="option == 1">
-			LEFT OUTER JOIN novel n ON n.genre=g.code
-			GROUP BY g.code, g.contents
-			ORDER BY SUM(n.recom) DESC
-		</if>
-	</sql>
 	<select id="list" resultType="Genre">
-		SELECT *
-		FROM genre g
-		<include refid="rank"></include>
-		LIMIT #{offset}, #{amount}
+		SELECT genre.code, genre.contents, SUM(novel.recom) AS recom
+		FROM genre
+		JOIN novel ON genre.code=novel.genre
+		GROUP BY genre.code, genre.contents
+		ORDER BY SUM(novel.recom) DESC
+		LIMIT #{offset}, #{perPage}
 	</select>
 </mapper>

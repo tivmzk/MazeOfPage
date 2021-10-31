@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.hairou.dao.NoticeDao;
 import kr.ac.hairou.model.Notice;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
@@ -15,8 +15,10 @@ public class NoticeServiceImpl implements NoticeService {
 	NoticeDao dao;
 
 	@Override
-	public List<Notice> getList(SearchOption option) {
-		return dao.getList(option);
+	public List<Notice> getList(Pager pager) {
+		int total = dao.getTotal(pager);
+		pager.setTotal(total);
+		return dao.getList(pager);
 	}
 
 }

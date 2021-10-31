@@ -3,7 +3,7 @@ package kr.ac.hairou.service;
 import java.util.List;
 
 import kr.ac.hairou.model.Member;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 public interface MemberService {
 
@@ -11,6 +11,6 @@ public interface MemberService {
 
 	Member getItem(String id);
 
-	List<Member> getList(SearchOption searchOption);
+	List<Member> getList(Pager pager);
 
 }

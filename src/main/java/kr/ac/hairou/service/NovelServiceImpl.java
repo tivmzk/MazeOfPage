@@ -7,22 +7,12 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.hairou.dao.NovelDao;
 import kr.ac.hairou.model.Novel;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 @Service
 public class NovelServiceImpl implements NovelService {
 	@Autowired
 	NovelDao dao;
-
-	@Override
-	public List<Novel> getRanking(SearchOption searchOption) {
-		List<Novel> list = dao.getRanking(searchOption);
-		for(int i = 1; i <= list.size(); i++) {
-			list.get(i - 1).setRank(i);
-		}
-		
-		return list;
-	}
 
 	@Override
 	public void dummy(int genre) {
@@ -39,8 +29,10 @@ public class NovelServiceImpl implements NovelService {
 	}
 
 	@Override
-	public List<Novel> getList(SearchOption option) {
-		return dao.getList(option);
+	public List<Novel> getList(Pager pager) {
+		int total = dao.getTotal(pager);
+		pager.setTotal(total);
+		return dao.getList(pager);
 	}
 
 }

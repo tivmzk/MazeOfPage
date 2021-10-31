@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.ac.hairou.model.Notice;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 @Repository
 public class NoticeDaoImpl implements NoticeDao {
@@ -15,8 +15,13 @@ public class NoticeDaoImpl implements NoticeDao {
 	SqlSession sql;
 	
 	@Override
-	public List<Notice> getList(SearchOption option) {
-		return sql.selectList("notice.list", option);
+	public List<Notice> getList(Pager pager) {
+		return sql.selectList("notice.list", pager);
+	}
+
+	@Override
+	public int getTotal(Pager pager) {
+		return sql.selectOne("notice.total");
 	}
 
 }

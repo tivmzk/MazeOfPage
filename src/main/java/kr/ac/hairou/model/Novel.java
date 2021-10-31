@@ -1,5 +1,7 @@
 package kr.ac.hairou.model;
 
+import java.util.Date;
+
 public class Novel {
 	private int code;
 	private String member;
@@ -7,11 +9,25 @@ public class Novel {
 	private String title;
 	private String info;
 	private int recom;
+	private Date date;
 	
-	private int rank;
 	private String nickname;
 	private String genreContents;
+	private int bookmark;
 	
+	
+	public Date getDate() {
+		return date;
+	}
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	public int getBookmark() {
+		return bookmark;
+	}
+	public void setBookmark(int bookmark) {
+		this.bookmark = bookmark;
+	}
 	private Thumbnail thumbnail;
 	
 	public Thumbnail getThumbnail() {
@@ -25,12 +41,6 @@ public class Novel {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-	public int getRank() {
-		return rank;
-	}
-	public void setRank(int rank) {
-		this.rank = rank;
 	}
 	public int getCode() {
 		return code;

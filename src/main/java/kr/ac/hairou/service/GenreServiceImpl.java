@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import kr.ac.hairou.dao.GenreDao;
 import kr.ac.hairou.model.Genre;
-import kr.ac.hairou.util.SearchOption;
+import kr.ac.hairou.util.Pager;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -15,8 +15,8 @@ public class GenreServiceImpl implements GenreService {
 	GenreDao dao;
 	
 	@Override
-	public List<Genre> getList(SearchOption option) {
-		return dao.getList(option);
+	public List<Genre> getList(Pager pager) {
+		return dao.getList(pager);
 	}
 
 }

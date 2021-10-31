@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="wrapper flex justify-between item-center">
 	<div class="logo">
-		<h1 class="text-black"><a href="/hairou/">Maze of Page</a></h1>
+		<h1 class="text-black"><a href="/">Maze of Page</a></h1>
 	</div>
 	<div class="flex border-3 border-color-main round">
 		<div class="flex item-center">

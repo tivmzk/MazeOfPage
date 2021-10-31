@@ -14,17 +14,18 @@
 		<div class="flex justify-between">
 			<c:forEach var="item" items="${rankingList}">
 				<section class="novel-wrapper">
-					<div class="thumbnail-normal">
+					<div class="thumbnail-large">
 						<img alt="${item.title}" src="/thumbnail/${item.thumbnail == null ? item.preview : item.thumbnail.fullname}">
 					</div>
 					<div class="text-ellipsis overflow-hidden">
 						<span class="text-title">${item.title}</span>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
-						<span class="text-nickname">${item.nickname}</span>
+						<span class="text-nickname">${item.nickname} • ${item.genreContents}</span>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
-						<span class="text-recom">${item.recom}</span>
+						<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span>
+						<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
 					</div>
 				</section>
 			</c:forEach>
@@ -55,10 +56,14 @@
 								<span class="text-title">${item.title}</span>
 							</div>
 							<div class="text-ellipsis overflow-hidden">
-								<span class="text-nickname">${item.nickname}</span>
+								<span class="text-nickname">${item.nickname} • ${item.genreContents}</span>
 							</div>
 							<div class="overflow-hidden">
-								<span class="text-recom">${item.info}</span>
+								<span class="text-info">${item.info}</span>
+							</div>
+							<div class="text-ellipsis overflow-hidden">
+								<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span> 
+								<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
 							</div>
 						</div>
 					</section>
@@ -77,7 +82,7 @@
 			<div class="flex justify-between">
 				<c:forEach var="item" items="${genre.list}">
 					<div class="novel-wrapper">
-						<div class="thumbnail-normal">
+						<div class="thumbnail-large">
 							<img alt="${item.title}" src="/thumbnail/${item.thumbnail == null ? item.preview : item.thumbnail.fullname}">
 						</div>
 						<div class="text-ellipsis overflow-hidden">
@@ -87,7 +92,8 @@
 							<span class="text-nickname">${item.nickname}</span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-recom">${item.recom}</span>
+							<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span>
+							<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
 						</div>
 					</div>
 				</c:forEach>
