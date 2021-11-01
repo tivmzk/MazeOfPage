@@ -28,12 +28,39 @@
 	<insert id="add">
 		INSERT INTO novel
 		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, #{recom}, NOW())
+		
+		<selectKey keyProperty="code" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	</insert>
-	<select id="list" resultType="Novel">
-		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark
+	
+	<resultMap type="Novel" id="NovelMap">
+		<id column="code" property="code"/>
+		<result column="member" property="member" />
+		<result column="genre" property="genre" />
+		<result column="title" property="title"/>
+		<result column="info" property="info"/>
+		<result column="recom" property="recom"/>
+		<result column="date" property="date"/>
+		<result column="nickname" property="nickname" />
+		<result column="genreContents" property="genreContents"/>
+		<result column="bookmark" property="bookmark"/>
+		
+		<association property="image" javaType="Thumbnail">
+			<id column="tcode" property="code"/>
+			<result column="tnovel" property="novel"/>
+			<result column="tuuid" property="uuid"/>
+			<result column="tfilename" property="filename"/>
+		</association>
+	</resultMap>
+	
+	<select id="list" resultMap="NovelMap">
+		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, 
+		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
 		FROM novel n
 		JOIN genre g ON g.code=n.genre
 		JOIN member m ON m.id=n.member
+		LEFT OUTER JOIN thumbnail t ON t.novel=n.code
 		<include refid="search" />
 		<include refid="order" />
 		LIMIT #{offset}, #{perPage}

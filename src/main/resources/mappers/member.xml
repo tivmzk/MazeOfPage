@@ -6,8 +6,11 @@
 <mapper namespace="member">
 	<sql id="search">
 		<where>
-			<if test="option == 1">
+			<if test="search == 1">
 				nickname LIKE #{keyword}
+			</if>
+			<if test="search == 2">
+				id LIKE #{keyword}
 			</if>
 		</where>
 	</sql>
@@ -23,6 +26,6 @@
 	<select id="item" resultType="Member">
 		SELECT *
 		FROM member
-		WHERE id=#{id}
+		WHERE id=#{id} AND password=PASSWORD(#{password})
 	</select>
 </mapper>

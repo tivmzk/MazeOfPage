@@ -17,5 +17,6 @@
 		<mapper resource="mappers/genre.xml"/>
 		<mapper resource="mappers/notice.xml"/>
 		<mapper resource="mappers/member.xml"/>
+		<mapper resource="mappers/thumbnail.xml"/>
 	</mappers>
 </configuration>

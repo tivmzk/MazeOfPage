@@ -9,7 +9,7 @@ public interface MemberDao {
 
 	void add(Member item);
 
-	Member getItem(String id);
+	Member getItem(Member item);
 
 	List<Member> getList(Pager pager);
 

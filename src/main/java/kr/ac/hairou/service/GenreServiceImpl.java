@@ -19,4 +19,9 @@ public class GenreServiceImpl implements GenreService {
 		return dao.getList(pager);
 	}
 
+	@Override
+	public int getTotal() {
+		return dao.getToal();
+	}
+
 }

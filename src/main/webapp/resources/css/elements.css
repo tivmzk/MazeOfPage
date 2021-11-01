@@ -346,3 +346,101 @@ div.thumbnail-small img{
 	background: var(--color-main);
 	color: var(--color-white);
 }
+#header .nickname{
+	color: var(--color-point-text);
+	text-decoration: none;
+}
+#header .nickname:hover{
+	text-decoration: underline;
+}
+.novel-form{
+	width: 700px;
+	margin: 0 auto;
+	padding: var(--size-padding);
+}
+.form-input h2{
+	color: var(--color-black);
+	font-size: var(--font-size-large);
+	padding: 15px 0;
+}
+.form-input input[type="text"]{
+	border: var(--color-light-gray) var(--border-light-size) solid;
+	outline: none;
+	width: 500px;
+	height: 40px;
+	border-radius: 5px;
+	padding: 0 5px;
+}
+.form-input select{
+	width: 150px;
+	height: 40px;
+	outline: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	border: var(--color-light-gray) var(--border-light-size) solid;
+	border-radius: 5px;
+	background-image: url("../svg/drop_down.svg");
+	background-repeat: no-repeat;
+	background-position: right;
+	cursor: pointer;
+	padding-left: 5px;
+}
+.form-input textarea{
+	width: 100%;
+	border: var(--color-light-gray) var(--border-light-size) solid;
+	outline: none;
+	border-radius: 5px;
+	padding: 5px 5px;
+}
+.novel-form .thumbnail{
+	width: 150px;
+	height :200px;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	border: 5px dashed var(--color-light-gray);
+	border-radius: 10px;
+}
+.novel-form .thumbnail.active{
+	border: none;
+}
+.novel-form .thumbnail .no-input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.novel-form .thumbnail .no-input img{
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	width: 100px;
+	height: 150px;
+	transform: translate(-50%, -50%);
+	-webkit-user-drag: none;
+	user-select: none;
+}
+.novel-form .thumbnail .no-input span{
+	color: var(--color-light-gray);
+	font-size: var(--font-size-small);
+	text-align: center;
+	position: absolute;
+	bottom: 10%;
+	display: block;
+	width: 100%;
+	user-select: none;
+}
+.novel-form .thumbnail .input{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.novel-form .thumbnail .input img{
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}

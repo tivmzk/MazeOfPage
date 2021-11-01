@@ -19,4 +19,8 @@ public class GenreDaoImpl implements GenreDao {
 		return sql.selectList("genre.list", pager);
 	}
 
+	@Override
+	public int getToal() {
+		return sql.selectOne("genre.total");
+	}
 }

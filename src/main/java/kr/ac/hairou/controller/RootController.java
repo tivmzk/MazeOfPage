@@ -3,6 +3,8 @@ package kr.ac.hairou.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,6 +88,21 @@ public class RootController {
 		return "login.main";
 	}
 	
+	@PostMapping("/login")
+	public String login(Member member, HttpSession session) {
+		Member item = memberService.getItem(member);
+		
+		if(item == null) {
+			System.out.println(member.getId());
+			System.out.println(member.getPassword());
+			return "login.main";
+		}
+		
+		session.setAttribute("user", item);
+		
+		return "redirect:.";
+	}
+	
 	@GetMapping("/signup")
 	public String signup(){
 		return "signup.main";
@@ -102,6 +119,7 @@ public class RootController {
 	public boolean checkNickname(@PathVariable String nickname){
 		Pager pager = new Pager();
 		pager.setKeyword(nickname);
+		pager.setSearch(1);
 		List<Member> list = memberService.getList(pager);
 		
 		if(list.size() < 1)
@@ -113,9 +131,12 @@ public class RootController {
 	@ResponseBody
 	@GetMapping("/check_id/{id}")
 	public boolean checkId(@PathVariable String id){
-		Member item = memberService.getItem(id);
+		Pager pager = new Pager();
+		pager.setKeyword(id);
+		pager.setSearch(2);
+		List<Member> list = memberService.getList(pager);
 		
-		if(item == null)
+		if(list.size() < 1)
 			return true;
 		else
 			return false;

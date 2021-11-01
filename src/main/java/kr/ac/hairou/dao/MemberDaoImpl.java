@@ -20,8 +20,8 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public Member getItem(String id) {
-		return sql.selectOne("member.item", id);
+	public Member getItem(Member item) {
+		return sql.selectOne("member.item", item);
 	}
 
 	@Override

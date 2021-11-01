@@ -28,7 +28,7 @@
 			<c:forEach var="item" items="${list}">
 				<section class="flex novel-item">
 					<div class="thumbnail-normal">
-						<img alt="${item.title}" src="/thumbnail/${item.thumbnail == null ? item.preview : item.thumbnail.fullname}">
+						<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
 					</div>
 					<div class="px-10">
 						<div class="text-ellipsis overflow-hidden">
@@ -51,13 +51,21 @@
 	</div>
 	<div class="flex justify-center pb-60">
 		<ul class="pagnation">
-			<li><a href="?page=1&${pager.query}">&lt;&lt;</a></li>
-			<li><a href="?page=${pager.prev}&${pager.query}">&lt;</a></li>
+			<c:if test="${pager.page != 1}">
+				<li><a href="?page=1&${pager.query}">&lt;&lt;</a></li>
+			</c:if>
+			<c:if test="${pager.page != 1}">
+				<li><a href="?page=${pager.prev}&${pager.query}">&lt;</a></li>
+			</c:if>
 			<c:forEach var="page" items="${pager.list}">
 				<li><a href="?page=${page}&${pager.query}" class="${pager.page==page?'active':''}">${page}</a></li>
 			</c:forEach>
-			<li><a href="?page=${pager.next}&${pager.query}">&gt;</a></li>
-			<li><a href="?page=${pager.end}&${pager.query}">&gt;&gt;</a></li>
+			<c:if test="${pager.page != pager.end}">
+				<li><a href="?page=${pager.next}&${pager.query}">&gt;</a></li>	
+			</c:if>
+			<c:if test="${pager.page != pager.end}">
+				<li><a href="?page=${pager.end}&${pager.query}">&gt;&gt;</a></li>
+			</c:if>
 		</ul>
 	</div>
 </div>

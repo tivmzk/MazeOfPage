@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member getItem(String id) {
-		return dao.getItem(id);
+	public Member getItem(Member item) {
+		return dao.getItem(item);
 	}
 
 	@Override

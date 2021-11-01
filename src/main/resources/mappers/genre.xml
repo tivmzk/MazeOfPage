@@ -12,4 +12,8 @@
 		ORDER BY SUM(novel.recom) DESC
 		LIMIT #{offset}, #{perPage}
 	</select>
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*)
+		FROM genre
+	</select>
 </mapper>

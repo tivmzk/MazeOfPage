@@ -9,4 +9,6 @@ public interface GenreDao {
 
 	List<Genre> getList(Pager pager);
 
+	int getToal();
+
 }

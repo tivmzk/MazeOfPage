@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.hairou.dao.NovelDao;
+import kr.ac.hairou.dao.ThumbnailDao;
 import kr.ac.hairou.model.Novel;
 import kr.ac.hairou.util.Pager;
 
@@ -13,6 +15,8 @@ import kr.ac.hairou.util.Pager;
 public class NovelServiceImpl implements NovelService {
 	@Autowired
 	NovelDao dao;
+	@Autowired
+	ThumbnailDao tdao;
 
 	@Override
 	public void dummy(int genre) {
@@ -33,6 +37,14 @@ public class NovelServiceImpl implements NovelService {
 		int total = dao.getTotal(pager);
 		pager.setTotal(total);
 		return dao.getList(pager);
+	}
+	
+	@Transactional
+	@Override
+	public void add(Novel item) {
+		dao.add(item);
+		item.getImage().setNovel(item.getCode());
+		tdao.add(item.getImage());
 	}
 
 }

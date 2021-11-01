@@ -15,6 +15,7 @@ public class Novel {
 	private String genreContents;
 	private int bookmark;
 	
+	private Thumbnail image;
 	
 	public Date getDate() {
 		return date;
@@ -28,13 +29,11 @@ public class Novel {
 	public void setBookmark(int bookmark) {
 		this.bookmark = bookmark;
 	}
-	private Thumbnail thumbnail;
-	
-	public Thumbnail getThumbnail() {
-		return thumbnail;
+	public Thumbnail getImage() {
+		return image;
 	}
-	public void setThumbnail(Thumbnail thumbnail) {
-		this.thumbnail = thumbnail;
+	public void setImage(Thumbnail image) {
+		this.image = image;
 	}
 	public String getNickname() {
 		return nickname;

@@ -15,7 +15,7 @@
 			<c:forEach var="item" items="${rankingList}">
 				<section class="novel-wrapper">
 					<div class="thumbnail-large">
-						<img alt="${item.title}" src="/thumbnail/${item.thumbnail == null ? item.preview : item.thumbnail.fullname}">
+						<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
 					</div>
 					<div class="text-ellipsis overflow-hidden">
 						<span class="text-title">${item.title}</span>
@@ -49,7 +49,7 @@
 				<c:forEach var="item" items="${novelList}">
 					<section class="flex theme">
 						<div class="thumbnail-small">
-							<img alt="${item.title}" src="/thumbnail/${item.thumbnail == null ? item.preview : item.thumbnail.fullname}">
+							<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
 						</div>
 						<div class="px-10">
 							<div class="text-ellipsis overflow-hidden">
@@ -83,7 +83,7 @@
 				<c:forEach var="item" items="${genre.list}">
 					<div class="novel-wrapper">
 						<div class="thumbnail-large">
-							<img alt="${item.title}" src="/thumbnail/${item.thumbnail == null ? item.preview : item.thumbnail.fullname}">
+							<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
 						</div>
 						<div class="text-ellipsis overflow-hidden">
 							<span class="text-title">${item.title}</span>

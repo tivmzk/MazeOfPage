@@ -8,4 +8,5 @@ import kr.ac.hairou.util.Pager;
 public interface NovelService {
 	void dummy(int genre);
 	List<Novel> getList(Pager pager);
+	void add(Novel item);
 }

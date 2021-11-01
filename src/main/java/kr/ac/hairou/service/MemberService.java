@@ -9,7 +9,7 @@ public interface MemberService {
 
 	void add(Member item);
 
-	Member getItem(String id);
+	Member getItem(Member member);
 
 	List<Member> getList(Pager pager);
 

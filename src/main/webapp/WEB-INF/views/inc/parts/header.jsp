@@ -20,7 +20,14 @@
 			</div>
 		</div>
 	</div>
-	<div class="btn">
-		<a href="/login">로그인</a>
-	</div>
+	<c:if test="${sessionScope.user != null}">
+		<div>
+			<a href="/profile/${sessionScope.user.id}" class="nickname">${sessionScope.user.nickname}</a>님 환영합니다
+		</div>
+	</c:if>
+	<c:if test="${sessionScope.user == null}">
+		<div class="btn">
+			<a href="/login">로그인</a>
+		</div>
+	</c:if>
 </div>
