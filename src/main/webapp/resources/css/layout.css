@@ -34,7 +34,6 @@
 .wrapper {
   width: 1000px;
   margin: 0 auto;
-  padding: 0 var(--size-padding);
 }
 #ranking{
 	background: #f1f0f0;

@@ -15,17 +15,20 @@
 			<c:forEach var="item" items="${rankingList}">
 				<section class="novel-wrapper">
 					<div class="thumbnail-large">
-						<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+						<a href="/novel/detail/${item.code}">
+							<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+						</a>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
-						<span class="text-title">${item.title}</span>
+						<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
-						<span class="text-nickname">${item.nickname} • ${item.genreContents}</span>
+						<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+						<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
-						<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span>
-						<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
+						<span class="text-recom pr-5"><span class="icon"></span>${item.recom}</span>
+						<span class="text-bookmark"><span class="icon"></span>${item.bookmark}</span>
 					</div>
 				</section>
 			</c:forEach>
@@ -49,21 +52,24 @@
 				<c:forEach var="item" items="${novelList}">
 					<section class="flex theme">
 						<div class="thumbnail-small">
-							<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+							<a href="/novel/detail/${item.code}">
+								<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+							</a>
 						</div>
 						<div class="px-10">
 							<div class="text-ellipsis overflow-hidden">
-								<span class="text-title">${item.title}</span>
+								<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 							</div>
 							<div class="text-ellipsis overflow-hidden">
-								<span class="text-nickname">${item.nickname} • ${item.genreContents}</span>
+								<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+								<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 							</div>
 							<div class="overflow-hidden">
 								<span class="text-info">${item.info}</span>
 							</div>
 							<div class="text-ellipsis overflow-hidden">
-								<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span> 
-								<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
+								<span class="text-recom pr-5"><span class="icon"></span>${item.recom}</span> 
+								<span class="text-bookmark"><span class="icon"></span>${item.bookmark}</span>
 							</div>
 						</div>
 					</section>
@@ -83,17 +89,20 @@
 				<c:forEach var="item" items="${genre.list}">
 					<div class="novel-wrapper">
 						<div class="thumbnail-large">
-							<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+							<a href="/novel/detail/${item.code}"> 
+								<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+							</a>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-title">${item.title}</span>
+							<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-nickname">${item.nickname}</span>
+								<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+								<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span>
-							<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
+							<span class="text-recom pr-5"><span class="icon"></span>${item.recom}</span>
+							<span class="text-bookmark"><span class="icon"></span>${item.bookmark}</span>
 						</div>
 					</div>
 				</c:forEach>
@@ -111,7 +120,7 @@
 			<ul class="list">
 				<c:forEach var="item" items="${noticeList}">
 					<li class="flex item-center">
-						<span>${item.title}</span> 
+						<span><a href="/notice/view/${item.code}">${item.title}</a></span> 
 						<span><fmt:formatDate pattern="yyyy-MM-dd" value="${item.date}" /></span>
 					</li>
 				</c:forEach>
@@ -122,8 +131,11 @@
 				<h2 class="text-black">감상평</h2>
 			</div>
 			<ul class="list">
-				<c:forEach var="item" items="temp">
-					<li class="flex item-center"><span>제목</span> <span>닉네임</span></li>
+				<c:forEach var="item" items="${reviewList}">
+					<li class="flex item-center">
+						<span><a href="/review/view/${item.code}">${item.title}</a></span>
+						 <span><a href="/profile/${item.id}">${item.nickname}</a></span>
+					</li>
 				</c:forEach>
 			</ul>
 		</div>

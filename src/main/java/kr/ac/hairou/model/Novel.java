@@ -14,9 +14,17 @@ public class Novel {
 	private String nickname;
 	private String genreContents;
 	private int bookmark;
+	private String id;
 	
 	private Thumbnail image;
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public Date getDate() {
 		return date;
 	}

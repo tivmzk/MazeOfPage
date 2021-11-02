@@ -9,4 +9,5 @@ public interface NovelService {
 	void dummy(int genre);
 	List<Novel> getList(Pager pager);
 	void add(Novel item);
+	Novel getItem(int code);
 }

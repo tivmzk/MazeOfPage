@@ -28,14 +28,15 @@
 			<c:forEach var="item" items="${list}">
 				<section class="flex novel-item">
 					<div class="thumbnail-normal">
-						<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+						<a href="/novel/detail/${item.code}"><img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}"></a>
 					</div>
 					<div class="px-10">
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-title">${item.title}</span>
+							<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-nickname">${item.nickname} • ${item.genreContents}</span>
+							<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+							<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 						</div>
 						<div class="overflow-hidden">
 							<span class="text-info">${item.info}</span>

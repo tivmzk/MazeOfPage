@@ -5,21 +5,21 @@
 	<div class="logo">
 		<h1 class="text-black"><a href="/">Maze of Page</a></h1>
 	</div>
-	<div class="flex border-3 border-color-main round">
+	<form class="flex border-3 border-color-main round" action="/novel/list">
 		<div class="flex item-center">
-			<select class="search-select">
-				<option>제목</option>
-				<option>작성자</option>
-				<option>장르</option>
+			<select class="search-select" name="search">
+				<option value="1" ${pager.search == 1 ? 'selected' : ''}>제목</option>
+				<option value="2" ${pager.search == 2 ? 'selected' : ''}>작성자</option>
+				<option value="3" ${pager.search == 3 ? 'selected' : ''}>장르</option>
 			</select>
 		</div>
 		<div class="search-box">
-			<input type="text" class="input-text">
-			<div class="icon">
+			<input type="text" class="input-text" name="keyword" value="${pager.keyword}">
+			<button class="icon">
 				<img alt="" src="/svg/search.svg">
-			</div>
+			</button>
 		</div>
-	</div>
+	</form>
 	<c:if test="${sessionScope.user != null}">
 		<div>
 			<a href="/profile/${sessionScope.user.id}" class="nickname">${sessionScope.user.nickname}</a>님 환영합니다

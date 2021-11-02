@@ -47,4 +47,9 @@ public class NovelServiceImpl implements NovelService {
 		tdao.add(item.getImage());
 	}
 
+	@Override
+	public Novel getItem(int code) {
+		return dao.getItem(code);
+	}
+
 }

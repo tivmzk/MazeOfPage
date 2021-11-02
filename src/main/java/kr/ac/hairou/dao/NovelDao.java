@@ -11,4 +11,6 @@ public interface NovelDao {
 	List<Novel> getList(Pager pager);
 
 	int getTotal(Pager pager);
+
+	Novel getItem(int code);
 }

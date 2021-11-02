@@ -10,10 +10,10 @@
 				n.title LIKE CONCAT('%', #{keyword}, '%')
 			</if>
 			<if test="search == 2">
-				n.member LIKE CONCAT('%', #{keyword}, '%')
+				n.member IN (SELECT id FROM member WHERE nickname LIKE CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="search == 3">
-				n.genre=(SELECT CODE FROM genre WHERE contents LIKE CONCAT('%', #{keyword}, '%'))
+				n.genre IN (SELECT CODE FROM genre WHERE contents LIKE CONCAT('%', #{keyword}, '%'))
 			</if>
 		</where>
 	</sql>
@@ -45,6 +45,7 @@
 		<result column="nickname" property="nickname" />
 		<result column="genreContents" property="genreContents"/>
 		<result column="bookmark" property="bookmark"/>
+		<result column="id" property="id"/>
 		
 		<association property="image" javaType="Thumbnail">
 			<id column="tcode" property="code"/>
@@ -55,7 +56,7 @@
 	</resultMap>
 	
 	<select id="list" resultMap="NovelMap">
-		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, 
+		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
 		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
 		FROM novel n
 		JOIN genre g ON g.code=n.genre
@@ -64,6 +65,15 @@
 		<include refid="search" />
 		<include refid="order" />
 		LIMIT #{offset}, #{perPage}
+	</select>
+	<select id="item" resultMap="NovelMap">
+		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
+		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
+		FROM novel n
+		JOIN genre g ON g.code=n.genre
+		JOIN member m ON m.id=n.member
+		LEFT OUTER JOIN thumbnail t ON t.novel=n.code
+		WHERE n.code=#{code}
 	</select>
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*)

@@ -65,6 +65,8 @@ public class RootController {
 			model.addAttribute("genreList", genreList);
 			model.addAttribute("noticeList", noticeList);
 			model.addAttribute("genreRankList", genreRankList);
+			pager.setKeyword("");
+			pager.setSearch(0);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -93,8 +95,6 @@ public class RootController {
 		Member item = memberService.getItem(member);
 		
 		if(item == null) {
-			System.out.println(member.getId());
-			System.out.println(member.getPassword());
 			return "login.main";
 		}
 		

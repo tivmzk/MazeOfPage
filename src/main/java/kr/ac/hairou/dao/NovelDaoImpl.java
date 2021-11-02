@@ -29,4 +29,9 @@ public class NovelDaoImpl implements NovelDao {
 		return sql.selectOne("novel.total", pager);
 	}
 
+	@Override
+	public Novel getItem(int code) {
+		return sql.selectOne("novel.item", code);
+	}
+
 }

@@ -8,7 +8,7 @@
   --color-hightlight-main: #12498c;
   --color-hightlight-sub: #dae3f3;
   --color-footer: #595959;
-  --color-gray: rgb(120, 120, 120);
+  --color-gray: #787878;
   --color-dark-gray: #595959;
   --color-light-gray: #cccccc;
   --color-accent: #0695c2;
@@ -21,6 +21,12 @@
   --color-copper-border: #7c3602;
   --color-white: #fff;
   --color-black: #202020;
+  --color-red: #ff3737;
+  --color-dark-red: #e61f2d;
+  --color-hightlight-red: #ff5e44;
+  --color-green: #21ac1a;
+  --color-dark-green: #0e9914;
+  --color-hightlight-green: #2fc140;
 
   --size-wrapper: 1000px;
   --size-padding: 10px;
@@ -218,6 +224,9 @@
 }
 .text-accent {
   color: var(--color-accent) !important;
+}
+.text-point{
+	color: var(--color-point-text) !important;
 }
 
 .text-center {
