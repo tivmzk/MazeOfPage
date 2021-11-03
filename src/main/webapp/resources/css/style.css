@@ -228,6 +228,9 @@
 .text-point{
 	color: var(--color-point-text) !important;
 }
+.text-gray{
+	color: var(--color-gray) !important;
+}
 
 .text-center {
   text-align: center;

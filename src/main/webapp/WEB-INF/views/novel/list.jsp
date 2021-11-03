@@ -35,7 +35,7 @@
 							<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+							<span class="text-nickname"><a href="/profile/${item.member}">${item.nickname}</a> • 
 							<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 						</div>
 						<div class="overflow-hidden">

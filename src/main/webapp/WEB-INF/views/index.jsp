@@ -23,7 +23,7 @@
 						<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
-						<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+						<span class="text-nickname"><a href="/profile/${item.member}">${item.nickname}</a> • 
 						<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
@@ -61,7 +61,7 @@
 								<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 							</div>
 							<div class="text-ellipsis overflow-hidden">
-								<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+								<span class="text-nickname"><a href="/profile/${item.member}">${item.nickname}</a> • 
 								<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 							</div>
 							<div class="overflow-hidden">
@@ -97,7 +97,7 @@
 							<span class="text-title"><a href="/novel/detail/${item.code}">${item.title}</a></span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-								<span class="text-nickname"><a href="/profile/${item.id}">${item.nickname}</a> • 
+								<span class="text-nickname"><a href="/profile/${item.member}">${item.nickname}</a> • 
 								<a href="/novel/list?keyword=${item.genreContents}&search=3">${item.genreContents}</a></span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
@@ -134,7 +134,7 @@
 				<c:forEach var="item" items="${reviewList}">
 					<li class="flex item-center">
 						<span><a href="/review/view/${item.code}">${item.title}</a></span>
-						 <span><a href="/profile/${item.id}">${item.nickname}</a></span>
+						 <span><a href="/profile/${item.member}">${item.nickname}</a></span>
 					</li>
 				</c:forEach>
 			</ul>

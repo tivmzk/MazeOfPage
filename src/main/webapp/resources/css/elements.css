@@ -197,6 +197,11 @@ div.visual {
   font-size: var(--font-size-xlarge);
   font-weight: var(--font-weight-bold);
 }
+.article-title h3 {
+  color: var(--color-accent);
+  font-size: var(--font-size-large);
+  font-weight: var(--font-weight-normal);
+}
 
 div.thumbnail-large {
   width: 180px;
@@ -456,6 +461,7 @@ div.thumbnail-small img{
 	height: 40px;
 	border-radius: 5px;
 	padding: 0 5px;
+	font-size: var(--font-size-normal);
 }
 .form-input select{
 	width: 150px;
@@ -478,6 +484,7 @@ div.thumbnail-small img{
 	outline: none;
 	border-radius: 5px;
 	padding: 5px 5px;
+	font-size: var(--font-size-normal);
 }
 .novel-form .thumbnail{
 	width: 150px;
@@ -773,4 +780,64 @@ div.thumbnail-small img{
 }
 .detail-contents .other .novel-list .info div:nth-child(4) {
 	margin-top: 10px;
+}
+
+/* episode add */
+.episode-form{
+	width: 700px;
+	margin: 50px auto;
+}
+.episode-form .form-item .form-title h3{
+	color: var(--color-black);
+	font-size: var(--font-size-large);
+	padding: 15px 0;
+}
+.episode-form .form-item .form-input input[type="text"]{
+	width: 100%;
+}
+.episode-form .form-item .episode-btn-box #episode-add-btn{
+	background: var(--color-point-text);
+	color: var(--color-white);
+	width: 30px;
+	height: 30px;
+	font-size: var(--font-size-large);
+	border: 1px solid var(--color-main);
+	border-radius: 5px;
+}
+.episode-form .form-item .episode-btn-box #episode-add-btn:active{
+	background: var(--color-accent);
+}
+.episode-form .form-item .option-wrapper .episode-option{
+	border: 1px solid var(--color-light-gray);
+	border-radius: 5px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.episode-form .form-item .option-wrapper .episode-option input,
+.episode-form .form-item .option-wrapper .episode-option select{
+	border: none;
+	outline: none;
+}
+.episode-form .form-item .option-wrapper .episode-option .option-contents{
+	border-right: 1px solid var(--color-light-gray);
+	padding: 10px 5px;
+	flex-basis: 70%;
+}
+.episode-form .form-item .option-wrapper .episode-option .option-contents input{
+	width: 100%;
+}
+.episode-form .form-item .option-wrapper .episode-option .connect-episode{
+	padding: 10px 5px 10px 20px;
+	flex-basis: 30%;
+}
+.episode-form .form-item .option-wrapper .episode-option .connect-episode select{
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background-image: url("../svg/drop_down.svg");
+	background-repeat: no-repeat;
+	background-position: right;
+	cursor: pointer;
+	width: 100%;
 }

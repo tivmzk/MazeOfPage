@@ -97,7 +97,7 @@
 			<a href="/novel/list?search=3&keyword=${item.genreContents}">${item.genreContents}</a>
 		</div>
 		<div class="nickname">
-			<a href="/profile/${item.id}">${item.nickname}</a>
+			<a href="/profile/${item.member}">${item.nickname}</a>
 		</div>
 	</div>
 	<article class="detail-info">
@@ -137,10 +137,12 @@
 					<c:forEach var="episode" items="${episodeList}">
 						<li>
 							<div class="title"><a href="">${episode.title}</a></div>
-							<div class="btn-box">
-								<a href="/episode/update/${episode.code}" class="update">수정</a>
-								<a href="/episode/delete/${episode.code}" class="delete">삭제</a>
-							</div>
+							<c:if test="${item.member == sessionScope.user.id}">
+								<div class="btn-box">
+									<a href="/episode/update/${episode.code}" class="update">수정</a>
+									<a href="/episode/delete/${episode.code}" class="delete">삭제</a>
+								</div>
+							</c:if>
 						</li>
 					</c:forEach>
 				</ul>
@@ -184,7 +186,7 @@
 							</div>
 							<div class="text-ellipsis overflow-hidden">
 								<span class="text-nickname">
-									<a href="/profile/${otherNovel.id}">${otherNovel.nickname}</a> • 
+									<a href="/profile/${otherNovel.member}">${otherNovel.nickname}</a> • 
 									<a href="/novel/list?search=3&keyword=${otherNovel.genreContents}">${otherNovel.genreContents}</a>
 								</span>
 							</div>

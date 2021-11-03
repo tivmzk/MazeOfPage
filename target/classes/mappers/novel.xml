@@ -45,7 +45,6 @@
 		<result column="nickname" property="nickname" />
 		<result column="genreContents" property="genreContents"/>
 		<result column="bookmark" property="bookmark"/>
-		<result column="id" property="id"/>
 		
 		<association property="image" javaType="Thumbnail">
 			<id column="tcode" property="code"/>
@@ -57,7 +56,7 @@
 	
 	<select id="list" resultMap="NovelMap">
 		SELECT n.*, (SELECT COUNT(*) FROM recommend r WHERE r.novel=n.code) AS recom,
-		m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
+		m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, 
 		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
 		FROM novel n
 		JOIN genre g ON g.code=n.genre
@@ -69,7 +68,7 @@
 	</select>
 	<select id="item" resultMap="NovelMap">
 		SELECT n.*, (SELECT COUNT(*) FROM recommend r WHERE r.novel=n.code) AS recom,
-		m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
+		m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, 
 		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
 		FROM novel n
 		JOIN genre g ON g.code=n.genre

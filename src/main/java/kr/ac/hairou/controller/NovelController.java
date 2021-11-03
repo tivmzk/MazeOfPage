@@ -97,7 +97,7 @@ public class NovelController {
 		
 		service.add(item);
 		
-		return "redirect:/";
+		return "redirect:detail/"+item.getCode();
 	}
 	
 	@GetMapping("/detail/{code}")
