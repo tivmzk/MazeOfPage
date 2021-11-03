@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,11 +18,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.google.common.io.Files;
 
+import kr.ac.hairou.model.Bookmark;
 import kr.ac.hairou.model.Genre;
+import kr.ac.hairou.model.Member;
 import kr.ac.hairou.model.Novel;
+import kr.ac.hairou.model.Recommend;
 import kr.ac.hairou.model.Thumbnail;
+import kr.ac.hairou.service.BookmarkService;
 import kr.ac.hairou.service.GenreService;
 import kr.ac.hairou.service.NovelService;
+import kr.ac.hairou.service.RecommendService;
 import kr.ac.hairou.util.Pager;
 
 @Controller
@@ -31,6 +38,10 @@ public class NovelController {
 	NovelService service;
 	@Autowired
 	GenreService genreService;
+	@Autowired
+	RecommendService recomService;
+	@Autowired
+	BookmarkService bookmarkService;
 	
 	private final String PATH = "novel/";
 	
@@ -90,8 +101,17 @@ public class NovelController {
 	}
 	
 	@GetMapping("/detail/{code}")
-	public String detail(@PathVariable int code, Model model, Pager pager) {
+	public String detail(@PathVariable int code, Model model, Pager pager, HttpSession session) {
 		Novel item = service.getItem(code);
+		Member user = (Member) session.getAttribute("user");
+		
+		if(user != null) {
+			Recommend recom = recomService.getItem(user.getId(), code);
+			Bookmark bookmark = bookmarkService.getItem(user.getId(), code);
+			
+			model.addAttribute("recom", recom);
+			model.addAttribute("bookmark", bookmark);
+		}
 		
 		pager.setKeyword(item.getNickname());
 		pager.setSearch(2);
@@ -101,7 +121,7 @@ public class NovelController {
 		
 		model.addAttribute("item", item);
 		model.addAttribute("userList", userList);
-		
+		pager.reset();
 		return PATH+"detail.main";
 	}
 }

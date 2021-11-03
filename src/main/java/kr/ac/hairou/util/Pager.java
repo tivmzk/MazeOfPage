@@ -113,4 +113,13 @@ public class Pager {
 	public void setOrder(int order) {
 		this.order = order;
 	}
+	
+	public void reset() {
+		order = 0;
+		search = 0;
+		keyword = "";
+		perPage = 10;
+		total = 0;
+		perGroup = 5;
+	}
 }

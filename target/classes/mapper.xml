@@ -18,5 +18,7 @@
 		<mapper resource="mappers/notice.xml"/>
 		<mapper resource="mappers/member.xml"/>
 		<mapper resource="mappers/thumbnail.xml"/>
+		<mapper resource="mappers/recommend.xml"/>
+		<mapper resource="mappers/bookmark.xml"/>
 	</mappers>
 </configuration>

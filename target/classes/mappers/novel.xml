@@ -27,7 +27,7 @@
 	</sql>
 	<insert id="add">
 		INSERT INTO novel
-		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, #{recom}, NOW())
+		VALUES(NULL, #{member}, #{genre}, #{title}, #{info}, NOW())
 		
 		<selectKey keyProperty="code" resultType="Integer" order="AFTER">
 			SELECT LAST_INSERT_ID()
@@ -56,7 +56,8 @@
 	</resultMap>
 	
 	<select id="list" resultMap="NovelMap">
-		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
+		SELECT n.*, (SELECT COUNT(*) FROM recommend r WHERE r.novel=n.code) AS recom,
+		m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
 		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
 		FROM novel n
 		JOIN genre g ON g.code=n.genre
@@ -67,7 +68,8 @@
 		LIMIT #{offset}, #{perPage}
 	</select>
 	<select id="item" resultMap="NovelMap">
-		SELECT n.*, m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
+		SELECT n.*, (SELECT COUNT(*) FROM recommend r WHERE r.novel=n.code) AS recom,
+		m.nickname, g.contents AS genreContents, (SELECT COUNT(*) FROM bookmark b WHERE n.code=b.novel) AS bookmark, m.id, 
 		t.code AS tcode, t.novel AS tnovel, t.uuid AS tuuid, t.filename AS tfilename
 		FROM novel n
 		JOIN genre g ON g.code=n.genre

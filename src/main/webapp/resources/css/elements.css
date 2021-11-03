@@ -1,4 +1,5 @@
 @charset "UTF-8";
+/* header */
 .logo h1 a {
   font-family: var(--font-logo);
   font-size: var(--font-size-logo);
@@ -82,7 +83,51 @@
 .btn a:active {
   background: var(--color-dark-main);
 }
+.user-box{
+	position: relative;
+}
+.user-box .nickname{
+	color: var(--color-point-text);
+	text-decoration: none;
+	cursor: pointer;
+	user-select: none;
+}
+.user-box .nickname:hover{
+	text-decoration: underline;
+}
+.user-box .user-menu{
+	list-style: none;
+	border: 3px solid var(--color-gray);
+	position:absolute;
+	width: 80px;
+	background: var(--color-white);
+	display: none;
+}
+.user-box .user-menu.active{
+	display: block;
+}
+.user-box .user-menu li{
+	text-align: center;
+}
+.user-box .user-menu li:not(:last-child){
+	border-bottom: 1px solid var(--color-light-gray);
+}
+.user-box .user-menu li a{
+	text-decoration: none;
+	color: var(--color-black);
+	font-size: var(--font-size-small);
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.user-box .user-menu li a:hover{
+	background: var(--color-light-gray);
+}
+.user-box .user-menu li a:active{
+	background: var(--color-dark-gray);
+}
 
+/* --------------------------- index ------------------------------------*/
 .text-title,
 .text-title a{
   color: var(--color-black);
@@ -158,6 +203,8 @@ div.thumbnail-large {
   height: 250px;
   overflow: hidden;
   margin-bottom: 10px;
+  border: 1px solid var(--color-light-gray);
+  border-radius: 5px;
 }
 div.thumbnail-large img {
   object-fit: cover;
@@ -187,6 +234,8 @@ div.thumbnail-small {
 	width: 150px;
 	height: 150px;
 	overflow: hidden;
+	border: 1px solid var(--color-light-gray);
+  	border-radius: 5px;
 }
 div.thumbnail-small img{
 	width: 100%;
@@ -389,13 +438,7 @@ div.thumbnail-small img{
 	background: var(--color-main);
 	color: var(--color-white);
 }
-#header .nickname{
-	color: var(--color-point-text);
-	text-decoration: none;
-}
-#header .nickname:hover{
-	text-decoration: underline;
-}
+
 .novel-form{
 	width: 700px;
 	margin: 0 auto;

@@ -5,11 +5,11 @@
   
 <mapper namespace="genre">
 	<select id="list" resultType="Genre">
-		SELECT genre.code, genre.contents, SUM(novel.recom) AS recom
+		SELECT genre.code, genre.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE novel.code=recommend.novel)) AS recom
 		FROM genre
 		JOIN novel ON genre.code=novel.genre
 		GROUP BY genre.code, genre.contents
-		ORDER BY SUM(novel.recom) DESC
+		ORDER BY recom DESC
 		LIMIT #{offset}, #{perPage}
 	</select>
 	<select id="total" resultType="Integer">

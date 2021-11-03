@@ -2,13 +2,88 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
+	function createUserData(){
+		return {
+				'code':'0',
+				'member':'${sessionScope.user.id}',
+				'novel':'${item.code}'
+		};
+	}
+	function sendAJAX(uri, methodType, callback){
+		const sendData = createUserData();
+		
+		$.ajax(uri,{
+			method: methodType,
+			dataType:'json',
+			data:JSON.stringify(sendData),
+			contentType:'application/json; charset=UTF-8',
+			success:callback,
+			error:function(xhr, status){
+				console.log(status);
+			}
+		});
+	}
 	$(function(){
 		$('.btn-box .recom').click(function(){
-			$(this).toggleClass('active');
+			if(${sessionScope.user != null}){
+				let isRecom = false;
+				$.ajax(`/api/recom?member=${sessionScope.user.id}&novel=${item.code}`, {
+					success:function(result){
+						isRecom = result;
+						
+						if(isRecom){
+							sendAJAX('/api/recom', 'DELETE', 
+								function(result){
+								$('.btn-box .recom').toggleClass('active');
+								$('.btn-box .recom .text').text(result);
+							});
+						}
+						else{
+							sendAJAX('/api/recom', 'POST', 
+								function(result){
+								$('.btn-box .recom').toggleClass('active');
+								$('.btn-box .recom .text').text(result);
+							});
+						}
+					},
+					error:function(){
+						console.log("확인 에러");
+					}
+				});
+			}
+			else
+				alert('로그인을 필요합니다')
 		});
 		
 		$('.btn-box .bookmark').click(function(){
-			$(this).toggleClass('active');
+			if(${sessionScope.user != null}){
+				let isRecom = false;
+				$.ajax(`/api/bookmark?member=${sessionScope.user.id}&novel=${item.code}`, {
+					success:function(result){
+						isRecom = result;
+						
+						if(isRecom){
+							sendAJAX('/api/bookmark', 'DELETE', 
+								function(result){
+								$('.btn-box .bookmark').toggleClass('active');
+								$('.btn-box .bookmark .text').text(result);
+							});
+						}
+						else{
+							sendAJAX('/api/bookmark', 'POST', 
+								function(result){
+								$('.btn-box .bookmark').toggleClass('active');
+								$('.btn-box .bookmark .text').text(result);
+							});
+						}
+					},
+					error:function(){
+						console.log("확인 에러");
+					}
+				});
+			}
+			else
+				alert('로그인을 필요합니다')
 		});
 	});
 </script>
@@ -27,17 +102,17 @@
 	</div>
 	<article class="detail-info">
 		<div>
-			<p class="detail-story">줄거리</p>
+			<p class="detail-story">${item.info}</p>
 		</div>
 		<div class="flex justify-between">
 			<div class="btn-box flex">
-				<div class="recom">
+				<div class="recom ${recom != null ? (recom.member==sessionScope.user.id ? 'active' : '') : ''}">
 					<span class="icon"></span>
-					<span class="text">추천</span>
+					<span class="text">${item.recom}</span>
 				</div>
-				<div class="bookmark">
+				<div class="bookmark ${bookmark != null ? (bookmark.member==sessionScope.user.id ? 'active' : ''): ''}">
 					<span class="icon"></span>
-					<span class="text">북마크</span>
+					<span class="text">${item.bookmark}</span>
 				</div>
 			</div>
 			<div class="start-btn">

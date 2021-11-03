@@ -65,8 +65,7 @@ public class RootController {
 			model.addAttribute("genreList", genreList);
 			model.addAttribute("noticeList", noticeList);
 			model.addAttribute("genreRankList", genreRankList);
-			pager.setKeyword("");
-			pager.setSearch(0);
+			pager.reset();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -100,6 +99,12 @@ public class RootController {
 		
 		session.setAttribute("user", item);
 		
+		return "redirect:.";
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
 		return "redirect:.";
 	}
 	

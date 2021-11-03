@@ -1,6 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script>
+	$(function(){
+		$('.user-box .nickname').click(function(){
+			$('.user-box .user-menu').toggleClass('active');
+		});
+	});
+</script>
 <div class="wrapper flex justify-between item-center">
 	<div class="logo">
 		<h1 class="text-black"><a href="/">Maze of Page</a></h1>
@@ -21,8 +28,12 @@
 		</div>
 	</form>
 	<c:if test="${sessionScope.user != null}">
-		<div>
-			<a href="/profile/${sessionScope.user.id}" class="nickname">${sessionScope.user.nickname}</a>님 환영합니다
+		<div class="user-box">
+			<span class="nickname">${sessionScope.user.nickname}</span>님 환영합니다
+			<ul class="user-menu">
+				<li><a href="/logout">로그아웃</a></li>
+				<li><a href="/profile/${sessionScope.user.id}">프로필</a></li>
+			</ul>
 		</div>
 	</c:if>
 	<c:if test="${sessionScope.user == null}">
