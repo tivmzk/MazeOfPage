@@ -11,7 +11,7 @@
 	</select>
 	<insert id="add">
 		INSERT INTO recommend
-		VALUES(NULL, #{member}, #{novel})
+		VALUES(#{member}, #{novel})
 	</insert>
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*)

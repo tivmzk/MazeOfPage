@@ -49,7 +49,10 @@ public class NovelServiceImpl implements NovelService {
 
 	@Override
 	public Novel getItem(int code) {
-		return dao.getItem(code);
+		Novel item = dao.getItem(code);
+		String info = item.getInfo();
+		item.setInfo(info.replaceAll("\n", "<br>"));
+		return item;
 	}
 
 }
