@@ -156,23 +156,17 @@ public class NovelController {
 		FileManager manager = null;
 		
 		try {
-			Thumbnail item = thumbnailService.getItem(code);
-			FileManager.delete(item);
-			
-			thumbnailService.delete(code);
-			
-			if(image.isEmpty() || image == null) {
-				manager = new PreviewManager();
-				thumbnail = manager.upload();
-				System.out.println("preview");
-			}
-			else {
+			if(!image.isEmpty() && image != null) {
+				Thumbnail item = thumbnailService.getItem(code);
+				FileManager.delete(item);
+				
+				thumbnailService.delete(code);
 				manager = new ThumbnailManager(image);
 				thumbnail = manager.upload();
-				System.out.println("thumbnail");
+				
+				novel.setImage(thumbnail);
 			}
-			System.out.println(thumbnail.getFullname());
-			novel.setImage(thumbnail);
+			
 			service.update(novel);
 		}
 		catch(Exception e) {

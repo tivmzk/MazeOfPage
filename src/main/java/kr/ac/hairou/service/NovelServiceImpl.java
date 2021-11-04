@@ -66,8 +66,10 @@ public class NovelServiceImpl implements NovelService {
 	@Override
 	public void update(Novel item) {
 		dao.update(item);
-		item.getImage().setNovel(item.getCode());
-		tdao.add(item.getImage());
+		if(item.getImage() != null) {
+			item.getImage().setNovel(item.getCode());
+			tdao.add(item.getImage());	
+		}
 	}
 
 }
