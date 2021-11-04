@@ -6,6 +6,15 @@
 <mapper namespace="thumbnail">
 	<insert id="add">
 		INSERT INTO thumbnail
-		VALUES(NULL, #{novel}, #{uuid}, #{filename})
+		VALUES(#{novel}, #{uuid}, #{filename})
 	</insert>
+	<delete id="delete">
+		DELETE FROM thumbnail
+		WHERE novel=${code}
+	</delete>
+	<select id="item" resultType="Thumbnail">
+		SELECT *
+		FROM thumbnail
+		WHERE novel=#{code}
+	</select>
 </mapper>

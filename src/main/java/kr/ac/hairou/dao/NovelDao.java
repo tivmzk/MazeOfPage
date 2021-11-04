@@ -13,4 +13,8 @@ public interface NovelDao {
 	int getTotal(Pager pager);
 
 	Novel getItem(int code);
+
+	void delete(int code);
+
+	void update(Novel item);
 }

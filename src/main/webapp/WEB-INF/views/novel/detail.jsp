@@ -24,6 +24,7 @@
 		});
 	}
 	$(function(){
+		/* 추천 버튼 이벤트 설정 */
 		$('.btn-box .recom').click(function(){
 			if(${sessionScope.user != null}){
 				let isRecom = false;
@@ -55,6 +56,7 @@
 				alert('로그인을 필요합니다')
 		});
 		
+		/* 북마크 버튼 이벤트 설정 */
 		$('.btn-box .bookmark').click(function(){
 			if(${sessionScope.user != null}){
 				let isRecom = false;
@@ -85,6 +87,9 @@
 			else
 				alert('로그인을 필요합니다')
 		});
+		
+		/* 삭제버튼 이벤트 설정 */
+		
 	});
 </script>
 
@@ -99,6 +104,14 @@
 		<div class="nickname">
 			<a href="/profile/${item.member}">${item.nickname}</a>
 		</div>
+		<c:if test="${sessionScope.user.id == item.member}">
+			<div id="novel-update-btn">
+				<a href="/novel/update/${item.code}">수정</a>
+			</div>
+			<div id="novel-delete-btn">
+				<a href="/novel/delete/${item.code}">삭제</a>
+			</div>
+		</c:if>
 	</div>
 	<article class="detail-info">
 		<div>
@@ -106,11 +119,11 @@
 		</div>
 		<div class="flex justify-between">
 			<div class="btn-box flex">
-				<div class="recom ${recom != null ? (recom.member==sessionScope.user.id ? 'active' : '') : ''}">
+				<div class="recom ${recom != null && recom.member==sessionScope.user.id ? 'active' : ''}">
 					<span class="icon"></span>
 					<span class="text">${item.recom}</span>
 				</div>
-				<div class="bookmark ${bookmark != null ? (bookmark.member==sessionScope.user.id ? 'active' : ''): ''}">
+				<div class="bookmark ${bookmark != null && bookmark.member==sessionScope.user.id ? 'active' : ''}">
 					<span class="icon"></span>
 					<span class="text">${item.bookmark}</span>
 				</div>

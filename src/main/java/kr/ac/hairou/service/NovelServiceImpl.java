@@ -54,5 +54,20 @@ public class NovelServiceImpl implements NovelService {
 		item.setInfo(info.replaceAll("\n", "<br>"));
 		return item;
 	}
+	
+	@Transactional
+	@Override
+	public void delete(int code) {
+		tdao.delete(code);
+		dao.delete(code);
+	}
+	
+	@Transactional
+	@Override
+	public void update(Novel item) {
+		dao.update(item);
+		item.getImage().setNovel(item.getCode());
+		tdao.add(item.getImage());
+	}
 
 }

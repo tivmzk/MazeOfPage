@@ -1,17 +1,10 @@
 package kr.ac.hairou.model;
 
 public class Thumbnail {
-	private int code;
 	private int novel;
 	private String uuid;
 	private String filename;
 	
-	public int getCode() {
-		return code;
-	}
-	public void setCode(int code) {
-		this.code = code;
-	}
 	public int getNovel() {
 		return novel;
 	}

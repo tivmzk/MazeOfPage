@@ -16,4 +16,14 @@ public class ThumbnailDaoImpl implements ThumbnailDao{
 		sql.insert("thumbnail.add", thumbnail);
 	}
 
+	@Override
+	public void delete(int code) {
+		sql.delete("thumbnail.delete", code);
+	}
+
+	@Override
+	public Thumbnail getItem(int code) {
+		return sql.selectOne("thumbnail.item", code);
+	}
+
 }

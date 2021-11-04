@@ -34,4 +34,14 @@ public class NovelDaoImpl implements NovelDao {
 		return sql.selectOne("novel.item", code);
 	}
 
+	@Override
+	public void delete(int code) {
+		sql.delete("novel.delete", code);
+	}
+
+	@Override
+	public void update(Novel item) {
+		sql.update("novel.update", item);
+	}
+
 }
