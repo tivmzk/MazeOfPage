@@ -57,6 +57,33 @@
 			e.preventDefault();
 			$(this).parent().parent().remove();
 		});
+		
+		$('#ok-btn').click(function(e){
+			e.preventDefault();
+
+			/* $('.episode-option').each(function(index, item){
+				if(	$(item).find('.option-contents input').val() == "" &&
+					$(item).find('.connect-episode select:selected').val() != -2){
+					alert('선택지를 입력해주세요');
+					$(item).find('.option-contents input').focus();
+					flag = false;
+					return;
+				}
+			}); */
+			
+			for(item of $('.episode-option')){
+				if(	$(item).find('.option-contents input').val() == "" &&
+					$(item).find('.connect-episode select option:selected').val() != -2){
+					console.log($(item).find('.connect-episode select option:selected').val());
+					alert('선택지를 입력해주세요');
+					$(item).find('.option-contents input').focus();
+					
+					return;
+				}
+			}
+			
+			$('.episode-form').submit();
+		});
 	});
 </script>
 <div class="wrapper">
@@ -91,7 +118,20 @@
 				</div>
 			</div>
 			<div class="option-wrapper">
-				
+				<div class="episode-option mb-5">
+					<div class="option-contents">
+						<input type="text" placeholder="선택지 내용" name="action"/>
+					</div>
+					<div class="connect-episode">
+						<select name="oepisode">
+							<option value="-2">선택지 없음</option>
+							<option value="-1">새로 만들기</option>
+							<c:forEach var="episode" items="${episodeList}">
+								<option value="${episode.code}">${episode.title}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="flex justify-end pt-30">

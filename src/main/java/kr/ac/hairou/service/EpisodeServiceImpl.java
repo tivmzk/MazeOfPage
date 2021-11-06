@@ -43,6 +43,8 @@ public class EpisodeServiceImpl implements EpisodeService {
 		
 		if(item.getOptions().size() > 0) {
 			for(Option option : item.getOptions()) {
+				if(option.getOepisode() == -2) continue;
+				
 				option.setMepisode(item.getCode());
 				
 				if(option.getOepisode() == -1) {
