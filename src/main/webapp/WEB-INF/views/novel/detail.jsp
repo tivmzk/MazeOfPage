@@ -128,9 +128,11 @@
 					<span class="text">${item.bookmark}</span>
 				</div>
 			</div>
-			<div class="start-btn">
-				<a href="/episode/${item.code}/1">시작</a>
-			</div>
+			<c:if test="${episodeList.size() != 0}">
+				<div class="start-btn">
+					<a href="/episode/${item.code}/${startEpi.code}">시작</a>
+				</div>
+			</c:if>
 		</div>
 	
 		<div class="thumbnail">
@@ -142,14 +144,21 @@
 			<section class="list-contents">
 				<div class="list-header">
 					<h3 class="title">에피소드</h3>
-					<div class="btn">
-						<a href="/episode/add">작성</a>
-					</div>
+					<c:if test="${sessionScope.user.id == item.member}">
+						<div class="btn">
+							<a href="/episode/add?code=${item.code}">작성</a>
+						</div>
+					</c:if>
 				</div>
 				<ul class="list">
 					<c:forEach var="episode" items="${episodeList}">
 						<li>
-							<div class="title"><a href="">${episode.title}</a></div>
+							<div class="title">
+								<a href="/episode/${item.code}/${episode.code}">${episode.title}</a>
+								<c:if test="${episode.contents == ''}">
+									<span class="warn-sign"></span>
+								</c:if>
+							</div>
 							<c:if test="${item.member == sessionScope.user.id}">
 								<div class="btn-box">
 									<a href="/episode/update/${episode.code}" class="update">수정</a>

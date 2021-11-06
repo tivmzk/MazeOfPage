@@ -1,11 +1,11 @@
-package kr.ac.hairou.service;
+package kr.ac.hairou.dao;
 
 import java.util.List;
 
 import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.util.Pager;
 
-public interface EpisodeService {
+public interface EpisodeDao {
 
 	int getTotal(int code);
 

@@ -20,5 +20,7 @@
 		<mapper resource="mappers/thumbnail.xml"/>
 		<mapper resource="mappers/recommend.xml"/>
 		<mapper resource="mappers/bookmark.xml"/>
+		<mapper resource="mappers/episode.xml"/>
+		<mapper resource="mappers/option.xml"/>
 	</mappers>
 </configuration>

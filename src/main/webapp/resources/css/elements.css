@@ -38,7 +38,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  background-image: url("../svg/drop_down.svg");
+  background-image: url("/svg/drop_down.svg");
   background-repeat: no-repeat;
   background-position: right;
   display: inline-block;
@@ -475,7 +475,7 @@ div.thumbnail-small img{
 	appearance: none;
 	border: var(--color-light-gray) var(--border-light-size) solid;
 	border-radius: 5px;
-	background-image: url("../svg/drop_down.svg");
+	background-image: url("/svg/drop_down.svg");
 	background-repeat: no-repeat;
 	background-position: right;
 	cursor: pointer;
@@ -825,6 +825,15 @@ div.thumbnail-small img{
 .detail-contents .other .novel-list .info div:nth-child(4) {
 	margin-top: 10px;
 }
+.warn-sign{
+	background-image: url("/svg/warn.svg");
+	background-position:center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	width: 20px;
+	height: 20px;
+	display: inline-block !important;
+}
 
 /* episode add */
 .episode-form{
@@ -879,7 +888,7 @@ div.thumbnail-small img{
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
-	background-image: url("../svg/drop_down.svg");
+	background-image: url("/svg/drop_down.svg");
 	background-repeat: no-repeat;
 	background-position: right;
 	cursor: pointer;

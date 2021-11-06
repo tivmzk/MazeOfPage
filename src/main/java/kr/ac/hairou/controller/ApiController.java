@@ -1,5 +1,7 @@
 package kr.ac.hairou.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -10,9 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.ac.hairou.model.Bookmark;
+import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.model.Recommend;
 import kr.ac.hairou.service.BookmarkService;
+import kr.ac.hairou.service.EpisodeService;
+import kr.ac.hairou.service.OptionService;
 import kr.ac.hairou.service.RecommendService;
+import kr.ac.hairou.util.Pager;
 
 @RequestMapping("/api")
 @RestController
@@ -21,6 +27,10 @@ public class ApiController {
 	RecommendService recomService;
 	@Autowired
 	BookmarkService bookmarkService;
+	@Autowired
+	EpisodeService episodeService;
+	@Autowired
+	OptionService optionService;
 	
 	@Transactional
 	@PostMapping("/recom")
@@ -70,5 +80,12 @@ public class ApiController {
 		else {
 			return true;
 		}
+	}
+	
+	@GetMapping("/episode")
+	public List<Episode> episodeList(Pager pager){
+		int total = episodeService.getTotal(Integer.parseInt(pager.getKeyword()));
+		pager.setPerPage(total);
+		return episodeService.getList(pager);
 	}
 }

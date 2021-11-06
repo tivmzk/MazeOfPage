@@ -11,14 +11,64 @@
 <script>
 	$(function(){
 		$('#episode-story').summernote();
+		/* 선택지 추가 버튼 이벤트 등록 */
+		$('#episode-add-btn').click(function(e){
+			e.preventDefault();
+			
+			let html = '';
+			const pager = {
+				keyword:${code},
+				search:1
+			};
+			$.ajax('/api/episode',{
+				method: 'GET',
+				dataType: 'json',
+				contentType: 'application/json',
+				data:pager,
+				success:function(result){
+					html += '<div class="episode-option mb-5">';
+					
+					html += '<div class="option-contents">';
+					html += '<input type="text" placeholder="선택지 내용" name="action"/>';
+					html += '</div>'
+					
+					html += '<div class="connect-episode">';
+					html += '<select name="oepisode">';
+					html += '<option value="-1">새로 만들기</option>';
+					for(const episode of result){
+						html += `<option value="\${episode.code}">\${episode.title}</option>`;
+					}
+					html += '</select>';
+					html += '</div>';
+					html += '<div class="option-delete">';
+					html += '<button>X</button>';
+					html += '</div>';
+					html += '</div>';
+					
+					$('.option-wrapper').append(html);
+				},
+				error:function(xhr){
+					console.log(xhr.statusText);
+				}
+			});			
+		});
+		
+		$('.option-wrapper').on('click', '.option-delete button', function(e){
+			e.preventDefault();
+			$(this).parent().parent().remove();
+		});
 	});
 </script>
 <div class="wrapper">
 	<div class="article-title flex border-b-1 border-color-gray justify-between pt-20">
 		<h2 class="bootstrap-none-h text-black">에피소드 작성</h2>
-		<h3 class="bootstrap-none-h text-gray">이 에피소드가 시작지점입니다</h3>
+		<c:if test="${episodeList.size() == 0}">
+			<h3 class="bootstrap-none-h text-gray">이 에피소드가 시작지점입니다</h3>
+		</c:if>
 	</div>
 	<form method="post" class="episode-form">
+		<input type="hidden" value="${episodeList.size() == 0 ? 1 : 0}" name="isStart">
+		<input type="hidden" value="${code}" name="novel">
 		<div class="form-item">
 			<div class="form-input">
 				<label for="title">제목</label>
@@ -28,7 +78,7 @@
 		<div class="form-item">
 			<div class="form-input">
 				<label for="episode-story">내용</label>
-				<textarea id="episode-story"></textarea>
+				<textarea id="episode-story" name="contents"></textarea>
 			</div>
 		</div>
 		<div class="form-item">
@@ -41,24 +91,12 @@
 				</div>
 			</div>
 			<div class="option-wrapper">
-				<div class="episode-option">
-					<div class="option-contents">
-						<input type="text" placeholder="선택지 내용"/>
-					</div>
-					<div class="connect-episode">
-						<select name="optionList">
-							<option value="-1">새로 만들기</option>
-							<c:forEach var="episode" items="${episodeList}">
-								<option value="${episode.code}">${episode.title}</option>
-							</c:forEach>
-						</select>
-					</div>
-				</div>
+				
 			</div>
 		</div>
 		<div class="flex justify-end pt-30">
 			<div class="btn">
-				<button>확인</button>
+				<button id="ok-btn">확인</button>
 			</div>
 		</div>
 	</form>
