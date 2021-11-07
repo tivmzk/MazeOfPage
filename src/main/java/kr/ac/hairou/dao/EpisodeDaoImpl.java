@@ -34,4 +34,9 @@ public class EpisodeDaoImpl implements EpisodeDao {
 		sql.insert("episode.add", item);
 	}
 
+	@Override
+	public void delete(int code) {
+		sql.delete("episode.delete", code);
+	}
+
 }

@@ -748,32 +748,37 @@ div.thumbnail-small img{
 .detail-contents .detail-list .list-contents .list li .title a:hover{
 	text-decoration: underline;
 }
-.detail-contents .detail-list .list-contents .list li .btn-box .update{
+.detail-contents .detail-list .list-contents .list li .btn-box .epi-update{
 	padding: 5px 10px;
 	font-size: var(--font-size-xsmall);
 	background: var(--color-green);
 	color: var(--color-white);
 	text-decoration: none;
 	border-radius: 5px;
+	display: inline;
+	margin-right: 5px;
+	cursor: pointer;
 }
-.detail-contents .detail-list .list-contents .list li .btn-box .update:hover{
+.detail-contents .detail-list .list-contents .list li .btn-box .epi-update:hover{
 	background: var(--color-hightlight-green);
 }
-.detail-contents .detail-list .list-contents .list li .btn-box .update:active{
+.detail-contents .detail-list .list-contents .list li .btn-box .epi-update:active{
 	background: var(--color-dark-green);
 }
-.detail-contents .detail-list .list-contents .list li .btn-box .delete{
+.detail-contents .detail-list .list-contents .list li .btn-box .epi-delete{
 	padding: 5px 10px;
 	font-size: var(--font-size-xsmall);
 	background: var(--color-red);
 	color: var(--color-white);
 	text-decoration: none;
 	border-radius: 5px;
+	display: inline;
+	cursor: pointer;
 }
-.detail-contents .detail-list .list-contents .list li .btn-box .delete:hover{
+.detail-contents .detail-list .list-contents .list li .btn-box .epi-delete:hover{
 	background: var(--color-hightlight-red);
 }
-.detail-contents .detail-list .list-contents .list li .btn-box .delete:active{
+.detail-contents .detail-list .list-contents .list li .btn-box .epi-delete:active{
 	background: var(--color-dark-red);
 }
 .detail-contents .other .other-header{

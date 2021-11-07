@@ -15,4 +15,6 @@ public interface EpisodeService {
 
 	void add(Episode item);
 
+	void delete(int code);
+
 }

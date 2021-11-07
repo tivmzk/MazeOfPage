@@ -3,6 +3,7 @@ package kr.ac.hairou.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +100,7 @@ public class RootController {
 		
 		session.setAttribute("user", item);
 		
-		return "redirect:.";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/logout")

@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.ac.hairou.model.Bookmark;
-import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.model.Genre;
 import kr.ac.hairou.model.Member;
 import kr.ac.hairou.model.Novel;
@@ -114,25 +113,8 @@ public class NovelController {
 		pager.setPerPage(5);
 		List<Novel> userList = service.getList(pager);
 		
-		pager.setKeyword(""+code);
-		pager.setOrder(1);
-		pager.setPage(1);
-		pager.setSearch(1);
-		pager.setPerPage(10);
-		pager.setPerGroup(5);
-		List<Episode> episodeList = episodeService.getList(pager);
-		
-		if(episodeList.size() != 0) {
-			pager.setKeyword("1");
-			pager.setTotal(code);
-			pager.setSearch(2);
-			Episode episode = episodeService.getItem(pager);
-			model.addAttribute("startEpi", episode);
-		}
-		
 		model.addAttribute("item", item);
 		model.addAttribute("userList", userList);
-		model.addAttribute("episodeList", episodeList);
 		pager.reset();
 		return PATH+"detail.main";
 	}

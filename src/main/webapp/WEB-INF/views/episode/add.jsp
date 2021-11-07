@@ -9,67 +9,72 @@
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script>
+	let episodes = null;
+	
 	$(function(){
+		const pager = {
+			keyword:${code},
+			search:1
+		};
+		
+		$.ajax('/api/episode/all',{
+			method: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
+			data:pager,
+			success:function(result){
+				episodes = result;
+			},
+			error:function(xhr){
+				console.log(xhr.statusText);
+			}
+		});	
+		
 		$('#episode-story').summernote();
+		
 		/* 선택지 추가 버튼 이벤트 등록 */
 		$('#episode-add-btn').click(function(e){
 			e.preventDefault();
 			
 			let html = '';
-			const pager = {
-				keyword:${code},
-				search:1
-			};
-			$.ajax('/api/episode',{
-				method: 'GET',
-				dataType: 'json',
-				contentType: 'application/json',
-				data:pager,
-				success:function(result){
-					html += '<div class="episode-option mb-5">';
-					
-					html += '<div class="option-contents">';
-					html += '<input type="text" placeholder="선택지 내용" name="action"/>';
-					html += '</div>'
-					
-					html += '<div class="connect-episode">';
-					html += '<select name="oepisode">';
-					html += '<option value="-1">새로 만들기</option>';
-					for(const episode of result){
-						html += `<option value="\${episode.code}">\${episode.title}</option>`;
-					}
-					html += '</select>';
-					html += '</div>';
-					html += '<div class="option-delete">';
-					html += '<button>X</button>';
-					html += '</div>';
-					html += '</div>';
-					
-					$('.option-wrapper').append(html);
-				},
-				error:function(xhr){
-					console.log(xhr.statusText);
-				}
-			});			
+			
+			html += '<div class="episode-option mb-5">';
+			
+			html += '<div class="option-contents">';
+			html += '<input type="text" placeholder="선택지 내용" name="action"/>';
+			html += '</div>'
+			
+			html += '<div class="connect-episode">';
+			html += '<select name="oepisode">';
+			html += '<option value="-1">새로 만들기</option>';
+			for(const episode of episodes){
+				html += `<option value="\${episode.code}">\${episode.title}</option>`;
+			}
+			html += '</select>';
+			html += '</div>';
+			html += '<div class="option-delete">';
+			html += '<button>X</button>';
+			html += '</div>';
+			html += '</div>';
+			
+			$('.option-wrapper').append(html);	
 		});
 		
+		/* 선택지 삭제 버튼 */
 		$('.option-wrapper').on('click', '.option-delete button', function(e){
 			e.preventDefault();
 			$(this).parent().parent().remove();
 		});
 		
+		/* 소설 등록 버튼 유효성 확인 */
 		$('#ok-btn').click(function(e){
 			e.preventDefault();
-
-			/* $('.episode-option').each(function(index, item){
-				if(	$(item).find('.option-contents input').val() == "" &&
-					$(item).find('.connect-episode select:selected').val() != -2){
-					alert('선택지를 입력해주세요');
-					$(item).find('.option-contents input').focus();
-					flag = false;
-					return;
-				}
-			}); */
+			
+			if(!$('#title').val()){
+				alert('제목을 입력하세요');
+				$('#title').focus();
+				return;
+			}
 			
 			for(item of $('.episode-option')){
 				if(	$(item).find('.option-contents input').val() == "" &&
@@ -84,6 +89,8 @@
 			
 			$('.episode-form').submit();
 		});
+		
+		
 	});
 </script>
 <div class="wrapper">

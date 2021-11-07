@@ -8,4 +8,8 @@
 		INSERT INTO option
 		VALUES (NULL, #{mepisode}, #{oepisode}, #{action})
 	</insert>
+	<delete id="delete">
+		DELETE FROM option
+		WHERE mepisode=#{code} OR oepisode=#{code}
+	</delete>
 </mapper>

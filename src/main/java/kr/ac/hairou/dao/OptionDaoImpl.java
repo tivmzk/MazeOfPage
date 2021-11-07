@@ -15,5 +15,9 @@ public class OptionDaoImpl implements OptionDao {
 	public void add(Option option) {
 		sql.insert("option.add", option);
 	}
-
+	
+	@Override
+	public void delete(int code) {
+		sql.delete("option.delete", code);
+	}
 }

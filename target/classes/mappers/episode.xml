@@ -7,16 +7,16 @@
 	<sql id="search">
 		<where>
 			<if test="search == 1">
-				novel=#{keyword}
+				e.novel=#{keyword}
 			</if>
 			<if test="search == 2">
-				is_start=#{keyword} AND novel=${total}
+				e.is_start=#{keyword} AND e.novel=${total}
 			</if>
 		</where>
 	</sql>
 	<sql id="order">
 		<if test="order == 1">
-			ORDER BY date DESC
+			ORDER BY e.is_start, e.date DESC
 		</if>
 	</sql>
 	<select id="total" resultType="Integer">
@@ -25,15 +25,16 @@
 		WHERE novel=#{code}
 	</select>
 	<select id="list" resultType="Episode">
-		SELECT *
-		FROM episode
+		SELECT e.*, n.member AS member
+		FROM episode e
+		JOIN novel n ON n.code=e.novel
 		<include refid="search" />
 		<include refid="order" />
 		LIMIT #{offset}, #{perPage}
 	</select>
 	<select id="item" resultType="Episode">
 		SELECT *
-		FROM episode
+		FROM episode e
 		<include refid="search"></include>
 	</select>
 	<insert id="add">
@@ -44,4 +45,8 @@
 			SELECT LAST_INSERT_ID()
 		</selectKey>
 	</insert>
+	<delete id="delete">
+		DELETE FROM episode
+		WHERE code=#{code}
+	</delete>
 </mapper>

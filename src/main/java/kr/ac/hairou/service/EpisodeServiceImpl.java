@@ -64,5 +64,12 @@ public class EpisodeServiceImpl implements EpisodeService {
 			}
 		}
 	}
+	
+	@Transactional
+	@Override
+	public void delete(int code) {
+		optionDao.delete(code);
+		dao.delete(code);
+	}
 
 }

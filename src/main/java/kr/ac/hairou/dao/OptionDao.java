@@ -6,4 +6,6 @@ public interface OptionDao {
 
 	void add(Option option);
 
+	void delete(int code);
+
 }

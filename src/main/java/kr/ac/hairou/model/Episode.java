@@ -12,9 +12,16 @@ public class Episode {
 	private char isStart;
 	private Date date;
 	
+	private String member;
 	private List<Option> options = new ArrayList<Option>();
 	
 	
+	public String getMember() {
+		return member;
+	}
+	public void setMember(String member) {
+		this.member = member;
+	}
 	public List<Option> getOptions() {
 		return options;
 	}

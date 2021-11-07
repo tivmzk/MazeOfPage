@@ -15,4 +15,6 @@ public interface EpisodeDao {
 
 	void add(Episode item);
 
+	void delete(int code);
+
 }
