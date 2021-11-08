@@ -10,7 +10,7 @@
 				e.novel=#{keyword}
 			</if>
 			<if test="search == 2">
-				e.is_start=#{keyword} AND e.novel=${total}
+				e.is_start=#{keyword} AND e.novel=${keyword2}
 			</if>
 		</where>
 	</sql>

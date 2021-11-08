@@ -176,8 +176,8 @@
 		/* 시작 버튼 설정 */
 		const pager = {
 			search:2,
-			total:${item.code},
-			keyword:1
+			keyword:1,
+			keyword2:${item.code}
 		}
 		
 		$.ajax('/rest/episode/item',{
@@ -282,6 +282,9 @@
 				${item.nickname}님의 <span class="text-point">다른 작품</span>
 			</div>
 			<ul class="novel-list">
+				<c:if test="${userList.size() < 1}">
+					<li>다른 작품이 없습니다</li>
+				</c:if>
 				<c:forEach var="otherNovel" items="${userList}">
 					<li class="flex">
 						<div class="thumbnail">

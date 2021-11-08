@@ -28,6 +28,7 @@ public class Pager {
 	 * @value 검색하는 내용
 	 */
 	private String keyword;
+	private String keyword2;
 	private int order = 0;
 	
 	public int getSearch() {
@@ -118,8 +119,15 @@ public class Pager {
 		order = 0;
 		search = 0;
 		keyword = "";
+		keyword2 = "";
 		perPage = 10;
 		total = 0;
 		perGroup = 5;
+	}
+	public String getKeyword2() {
+		return keyword2;
+	}
+	public void setKeyword2(String keyword2) {
+		this.keyword2 = keyword2;
 	}
 }

@@ -16,7 +16,7 @@
 				n.genre IN (SELECT CODE FROM genre WHERE contents LIKE CONCAT('%', #{keyword}, '%'))
 			</if>
 			<if test="search == 4">
-				n.member IN (SELECT id FROM member WHERE nickname LIKE CONCAT('%', #{keyword}, '%'))
+				n.member IN (SELECT id FROM member WHERE nickname LIKE CONCAT('%', #{keyword}, '%') AND n.code != #{keyword2})
 			</if>
 		</where>
 	</sql>

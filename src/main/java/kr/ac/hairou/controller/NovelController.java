@@ -108,6 +108,7 @@ public class NovelController {
 		}
 		
 		pager.setKeyword(item.getNickname());
+		pager.setKeyword2(""+code);
 		pager.setSearch(4);
 		pager.setOrder(1);
 		pager.setPerPage(5);
