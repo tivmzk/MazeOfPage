@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.ac.hairou.model.Recommend;
 import kr.ac.hairou.service.RecommendService;
 
-@RequestMapping("/api/recom")
+@RequestMapping("/rest/recom")
 @RestController
 public class RecommendController {
 	@Autowired

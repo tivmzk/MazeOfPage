@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import kr.ac.hairou.model.Bookmark;
 import kr.ac.hairou.service.BookmarkService;
 
-@RequestMapping("/api/bookmark")
+@RequestMapping("/rest/bookmark")
 @RestController
 public class BookmarkController {
 	@Autowired

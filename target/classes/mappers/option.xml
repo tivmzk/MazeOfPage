@@ -10,6 +10,6 @@
 	</insert>
 	<delete id="delete">
 		DELETE FROM option
-		WHERE mepisode=#{code} OR oepisode=#{code}
+		WHERE mepisode=#{code}
 	</delete>
 </mapper>

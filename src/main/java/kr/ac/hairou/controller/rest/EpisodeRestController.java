@@ -12,7 +12,7 @@ import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.service.EpisodeService;
 import kr.ac.hairou.util.Pager;
 
-@RequestMapping("/api/episode")
+@RequestMapping("/rest/episode")
 @RestController
 public class EpisodeRestController {
 	

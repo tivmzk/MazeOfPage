@@ -33,7 +33,17 @@
 		html += `<li data-epi="\${episode.code}">`;
 		html += '<div class="title">';
 		html += `<a href="/episode/\${episode.novel}/\${episode.code}">\${episode.title}</a>`;
-		if(!episode.contents) html += '<span class="warn-sign"></span>';
+		if(!episode.contents) {
+			const msg = '내용이 비어있습니다';
+			html += `<span class="warn-sign" title="\${msg}"></span>`;
+		}
+		/* for(const option : episode.options){
+			if(!option.oepisode) {
+				const msg = '선택지 연결이 없습니다';
+				html += `<span class="warn-sign" title="\${msg}"></span>`;
+			}	
+		} */
+		
 		html += '</div>';
 		
 		if(episode.member == '${sessionScope.user.id}'){
@@ -57,7 +67,7 @@
 			page
 		};
 		
-		$.ajax('/api/episode',{
+		$.ajax('/rest/episode',{
 			method:'GET',
 			dataType:'json',
 			contentType:'application/json',
@@ -82,19 +92,19 @@
 		$('.btn-box .recom').click(function(){
 			if(${sessionScope.user != null}){
 				let isRecom = false;
-				$.ajax(`/api/recom?member=${sessionScope.user.id}&novel=${item.code}`, {
+				$.ajax(`/rest/recom?member=${sessionScope.user.id}&novel=${item.code}`, {
 					success:function(result){
 						isRecom = result;
 						
 						if(isRecom){
-							sendAJAX('/api/recom', 'DELETE', 
+							sendAJAX('/rest/recom', 'DELETE', 
 								function(result){
 								$('.btn-box .recom').toggleClass('active');
 								$('.btn-box .recom .text').text(result);
 							});
 						}
 						else{
-							sendAJAX('/api/recom', 'POST', 
+							sendAJAX('/rest/recom', 'POST', 
 								function(result){
 								$('.btn-box .recom').toggleClass('active');
 								$('.btn-box .recom .text').text(result);
@@ -114,19 +124,19 @@
 		$('.btn-box .bookmark').click(function(){
 			if(${sessionScope.user != null}){
 				let isRecom = false;
-				$.ajax(`/api/bookmark?member=${sessionScope.user.id}&novel=${item.code}`, {
+				$.ajax(`/rest/bookmark?member=${sessionScope.user.id}&novel=${item.code}`, {
 					success:function(result){
 						isRecom = result;
 						
 						if(isRecom){
-							sendAJAX('/api/bookmark', 'DELETE', 
+							sendAJAX('/rest/bookmark', 'DELETE', 
 								function(result){
 								$('.btn-box .bookmark').toggleClass('active');
 								$('.btn-box .bookmark .text').text(result);
 							});
 						}
 						else{
-							sendAJAX('/api/bookmark', 'POST', 
+							sendAJAX('/rest/bookmark', 'POST', 
 								function(result){
 								$('.btn-box .bookmark').toggleClass('active');
 								$('.btn-box .bookmark .text').text(result);
@@ -146,7 +156,7 @@
 		$('.detail-list .list-contents .list').on('click', '.epi-delete', function(){
 			const code = $(this).closest('li').data('epi');
 			
-			$.ajax('/api/episode?code='+code, {
+			$.ajax('/rest/episode?code='+code, {
 				method:'DELETE',
 				success:result => {
 					$(`li[data-epi="\${result}"]`).remove();
@@ -166,7 +176,7 @@
 			keyword:1
 		}
 		
-		$.ajax('/api/episode/item',{
+		$.ajax('/rest/episode/item',{
 			dataType:'json',
 			contentType:'application/json',
 			data:pager,

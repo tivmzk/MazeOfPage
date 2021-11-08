@@ -19,15 +19,33 @@
 			ORDER BY e.is_start, e.date DESC
 		</if>
 	</sql>
+	
+	<resultMap type="Episode" id="EpisodeMap">
+		<id column="code" property="code"/>
+		<result column="novel" property="novel"/>
+		<result column="title" property="title"/>
+		<result column="contents" property="contents"/>
+		<result column="is_start" property="isStart"/>
+		<result column="date" property="date"/>
+		<result column="member" property="member"/>
+		<collection javaType="ArrayList" ofType="Option" column="option" property="options">
+			<id column="code" property="code"/>
+			<result column="mepisode" property="mepisode"/>
+			<result column="oepisode" property="oepisode"/>
+			<result column="action" property="action"/>
+		</collection>
+	</resultMap>
+	
 	<select id="total" resultType="Integer">
 		SELECT COUNT(*)
 		FROM episode
 		WHERE novel=#{code}
 	</select>
-	<select id="list" resultType="Episode">
-		SELECT e.*, n.member AS member
+	<select id="list" resultMap="EpisodeMap">
+		SELECT e.*, n.member AS member, o.*
 		FROM episode e
 		JOIN novel n ON n.code=e.novel
+		LEFT OUTER JOIN option o ON o.mepisode=e.code
 		<include refid="search" />
 		<include refid="order" />
 		LIMIT #{offset}, #{perPage}

@@ -17,7 +17,7 @@
 			search:1
 		};
 		
-		$.ajax('/api/episode/all',{
+		$.ajax('/rest/episode/all',{
 			method: 'GET',
 			dataType: 'json',
 			contentType: 'application/json',
