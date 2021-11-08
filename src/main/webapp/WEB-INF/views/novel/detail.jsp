@@ -37,12 +37,16 @@
 			const msg = '내용이 비어있습니다';
 			html += `<span class="warn-sign" title="\${msg}"></span>`;
 		}
-		/* for(const option : episode.options){
-			if(!option.oepisode) {
-				const msg = '선택지 연결이 없습니다';
-				html += `<span class="warn-sign" title="\${msg}"></span>`;
+		if(episode.options){
+			console.log("선택지가 있음")
+			for(option of episode.options){
+				if(!option.oepisode && option.mepisode) {
+					console.log("연결이 없음");
+					const msg = '선택지 연결이 없습니다';
+					html += `<span class="warn-sign" title="\${msg}"></span>`;
+				}	
 			}	
-		} */
+		}
 		
 		html += '</div>';
 		

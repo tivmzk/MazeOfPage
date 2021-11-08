@@ -8,4 +8,6 @@ public interface OptionDao {
 
 	void delete(int code);
 
+	void deleteDependency(int code);
+
 }

@@ -12,4 +12,10 @@
 		DELETE FROM option
 		WHERE mepisode=#{code}
 	</delete>
+	<update id="deleteDependency">
+		UPDATE option
+		SET
+		oepisode=NULL
+		WHERE oepisode=#{code}
+	</update>
 </mapper>

@@ -68,6 +68,7 @@ public class EpisodeServiceImpl implements EpisodeService {
 	@Transactional
 	@Override
 	public void delete(int code) {
+		optionDao.deleteDependency(code);
 		optionDao.delete(code);
 		dao.delete(code);
 	}

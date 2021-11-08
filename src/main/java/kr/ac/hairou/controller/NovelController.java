@@ -108,7 +108,7 @@ public class NovelController {
 		}
 		
 		pager.setKeyword(item.getNickname());
-		pager.setSearch(2);
+		pager.setSearch(4);
 		pager.setOrder(1);
 		pager.setPerPage(5);
 		List<Novel> userList = service.getList(pager);

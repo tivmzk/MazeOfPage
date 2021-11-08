@@ -20,4 +20,9 @@ public class OptionDaoImpl implements OptionDao {
 	public void delete(int code) {
 		sql.delete("option.delete", code);
 	}
+
+	@Override
+	public void deleteDependency(int code) {
+		sql.update("option.deleteDependency", code);
+	}
 }
