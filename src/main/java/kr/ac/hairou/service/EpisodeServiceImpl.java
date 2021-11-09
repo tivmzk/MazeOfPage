@@ -69,13 +69,38 @@ public class EpisodeServiceImpl implements EpisodeService {
 	@Override
 	public void delete(int code) {
 		optionDao.deleteDependency(code);
-		optionDao.delete(code);
+		optionDao.deleteAll(code);
 		dao.delete(code);
 	}
 
 	@Override
 	public void update(Episode item) {
 		dao.update(item);
+		
+		if(item.getOptions().size() > 0) {
+			optionDao.deleteAll(item.getCode());
+			
+			for(Option option : item.getOptions()) {
+				if(option.getOepisode() == -2) continue;
+				
+				option.setMepisode(item.getCode());
+				
+				if(option.getOepisode() == -1) {
+					Episode newEpi = new Episode();
+					
+					newEpi.setNovel(item.getNovel());
+					newEpi.setTitle(option.getAction());
+					newEpi.setContents("");
+					newEpi.setIsStart('0');
+					
+					dao.add(newEpi);
+					
+					option.setOepisode(newEpi.getCode());
+				}
+				
+				optionDao.add(option);
+			}
+		}
 	}
 
 }

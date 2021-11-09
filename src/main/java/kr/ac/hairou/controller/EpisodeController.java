@@ -79,23 +79,27 @@ public class EpisodeController {
 	
 	@PostMapping("/update/{code}/{epi}")
 	public String update(@PathVariable int code, @PathVariable int epi, Episode item, 
-						@RequestParam("oepisode") List<Integer> oepisodes, @RequestParam("action") List<String> actions) {
+						@RequestParam("oepisode") List<Integer> oepisodes, @RequestParam("action") List<String> actions,
+						@RequestParam("code") List<Integer> codes) {
 		item.setCode(epi);
 		item.setNovel(code);
-//		if(oepisodes != null) {
-//			for(int i = 0; i < oepisodes.size(); i++) {
-//				Option option = new Option();
-//				option.setOepisode(oepisodes.get(i));
-//				try {
-//					option.setAction(actions.get(i));
-//				}
-//				catch (Exception e) {
-//					option.setAction("");
-//				}
-//				
-//				item.getOptions().add(option);
-//			}
-//		}
+		if(oepisodes != null) {
+			for(int i = 0; i < oepisodes.size(); i++) {
+				Option option = new Option();
+				if(i < codes.size())
+					option.setCode(codes.get(i));
+				
+				option.setOepisode(oepisodes.get(i));
+				try {
+					option.setAction(actions.get(i));
+				}
+				catch (Exception e) {
+					option.setAction("");
+				}
+				
+				item.getOptions().add(option);
+			}
+		}
 		epiService.update(item);
 		return "redirect:/novel/detail/"+item.getNovel();
 	}

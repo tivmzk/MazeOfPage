@@ -33,7 +33,8 @@ public class EpisodeRestController {
 	
 	@GetMapping("/item")
 	public Episode item(Pager pager) {
-		return episodeService.getItem(pager);
+		Episode item = episodeService.getItem(pager);
+		return item;
 	}
 	
 	@DeleteMapping

@@ -18,4 +18,8 @@
 		oepisode=NULL
 		WHERE oepisode=#{code}
 	</update>
+	<delete id="deleteOne">
+		DELETE FROM option
+		WHERE code=#{code}
+	</delete>
 </mapper>

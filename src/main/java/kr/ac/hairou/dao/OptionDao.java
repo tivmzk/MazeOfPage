@@ -6,8 +6,10 @@ public interface OptionDao {
 
 	void add(Option option);
 
-	void delete(int code);
+	void deleteAll(int code);
 
 	void deleteDependency(int code);
+
+	void deleteOne(int code);
 
 }

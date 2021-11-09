@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script>
+	let episodes = null;
 	/* 추천, 북마크를 위한 데이터를 만드는 함수 */
 	function createUserData(){
 		return {
@@ -40,7 +41,7 @@
 		if(episode.options){
 			for(option of episode.options){
 				if(!option.oepisode && option.mepisode) {
-					const msg = '선택지 연결이 없습니다';
+					const msg = `선택지 '\${option.action}'의 연결이 없습니다`;
 					html += `<span class="warn-sign" title="\${msg}"></span>`;
 				}	
 			}	
@@ -75,10 +76,10 @@
 			contentType:'application/json',
 			data:pager,
 			success:result => {
+				episodes = result;
 				const list = $('.detail-list .list-contents .list');
-				const menubox = $('.menubox');
 				
-				for(episode of result){
+				for(episode of episodes){
 					const item = createEpisode(episode);
 					list.append(item);
 				}
@@ -164,7 +165,34 @@
 				$.ajax('/rest/episode?code='+code, {
 					method:'DELETE',
 					success:result => {
-						$(`li[data-epi="\${result}"]`).remove();
+						/* 
+						현재 보여주고 있는 리스트를 초기화하고 받아온 episodes에 삭제한 episode를 반영해서
+						다시 생성후 리스트에 추가
+						*/
+						const list = $('.detail-list .list-contents .list');
+						list.empty();
+						episodes = episodes.filter(episode => {
+							if(episode.code == result && episode.isStart){
+								$('.menubox .start-btn a').attr('href', '');
+							}
+							
+							if(episode.code != result){
+								for(option of episode.options){
+									if(option.oepisode == result)
+										option.oepisode = 0;
+								}
+								return true;
+							}
+							return false;
+						});
+						
+						
+						for(episode of episodes){
+							const item = createEpisode(episode);
+							list.append(item);
+						}
+						
+						
 					},
 					error:xhr => {
 						console.log('episode delete : ' + xhr.statusText);
@@ -186,10 +214,20 @@
 			if(!answer) e.preventDefault();
 		});
 		
-		
 		loadEpisodes(1);
 		
 		/* 시작 버튼 설정 */
+		$('.menubox .start-btn a').click(function(e){
+			e.preventDefault();
+			const url = $(this).attr('href');
+			if(!url){
+				alert('시작 에피소드가 없습니다.');
+			}
+			else{
+				location.href = url; 
+			}
+		});
+		
 		const pager = {
 			search:2,
 			keyword:1,
@@ -203,14 +241,10 @@
 			success:result => {
 				const startBtn = $('.menubox .start-btn a');
 				
-				startBtn.attr('href', `href="/episode/\${result.novel}/\${result.code}`);
+				startBtn.attr('href', `/episode/\${result.novel}/\${result.code}`);
 			},
 			error:xhr => {
 				console.log('start btn load : ' + xhr.statusText);
-				const startBtn = $('.menubox .start-btn a');
-				startBtn.click(function(){
-					alert('시작 에피소드가 없습니다.');
-				});
 			}
 		});
 	});

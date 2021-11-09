@@ -34,8 +34,8 @@
 		<result column="is_start" property="isStart"/>
 		<result column="date" property="date"/>
 		<result column="member" property="member"/>
-		<collection javaType="ArrayList" ofType="Option" column="option" property="options">
-			<id column="code" property="code"/>
+		<collection javaType="ArrayList" ofType="Option" column="ocode" property="options">
+			<id column="ocode" property="code"/>
 			<result column="mepisode" property="mepisode"/>
 			<result column="oepisode" property="oepisode"/>
 			<result column="action" property="action"/>
@@ -48,7 +48,7 @@
 		WHERE novel=#{code}
 	</select>
 	<select id="list" resultMap="EpisodeMap">
-		SELECT e.*, n.member AS member, o.*
+		SELECT e.*, n.member AS member, o.code AS ocode, o.mepisode, o.oepisode, o.action
 		FROM episode e
 		JOIN novel n ON n.code=e.novel
 		LEFT OUTER JOIN option o ON o.mepisode=e.code
@@ -57,7 +57,7 @@
 		LIMIT #{offset}, #{perPage}
 	</select>
 	<select id="item" resultMap="EpisodeMap">
-		SELECT e.*, n.member AS member, o.*
+		SELECT e.*, n.member AS member, o.code AS ocode, o.mepisode, o.oepisode, o.action
 		FROM episode e
 		JOIN novel n ON n.code=e.novel
 		LEFT OUTER JOIN option o ON o.mepisode=e.code

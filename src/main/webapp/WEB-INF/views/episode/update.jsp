@@ -26,7 +26,7 @@
 		html += '<div class="option-contents">';
 		html += '<input type="text" placeholder="선택지 내용" name="action"/>';
 		html += '</div>'
-		
+		html += `<input type="hidden" value="0" name="code"/>`;
 		html += '<div class="connect-episode">';
 		html += '<select name="oepisode">';
 		if(isFirst){
@@ -48,15 +48,15 @@
 		$('.option-wrapper').append(html);	
 	}
 	
+	/* DB에서 받은 option을 생성하는 함수 */
 	function loadOption(option, isFirst){
 		let html = '';
 		
 		html += '<div class="episode-option mb-5">';
-		
 		html += '<div class="option-contents">';
 		html += `<input type="text" placeholder="선택지 내용" name="action" value="\${option.action==null ? '' : option.action}"/>`;
 		html += '</div>'
-		
+		html += `<input type="hidden" value="\${option.code}" name="code"/>`;
 		html += '<div class="connect-episode">';
 		html += '<select name="oepisode">';
 		if(isFirst){
@@ -77,7 +77,7 @@
 		
 		$('.option-wrapper').append(html);	
 	}
-	
+	/* 현재 수정할려고 하는 episode를 받아오는 함수 */
 	function loadEpisode(){
 		pager.keyword = ${item.code};
 		pager.keyword2 = "";
@@ -95,15 +95,21 @@
 				
 				/* 웹 에디터 */
 				$('#episode-story').summernote();
-				let flag = true;
-				for(option of result.options){
-					loadOption(option, flag);
-					flag = false;
+				if(result.options.length > 0){
+					let flag = true;
+					for(option of result.options){
+						loadOption(option, flag);
+						flag = false;
+					}
 				}
+				else{
+					addOption(true);
+				}
+				
 				
 			},
 			error:function(xhr){
-				console.log(xhr.statusText);
+				console.log('episode load : ' + xhr.statusText);
 			}
 		});
 	}
