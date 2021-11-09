@@ -158,18 +158,30 @@
 		
 		/* 에피소드 삭제 버튼 */
 		$('.detail-list .list-contents .list').on('click', '.epi-delete', function(){
-			const code = $(this).closest('li').data('epi');
+			const answer = confirm('이 에피소드를 정말로 삭제합니까?');
 			
-			$.ajax('/rest/episode?code='+code, {
-				method:'DELETE',
-				success:result => {
-					$(`li[data-epi="\${result}"]`).remove();
-				},
-				error:xhr => {
-					console.log('episode delete : ' + xhr.statusText);
-				}
-			});
+			if(answer){
+				const code = $(this).closest('li').data('epi');
+				
+				$.ajax('/rest/episode?code='+code, {
+					method:'DELETE',
+					success:result => {
+						$(`li[data-epi="\${result}"]`).remove();
+					},
+					error:xhr => {
+						console.log('episode delete : ' + xhr.statusText);
+					}
+				});
+			}
 		});
+		
+		/* 작품 삭제 버튼 */
+		$('#novel-delete-btn a').click(function(e){
+			const answer = confirm("이 소설을 정말 삭제합니까?");
+			
+			if(!answer) e.preventDefault();
+		});
+		
 		
 		loadEpisodes(1);
 		
