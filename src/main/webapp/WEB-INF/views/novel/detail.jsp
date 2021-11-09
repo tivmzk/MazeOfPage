@@ -356,7 +356,7 @@
 								</span>
 							</div>
 							<div class="overflow-hidden">
-								<p class="novel-story">줄거리</p>
+								<p class="novel-story">${otherNovel.info}</p>
 							</div>
 							<div>
 								<span class="text-recom">
