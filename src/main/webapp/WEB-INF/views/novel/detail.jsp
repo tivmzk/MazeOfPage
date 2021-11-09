@@ -38,10 +38,8 @@
 			html += `<span class="warn-sign" title="\${msg}"></span>`;
 		}
 		if(episode.options){
-			console.log("선택지가 있음")
 			for(option of episode.options){
 				if(!option.oepisode && option.mepisode) {
-					console.log("연결이 없음");
 					const msg = '선택지 연결이 없습니다';
 					html += `<span class="warn-sign" title="\${msg}"></span>`;
 				}	
@@ -127,12 +125,12 @@
 		/* 북마크 버튼 이벤트 설정 */
 		$('.btn-box .bookmark').click(function(){
 			if(${sessionScope.user != null}){
-				let isRecom = false;
+				let isBookmark = false;
 				$.ajax(`/rest/bookmark?member=${sessionScope.user.id}&novel=${item.code}`, {
 					success:function(result){
-						isRecom = result;
+						isBookmark = result;
 						
-						if(isRecom){
+						if(isBookmark){
 							sendAJAX('/rest/bookmark', 'DELETE', 
 								function(result){
 								$('.btn-box .bookmark').toggleClass('active');
@@ -173,6 +171,12 @@
 					}
 				});
 			}
+		});
+		
+		/* 에피소드 수정 버튼 */
+		$('.detail-list .list-contents .list').on('click', '.epi-update', function(){
+			const epi = $(this).closest('li').data('epi');
+			location.href = `/episode/update/${code}/\${epi}`;
 		});
 		
 		/* 작품 삭제 버튼 */
@@ -260,7 +264,7 @@
 					<h3 class="title">에피소드</h3>
 					<c:if test="${sessionScope.user.id == item.member}">
 						<div class="btn">
-							<a href="/episode/add?code=${item.code}">작성</a>
+							<a href="/episode/add/${item.code}">작성</a>
 						</div>
 					</c:if>
 				</div>

@@ -19,22 +19,23 @@ public class BookmarkController {
 	BookmarkService bookmarkService;
 	
 	@Transactional
-	@PostMapping("/bookmark")
+	@PostMapping
 	public int add(@RequestBody Bookmark item) {
 		bookmarkService.add(item);
 		return bookmarkService.getTotal(item.getNovel());
 	}
 	
 	@Transactional
-	@DeleteMapping("/bookmark")
+	@DeleteMapping
 	public int delete(@RequestBody Bookmark item) {
 		bookmarkService.delete(item);
 		return bookmarkService.getTotal(item.getNovel());
 	}
 	
-	@GetMapping("/bookmark")
+	@GetMapping
 	public boolean check(Bookmark item) {
 		Bookmark bookmark = bookmarkService.getItem(item.getMember(), item.getNovel());
+		
 		if(bookmark == null) {
 			return false;
 		}

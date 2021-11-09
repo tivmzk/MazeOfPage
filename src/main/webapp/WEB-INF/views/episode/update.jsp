@@ -10,6 +10,12 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <script>
 	let episodes = null;
+	/* 이 소설과 관련된 에피소드 불러오기 */
+	const pager = {
+		keyword:"",
+		keyword2:"",
+		search:0
+	};
 	
 	/* 옵션을 추가하는 함수 */
 	function addOption(isFirst){
@@ -42,12 +48,71 @@
 		$('.option-wrapper').append(html);	
 	}
 	
+	function loadOption(option, isFirst){
+		let html = '';
+		
+		html += '<div class="episode-option mb-5">';
+		
+		html += '<div class="option-contents">';
+		html += `<input type="text" placeholder="선택지 내용" name="action" value="\${option.action==null ? '' : option.action}"/>`;
+		html += '</div>'
+		
+		html += '<div class="connect-episode">';
+		html += '<select name="oepisode">';
+		if(isFirst){
+			html += `<option value="-2"  \${-2==option.mepisode ? 'selected' : ''}>선택지 없음</option>`;
+		}
+		html += '<option value="-1">새로 만들기</option>';
+		for(const episode of episodes){
+			html += `<option value="\${episode.code}" \${episode.code==option.oepisode ? 'selected' : ''}>\${episode.title}</option>`;
+		}
+		html += '</select>';
+		html += '</div>';
+		if(!isFirst){
+			html += '<div class="option-delete">';
+			html += '<button>X</button>';
+			html += '</div>';
+		}
+		html += '</div>';
+		
+		$('.option-wrapper').append(html);	
+	}
+	
+	function loadEpisode(){
+		pager.keyword = ${item.code};
+		pager.keyword2 = "";
+		pager.search = 4;
+		
+		$.ajax('/rest/episode/item',{
+			method: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
+			data:pager,
+			success:function(result){
+				/* form에 값 넣기 */
+				$('.episode-form #title').val(`\${result.title}`);
+				$('.episode-form #episode-story').text(`\${result.contents}`);
+				
+				/* 웹 에디터 */
+				$('#episode-story').summernote();
+				let flag = true;
+				for(option of result.options){
+					loadOption(option, flag);
+					flag = false;
+				}
+				
+			},
+			error:function(xhr){
+				console.log(xhr.statusText);
+			}
+		});
+	}
+	
 	$(function(){
 		/* 이 소설과 관련된 에피소드 불러오기 */
-		const pager = {
-			keyword:${code},
-			search:1
-		};
+		pager.keyword = ${code};
+		pager.keyword2 = ${item.code};
+		pager.search = 3;
 		
 		$.ajax('/rest/episode/all',{
 			method: 'GET',
@@ -56,16 +121,15 @@
 			data:pager,
 			success:function(result){
 				episodes = result;
-				/* 초기 옵션 설정 */
-				addOption(true);
+				
+				loadEpisode();
 			},
 			error:function(xhr){
 				console.log(xhr.statusText);
 			}
-		});	
+		});
 		
-		/* 웹 에디터 */
-		$('#episode-story').summernote();
+		
 		
 		/* 선택지 추가 버튼 이벤트 등록 */
 		$('#episode-add-btn').click(function(e){
@@ -107,7 +171,7 @@
 </script>
 <div class="wrapper">
 	<div class="article-title flex border-b-1 border-color-gray justify-between pt-20">
-		<h2 class="bootstrap-none-h text-black">에피소드 작성</h2>
+		<h2 class="bootstrap-none-h text-black">에피소드 수정</h2>
 		<c:if test="${episodeList.size() == 0}">
 			<h3 class="bootstrap-none-h text-gray">이 에피소드가 시작지점입니다</h3>
 		</c:if>

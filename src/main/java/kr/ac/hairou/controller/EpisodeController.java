@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,8 +24,8 @@ public class EpisodeController {
 	@Autowired
 	EpisodeService epiService;
 	
-	@GetMapping("/add")
-	public String add(int code, Model model, Pager pager) {
+	@GetMapping("/add/{code}")
+	public String add(@PathVariable int code, Model model, Pager pager) {
 		pager.setKeyword(""+code);
 		pager.setSearch(1);
 		List<Episode> list = epiService.getList(pager);
@@ -34,8 +35,9 @@ public class EpisodeController {
 		return PATH+"add.main";
 	}
 	
-	@PostMapping("/add")
-	public String add(Episode item, @RequestParam("oepisode") List<Integer> oepisodes, @RequestParam("action") List<String> actions) {
+	@PostMapping("/add/{code}")
+	public String add(@PathVariable int code, Episode item, @RequestParam("oepisode") List<Integer> oepisodes, @RequestParam("action") List<String> actions) {
+		item.setNovel(code);
 		if(oepisodes != null) {
 			for(int i = 0; i < oepisodes.size(); i++) {
 				Option option = new Option();
@@ -52,6 +54,49 @@ public class EpisodeController {
 		}
 		
 		epiService.add(item);
+		return "redirect:/novel/detail/"+item.getNovel();
+	}
+	
+
+	@GetMapping("/update/{code}/{epi}")
+	public String update(@PathVariable int code, @PathVariable int epi, Model model, Pager pager) {
+		pager.setKeyword(""+code);
+		pager.setSearch(1);
+		
+		List<Episode> list = epiService.getList(pager);
+		
+		pager.setKeyword(""+epi);
+		pager.setSearch(4);
+		
+		Episode item = epiService.getItem(pager);
+		
+		model.addAttribute("item", item);
+		model.addAttribute("code", code);
+		model.addAttribute("episodeList", list);
+		pager.reset();
+		return PATH+"update.main";
+	}
+	
+	@PostMapping("/update/{code}/{epi}")
+	public String update(@PathVariable int code, @PathVariable int epi, Episode item, 
+						@RequestParam("oepisode") List<Integer> oepisodes, @RequestParam("action") List<String> actions) {
+		item.setCode(epi);
+		item.setNovel(code);
+//		if(oepisodes != null) {
+//			for(int i = 0; i < oepisodes.size(); i++) {
+//				Option option = new Option();
+//				option.setOepisode(oepisodes.get(i));
+//				try {
+//					option.setAction(actions.get(i));
+//				}
+//				catch (Exception e) {
+//					option.setAction("");
+//				}
+//				
+//				item.getOptions().add(option);
+//			}
+//		}
+		epiService.update(item);
 		return "redirect:/novel/detail/"+item.getNovel();
 	}
 }

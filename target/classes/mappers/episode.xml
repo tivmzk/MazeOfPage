@@ -7,10 +7,16 @@
 	<sql id="search">
 		<where>
 			<if test="search == 1">
-				e.novel=#{keyword}
+				e.novel = #{keyword}
 			</if>
 			<if test="search == 2">
-				e.is_start=#{keyword} AND e.novel=${keyword2}
+				e.is_start = #{keyword} AND e.novel = #{keyword2}
+			</if>
+			<if test="search == 3">
+				e.novel = #{keyword} AND e.code != #{keyword2}
+			</if>
+			<if test="search == 4">
+				e.code = #{keyword}
 			</if>
 		</where>
 	</sql>
@@ -50,9 +56,11 @@
 		<include refid="order" />
 		LIMIT #{offset}, #{perPage}
 	</select>
-	<select id="item" resultType="Episode">
-		SELECT *
+	<select id="item" resultMap="EpisodeMap">
+		SELECT e.*, n.member AS member, o.*
 		FROM episode e
+		JOIN novel n ON n.code=e.novel
+		LEFT OUTER JOIN option o ON o.mepisode=e.code
 		<include refid="search"></include>
 	</select>
 	<insert id="add">
@@ -67,4 +75,11 @@
 		DELETE FROM episode
 		WHERE code=#{code}
 	</delete>
+	<update id="update">
+		UPDATE episode
+		SET
+		title=#{title},
+		contents=#{contents}
+		WHERE code=#{code}
+	</update>
 </mapper>

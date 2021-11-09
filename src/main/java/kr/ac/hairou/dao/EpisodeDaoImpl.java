@@ -39,4 +39,9 @@ public class EpisodeDaoImpl implements EpisodeDao {
 		sql.delete("episode.delete", code);
 	}
 
+	@Override
+	public void update(Episode item) {
+		sql.update("episode.update", item);
+	}
+
 }

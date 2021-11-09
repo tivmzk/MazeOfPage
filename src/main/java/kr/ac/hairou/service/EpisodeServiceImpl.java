@@ -73,4 +73,9 @@ public class EpisodeServiceImpl implements EpisodeService {
 		dao.delete(code);
 	}
 
+	@Override
+	public void update(Episode item) {
+		dao.update(item);
+	}
+
 }

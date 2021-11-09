@@ -17,4 +17,6 @@ public interface EpisodeService {
 
 	void delete(int code);
 
+	void update(Episode item);
+
 }
