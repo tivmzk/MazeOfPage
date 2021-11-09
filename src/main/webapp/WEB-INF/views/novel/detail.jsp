@@ -201,16 +201,16 @@
 			contentType:'application/json',
 			data:pager,
 			success:result => {
-				const menubox = $('.menubox');
+				const startBtn = $('.menubox .start-btn a');
 				
-				let startBtn = '';
-				startBtn += '<div class="start-btn">';
-				startBtn +=`<a href="/episode/\${result.novel}/\${result.code}">시작</a>`;
-				startBtn +='</div>';
-				menubox.append(startBtn);
+				startBtn.attr('href', `href="/episode/\${result.novel}/\${result.code}`);
 			},
 			error:xhr => {
 				console.log('start btn load : ' + xhr.statusText);
+				const startBtn = $('.menubox .start-btn a');
+				startBtn.click(function(){
+					alert('시작 에피소드가 없습니다.');
+				});
 			}
 		});
 	});
@@ -250,6 +250,9 @@
 					<span class="icon"></span>
 					<span class="text">${item.bookmark}</span>
 				</div>
+			</div>
+			<div class="start-btn">
+				<a href="">시작</a>
 			</div>
 		</div>
 	
