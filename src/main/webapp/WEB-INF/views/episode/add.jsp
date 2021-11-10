@@ -8,102 +8,10 @@
 <!-- include summernote css/js -->
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="/js/episode_edit.js"></script>
 <script>
-	let episodes = null;
-	
-	/* 옵션을 추가하는 함수 */
-	function addOption(isFirst){
-		let html = '';
-		
-		html += '<div class="episode-option mb-5">';
-		
-		html += '<div class="option-contents">';
-		html += '<input type="text" placeholder="선택지 내용" name="action"/>';
-		html += '</div>'
-		
-		html += '<div class="connect-episode">';
-		html += '<select name="oepisode">';
-		if(isFirst){
-			html += `<option value="-2">선택지 없음</option>`;
-		}
-		html += '<option value="-1">새로 만들기</option>';
-		for(const episode of episodes){
-			html += `<option value="\${episode.code}">\${episode.title}</option>`;
-		}
-		html += '</select>';
-		html += '</div>';
-		if(!isFirst){
-			html += '<div class="option-delete">';
-			html += '<button>X</button>';
-			html += '</div>';
-		}
-		html += '</div>';
-		
-		$('.option-wrapper').append(html);	
-	}
-	
-	$(function(){
-		/* 이 소설과 관련된 에피소드 불러오기 */
-		const pager = {
-			keyword:${code},
-			search:1
-		};
-		
-		$.ajax('/rest/episode/all',{
-			method: 'GET',
-			dataType: 'json',
-			contentType: 'application/json',
-			data:pager,
-			success:function(result){
-				episodes = result;
-				/* 초기 옵션 설정 */
-				addOption(true);
-			},
-			error:function(xhr){
-				console.log(xhr.statusText);
-			}
-		});	
-		
-		/* 웹 에디터 */
-		$('#episode-story').summernote();
-		
-		/* 선택지 추가 버튼 이벤트 등록 */
-		$('#episode-add-btn').click(function(e){
-			e.preventDefault();
-			
-			addOption(false);
-		});
-		
-		/* 선택지 삭제 버튼 */
-		$('.option-wrapper').on('click', '.option-delete button', function(e){
-			e.preventDefault();
-			$(this).parent().parent().remove();
-		});
-		
-		/* 소설 등록 버튼 유효성 확인 */
-		$('#ok-btn').click(function(e){
-			e.preventDefault();
-			
-			if(!$('#title').val()){
-				alert('제목을 입력하세요');
-				$('#title').focus();
-				return;
-			}
-			
-			for(item of $('.episode-option')){
-				if(	$(item).find('.option-contents input').val() == "" &&
-					$(item).find('.connect-episode select option:selected').val() != -2){
-					console.log($(item).find('.connect-episode select option:selected').val());
-					alert('선택지를 입력해주세요');
-					$(item).find('.option-contents input').focus();
-					
-					return;
-				}
-			}
-			
-			$('.episode-form').submit();
-		});
-	});
+	const novelCode = ${code};
+	const mode = 0;
 </script>
 <div class="wrapper">
 	<div class="article-title flex border-b-1 border-color-gray justify-between pt-20">
@@ -139,7 +47,7 @@
 			</div>
 		</div>
 		<div class="flex justify-end pt-30">
-			<div class="btn">
+			<div class="button">
 				<button id="ok-btn">확인</button>
 			</div>
 		</div>

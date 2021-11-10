@@ -2,18 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script>
-	$(function(){
-		$('.sort-new').click(function(){
-			$('.sort-new').toggleClass('active');
-			$('.sort-recom').toggleClass('active');
-		});
-		$('.sort-recom').click(function(){
-			$('.sort-new').toggleClass('active');
-			$('.sort-recom').toggleClass('active');
-		});
-	});
-</script>
+<script src="/js/sort_toggle.js"></script>
 
 <div class="wrapper">
 	<div class="article-title pt-30 pb-10 border-b-1 border-color-sub">
@@ -42,8 +31,8 @@
 							<span class="text-info">${item.info}</span>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
-							<span class="text-recom pr-5"><i class="fas fa-thumbs-up"></i> ${item.recom}</span> 
-							<span class="text-bookmark"><i class="fas fa-star"></i> ${item.bookmark}</span>
+							<span class="text-recom pr-5"><span class="icon"></span> ${item.recom}</span> 
+							<span class="text-bookmark"><span class="icon"></span> ${item.bookmark}</span>
 						</div>
 					</div>
 				</section>

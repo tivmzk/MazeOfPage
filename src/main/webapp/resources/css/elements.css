@@ -65,8 +65,8 @@
 .input-text:focus {
   outline: none;
 }
-.btn button,
-.btn a {
+.button button,
+.button a {
   background: var(--color-main);
   padding: 7px 15px;
   color: var(--color-white);
@@ -75,12 +75,12 @@
   text-decoration: none;
   cursor: pointer;
 }
-.btn button:hover,
-.btn a:hover {
+.button button:hover,
+.button a:hover {
   background: var(--color-hightlight-main);
 }
-.btn button:active,
-.btn a:active {
+.button button:active,
+.button a:active {
   background: var(--color-dark-main);
 }
 .user-box{
@@ -234,6 +234,17 @@ div.thumbnail-normal img {
 	height: 30px;
 	background: none;
 	border: var(--border-bold-size) var(--color-white) solid;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	-webkit-user-drag: none;
+	cursor: pointer;
+}
+.rect-button.left{
+	background-image: url("/svg/left.svg");
+}
+.rect-button.right{
+	background-image: url("/svg/right.svg");
 }
 div.thumbnail-small {
 	width: 150px;
@@ -724,7 +735,7 @@ div.thumbnail-small img{
 	font-size: var(--font-size-xlarge);
 	color: var(--color-black);
 }
-.detail-contents .detail-list .list-contents .list-header .btn a{
+.detail-contents .detail-list .list-contents .list-header .button a{
 	padding: 5px 20px;
 	color: var(--color-white);
 	background: var(--color-point-text);

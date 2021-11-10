@@ -44,8 +44,8 @@
 					<h2 class="text-black">추천 테마</h2>
 				</div>
 				<div>
-					<button class="rect-button"><i class="fas fa-chevron-left"></i></button>
-					<button class="rect-button"><i class="fas fa-chevron-right"></i></button>
+					<button class="rect-button left"></button>
+					<button class="rect-button right"></button>
 				</div>
 			</div>
 			<div class="flex justify-between">

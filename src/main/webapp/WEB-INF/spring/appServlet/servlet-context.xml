@@ -19,7 +19,11 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<!-- <resources mapping="/resources/**" location="/resources/" /> -->
 	<resources mapping="/thumbnail/**" location="file:///D:/thumbnail/" />
-	<resources mapping="*" location="/resources/" />
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/css/**" location="/resources/css/" />
+	<resources mapping="/js/**" location="/resources/js/" />
+	<resources mapping="/img/**" location="/resources/img/" />
+	<resources mapping="/svg/**" location="/resources/svg/" />
 
 	<context:component-scan base-package="kr.ac.hairou" />
 	
