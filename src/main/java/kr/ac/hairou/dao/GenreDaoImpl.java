@@ -33,4 +33,9 @@ public class GenreDaoImpl implements GenreDao {
 	public Genre getItem(int code) {
 		return sql.selectOne("genre.item", code);
 	}
+
+	@Override
+	public void delete(int code) {
+		sql.delete("genre.delete", code);
+	}
 }

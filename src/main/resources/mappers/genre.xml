@@ -7,7 +7,7 @@
 	<select id="list" resultType="Genre">
 		SELECT genre.code, genre.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE novel.code=recommend.novel)) AS recom
 		FROM genre
-		JOIN novel ON genre.code=novel.genre
+		LEFT OUTER JOIN novel ON genre.code=novel.genre
 		GROUP BY genre.code, genre.contents
 		ORDER BY recom DESC
 		LIMIT #{offset}, #{perPage}
@@ -26,8 +26,12 @@
 	<select id="item" resultType="Genre">
 		SELECT genre.code, genre.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE novel.code=recommend.novel)) AS recom
 		FROM genre
-		JOIN novel ON genre.code=novel.genre
+		LEFT OUTER JOIN novel ON genre.code=novel.genre
 		WHERE genre.code=#{code}
 		GROUP BY genre.code, genre.contents
 	</select>
+	<delete id="delete">
+		DELETE FROM genre
+		WHERE code=#{code}
+	</delete>
 </mapper>

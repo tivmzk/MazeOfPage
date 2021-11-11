@@ -12,9 +12,9 @@
 	</div>
 	<article id="genre-list">
 		<c:forEach var="item" items="${list}">
-			<div>
-				<a href="/novel/list?keyword=${item.contents}&search=3" data-genre="${item.code}">${item.contents}</a> (${item.recom})
-				<span class="genre-delete">X</span>
+			<div class="genre-item" data-genre="${item.code}">
+				<a href="/novel/list?keyword=${item.contents}&search=3">${item.contents}</a> (${item.recom})
+				<span class="genre-delete-btn">X</span>
 			</div>
 		</c:forEach>
 	</article>

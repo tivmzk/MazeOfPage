@@ -1,15 +1,19 @@
 $(function(){
-	$('#modal-wrapper').css('display', 'none');
+	modalClose();
 	
 	$('#modal-open-btn').click(function(){
 		$('#modal-wrapper').css('display', 'block');	
 	});
 	
 	$('#modal-wrapper').click(function(){
-		$(this).css('display', 'none');
+		modalClose();
 	});
 	
 	$('#modal-wrapper').children().click(function(){
 		return false;
 	});
 });
+
+function modalClose(){
+	$('#modal-wrapper').css('display', 'none');
+}

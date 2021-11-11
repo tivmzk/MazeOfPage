@@ -15,4 +15,6 @@ public interface GenreDao {
 
 	Genre getItem(int code);
 
+	void delete(int code);
+
 }
