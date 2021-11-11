@@ -23,4 +23,14 @@ public class GenreDaoImpl implements GenreDao {
 	public int getToal() {
 		return sql.selectOne("genre.total");
 	}
+
+	@Override
+	public void add(Genre item) {
+		sql.insert("genre.add", item);
+	}
+	
+	@Override
+	public Genre getItem(int code) {
+		return sql.selectOne("genre.item", code);
+	}
 }

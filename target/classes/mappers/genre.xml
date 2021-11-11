@@ -16,4 +16,18 @@
 		SELECT COUNT(*)
 		FROM genre
 	</select>
+	<insert id="add">
+		INSERT INTO genre
+		VALUES(NULL, #{contents})
+		<selectKey keyProperty="code" resultType="Integer" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<select id="item" resultType="Genre">
+		SELECT genre.code, genre.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE novel.code=recommend.novel)) AS recom
+		FROM genre
+		JOIN novel ON genre.code=novel.genre
+		WHERE genre.code=#{code}
+		GROUP BY genre.code, genre.contents
+	</select>
 </mapper>

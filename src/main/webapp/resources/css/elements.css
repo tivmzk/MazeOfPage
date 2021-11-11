@@ -917,3 +917,22 @@ div.thumbnail-small img{
 	cursor: pointer;
 	width: 100%;
 }
+
+/* modal */
+#modal-wrapper{
+	background: rgb(0, 0, 0, 0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+#modal-wrapper .form{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: var(--color-white);
+	padding: 20px 30px;
+	border-radius: 10px;
+}

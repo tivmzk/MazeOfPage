@@ -11,4 +11,6 @@ public interface GenreService {
 
 	int getTotal();
 
+	Genre add(Genre item);
+
 }

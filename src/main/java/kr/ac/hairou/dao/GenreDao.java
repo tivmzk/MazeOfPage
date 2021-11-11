@@ -11,4 +11,8 @@ public interface GenreDao {
 
 	int getToal();
 
+	void add(Genre item);
+
+	Genre getItem(int code);
+
 }
