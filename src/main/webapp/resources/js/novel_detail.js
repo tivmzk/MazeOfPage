@@ -1,5 +1,10 @@
 let episodes = null;
-
+const state = {
+	keyword: `${novel.code}`,
+	order: 1,
+	search: 1
+};
+	
 /* 추천, 북마크 정보를 AJAX로 보내주는 함수 */
 function sendAJAX(uri, methodType, callback) {
 	const sendData = {
@@ -23,7 +28,7 @@ function sendAJAX(uri, methodType, callback) {
 function createEpisode(episode) {
 	let html = '';
 
-	html += `<li data-epi="${episode.code}">`;
+	html += `<li data-epi="${episode.code}" class="epi-item">`;
 	html += '<div class="title">';
 	html += `<a href="/episode/${episode.novel}/${episode.code}">${episode.title}</a>`;
 	if (!episode.contents) {
@@ -55,25 +60,53 @@ function createEpisode(episode) {
 
 /* 에피소드를 로드하는 함수 */
 function loadEpisodes(page) {
-	const pager = {
-		keyword: `${novel.code}`,
-		search: 1,
-		order: 1,
-		page
-	};
-
+	state.page = page;
+	
 	$.ajax('/rest/episode', {
 		method: 'GET',
 		dataType: 'json',
 		contentType: 'application/json',
-		data: pager,
+		data: state,
 		success: result => {
-			episodes = result;
-			const list = $('.detail-list .list-contents .list');
+			episodes = result.episodes;
+			state.total = result.pager.total;
+			state.perPage = result.pager.perPage;
 
-			for (episode of episodes) {
-				const item = createEpisode(episode);
-				list.append(item);
+			const list = $('.detail-list .list-contents .list');
+			list.children('.epi-item').remove();
+			if (episodes && episodes.length > 0) {
+				$('.empty-msg').addClass('hide');
+				for (episode of episodes) {
+					const item = createEpisode(episode);
+					list.append(item);
+				}
+			}
+			else {
+				$('.empty-msg').removeClass('hide');
+			}
+			
+			const pagnation = $('.pagnation');
+			pagnation.find('.page-prev').data('page', result.pager.prev);
+			pagnation.find('.page-next').data('page', result.pager.next);
+			pagnation.find('.page-end').data('page', result.pager.end);
+			
+			pagnation.children('.page-list').remove();
+			
+			const pagerList = result.pager.list;
+			
+			for(let i = 0; i < pagerList.length; i++){
+				const pageList = $('<li>').addClass('page-list');
+				
+				const pageItem = $('<span>');
+				pageItem.addClass('page-link');
+				if(result.pager.page == pagerList[i]){
+					pageItem.addClass('active');
+				}
+				pageItem.text(pagerList[i]);
+				pageItem.attr('data-page', `${pagerList[i]}`);
+				
+				pageList.append(pageItem);
+				pagnation.find('.page-next').parent().before(pageList);
 			}
 		},
 		error: xhr => {
@@ -82,7 +115,31 @@ function loadEpisodes(page) {
 	});
 }
 
+function setStartBtn() {
+	const pager = {
+		keyword:1,
+		keyword2:novel.code,
+		search:2
+	};
+	$.ajax('/rest/episode/item', {
+		dataType: 'json',
+		contentType: 'application/json',
+		data: pager,
+		success: result => {
+			const startBtn = $('.menubox .start-btn a');
+
+			startBtn.attr('href', `/episode/${result.novel}/${result.code}`);
+		},
+		error: xhr => {
+			console.log('start btn load : ' + xhr.statusText);
+		}
+	});
+}
+
 $(function() {
+	loadEpisodes(1);
+	setStartBtn();
+	
 	/* 추천 버튼 이벤트 설정 */
 	$('.btn-box .recom').click(function() {
 		if (user) {
@@ -217,9 +274,7 @@ $(function() {
 		const answer = confirm("이 소설을 정말 삭제합니까?");
 
 		if (!answer) e.preventDefault();
-	});
-
-	loadEpisodes(1);
+	});	
 
 	/* 시작 버튼 설정 */
 	$('.menubox .start-btn a').click(function(e) {
@@ -232,24 +287,10 @@ $(function() {
 			location.href = url;
 		}
 	});
-
-	const pager = {
-		search: 2,
-		keyword: 1,
-		keyword2: novel.code
-	}
-
-	$.ajax('/rest/episode/item', {
-		dataType: 'json',
-		contentType: 'application/json',
-		data: pager,
-		success: result => {
-			const startBtn = $('.menubox .start-btn a');
-
-			startBtn.attr('href', `/episode/${result.novel}/${result.code}`);
-		},
-		error: xhr => {
-			console.log('start btn load : ' + xhr.statusText);
-		}
+	
+	/*페이지 네이션 이벤트 등록*/
+	$('.pagnation').on('click', '.page-link', function(){
+		const page = $(this).data('page');
+		loadEpisodes(page);
 	});
 });

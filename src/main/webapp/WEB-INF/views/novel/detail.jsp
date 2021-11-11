@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<script src="/js/novel_detail.js"></script>
 <script>
 	const user = `${sessionScope.user.id}`;
 	const novel = {
@@ -17,6 +16,7 @@
 		bookmark:`${item.bookmark}`
 	};
 </script>
+<script src="/js/novel_detail.js"></script>
 
 <div class="wrapper">
 	<div class="detail-header">
@@ -74,27 +74,21 @@
 					</c:if>
 				</div>
 				<ul class="list">
-					
+					<li class="empty-msg">에피소드가 없습니다</li>
 				</ul>
 			</section>
 			<div class="flex justify-center pb-60">
 				<ul class="pagnation">
-					<c:if test="${pager.page != 1}">
-						<li><a href="?page=1&${pager.query}">&lt;&lt;</a></li>
-					</c:if>
-					<c:if test="${pager.page != 1}">
-						<li><a href="?page=${pager.prev}&${pager.query}">&lt;</a></li>
-					</c:if>
-					<c:forEach var="page" items="${pager.list}">
+					<%-- <c:forEach var="page" items="${pager.list}">
 						<li><a href="?page=${page}&${pager.query}"
 							class="${pager.page==page?'active':''}">${page}</a></li>
-					</c:forEach>
-					<c:if test="${pager.page != pager.end}">
-						<li><a href="?page=${pager.next}&${pager.query}">&gt;</a></li>
-					</c:if>
-					<c:if test="${pager.page != pager.end}">
-						<li><a href="?page=${pager.end}&${pager.query}">&gt;&gt;</a></li>
-					</c:if>
+					</c:forEach> --%>
+					
+					<li><span class="page-start" data-page="1">&lt;&lt;</span></li>
+					<li><span class="page-prev">&lt;</span></li>
+					
+					<li><span class="page-next">&gt;</span></li>
+					<li><span class="page-end">&gt;&gt;</span></li>
 				</ul>
 			</div>
 		</article>

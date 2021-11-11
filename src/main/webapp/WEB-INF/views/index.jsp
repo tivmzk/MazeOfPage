@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 
+<script src="/js/index.js"></script>
+
 <div class="visual">
 </div>
 
@@ -48,7 +50,7 @@
 					<button class="rect-button right"></button>
 				</div>
 			</div>
-			<div class="flex justify-between">
+			<div class="flex justify-between" id="theme-wrapper">
 				<c:forEach var="item" items="${novelList}">
 					<section class="flex theme">
 						<div class="thumbnail-small">

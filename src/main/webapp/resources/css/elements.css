@@ -435,7 +435,8 @@ div.thumbnail-small img{
 	list-style: none;
 	display: flex;
 }
-.pagnation li a{
+.pagnation li a,
+.pagnation li span{
 	width: 30px;
 	height : 30px;
 	border: var(--border-light-size) solid var(--color-gray);
@@ -446,11 +447,14 @@ div.thumbnail-small img{
 	margin: 0 2px;
 	display: block;
 	text-decoration: none;
+	cursor:pointer;
 }
-.pagnation li a:hover{
+.pagnation li a:hover,
+.pagnation li span:hover{
 	text-decoration: underline;
 }
-.pagnation li a.active{
+.pagnation li a.active,
+.pagnation li span.active{
 	background: var(--color-main);
 	color: var(--color-white);
 }
@@ -849,6 +853,9 @@ div.thumbnail-small img{
 	width: 20px;
 	height: 20px;
 	display: inline-block !important;
+}
+.empty-msg.hide{
+	display: none !important;
 }
 
 /* episode add */

@@ -1,6 +1,8 @@
 package kr.ac.hairou.controller.rest;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,8 +29,12 @@ public class EpisodeRestController {
 	}
 	
 	@GetMapping
-	public List<Episode> list(Pager pager){
-		return episodeService.getList(pager);
+	public Map<String, Object> list(Pager pager){
+		Map<String, Object> map = new HashMap<>();
+		List<Episode> list = episodeService.getList(pager);
+		map.put("episodes", list);
+		map.put("pager", pager);
+		return map;
 	}
 	
 	@GetMapping("/item")

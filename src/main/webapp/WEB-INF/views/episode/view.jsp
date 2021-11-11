@@ -12,7 +12,9 @@
 	</div>
 	<div>
 		<c:forEach var="option" items="${item.options}">
-			<button data-epi="${option.oepisode}">${option.action}</button>
+			<div>
+				<a href="/episode/${novel}/${option.oepisode}">${option.action}</a>
+			</div>
 		</c:forEach>
 	</div>
 </div>

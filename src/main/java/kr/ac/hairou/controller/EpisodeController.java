@@ -103,4 +103,15 @@ public class EpisodeController {
 		epiService.update(item);
 		return "redirect:/novel/detail/"+item.getNovel();
 	}
+	
+	@GetMapping("/{novel}/{epi}")
+	public String view(@PathVariable int novel, @PathVariable int epi, Model model, Pager pager) {
+		pager.setSearch(4);
+		pager.setKeyword(epi+"");
+		Episode item = epiService.getItem(pager);
+		model.addAttribute("item", item);
+		model.addAttribute("novel", novel);
+		pager.reset();
+		return PATH+"view.main";
+	}
 }
