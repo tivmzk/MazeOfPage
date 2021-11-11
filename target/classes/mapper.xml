@@ -22,5 +22,6 @@
 		<mapper resource="mappers/bookmark.xml"/>
 		<mapper resource="mappers/episode.xml"/>
 		<mapper resource="mappers/option.xml"/>
+		<mapper resource="mappers/profile.xml"/>
 	</mappers>
 </configuration>

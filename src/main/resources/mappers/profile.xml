@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="profile">
+	<resultMap type="Profile" id="ProfileMap">
+		<id column="member" property="member"/>
+		<result column="contents" property="contentes"/>
+		<result column="nickname" property="nickname"/>
+		<result column="recom" property="recom"/>
+		<collection column="code" javaType="ArrayList" ofType="Novel" property="novelList">
+			<id column="code" property="code"/>
+			<result column="title" property="title"/>
+			<result column="genreContents" property="genreContents"/>
+		</collection>
+	</resultMap>
+
+	<select id="item" resultMap="ProfileMap">
+		SELECT m.id AS member, p.contents, m.nickname, 
+		(SELECT COUNT(*)
+		FROM recommend
+		JOIN novel ON novel.code=recommend.novel
+		GROUP BY recommend.novel, novel.member
+		HAVING novel.member=#{member}) AS recom,
+		n.code,
+		n.title,
+		g.contents AS genreContents
+		FROM member m
+		LEFT OUTER JOIN profile p ON m.id=p.member
+		JOIN novel n ON n.member=m.id
+		JOIN genre g ON g.code=n.genre
+		WHERE m.id=#{member};
+	</select>
+</mapper>
