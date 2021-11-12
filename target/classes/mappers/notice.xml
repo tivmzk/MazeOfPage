@@ -21,4 +21,24 @@
 		INSERT INTO notice
 		VALUES(NULL, #{mgr}, #{title}, #{contents}, NOW())
 	</insert>
+	
+	<select id="item" resultType="Notice">
+		SELECT n.*, m.nickname
+		FROM notice n
+		JOIN member m ON m.id=n.mgr
+		WHERE n.code=#{code}
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM notice
+		WHERE code=#{code}
+	</delete>
+	
+	<update id="update">
+		UPDATE notice
+		SET
+		title=#{title},
+		contents=#{contents}
+		WHERE code=#{code}
+	</update>
 </mapper>

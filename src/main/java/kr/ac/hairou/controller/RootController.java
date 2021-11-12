@@ -19,10 +19,12 @@ import kr.ac.hairou.model.GenreRank;
 import kr.ac.hairou.model.Member;
 import kr.ac.hairou.model.Notice;
 import kr.ac.hairou.model.Novel;
+import kr.ac.hairou.model.Review;
 import kr.ac.hairou.service.GenreService;
 import kr.ac.hairou.service.MemberService;
 import kr.ac.hairou.service.NoticeService;
 import kr.ac.hairou.service.NovelService;
+import kr.ac.hairou.service.ReviewService;
 import kr.ac.hairou.util.Pager;
 
 @Controller
@@ -35,6 +37,8 @@ public class RootController {
 	NoticeService noticeService;
 	@Autowired
 	MemberService memberService;
+	@Autowired
+	ReviewService reviewService;
 	
 	@RequestMapping("/")
 	public String index(Model model, Pager pager) {
@@ -49,6 +53,8 @@ public class RootController {
 			List<Genre> genreList = genreService.getList(pager);
 			pager.setPerPage(5);
 			List<Notice> noticeList = noticeService.getList(pager);
+			pager.setPerPage(5);
+			List<Review> reviewList = reviewService.getList(pager); 
 			List<GenreRank> genreRankList = new ArrayList<>();
 			
 			for(Genre genre : genreList) {
@@ -64,6 +70,7 @@ public class RootController {
 			model.addAttribute("novelList", novelList);
 			model.addAttribute("genreList", genreList);
 			model.addAttribute("noticeList", noticeList);
+			model.addAttribute("reviewList", reviewList);
 			model.addAttribute("genreRankList", genreRankList);
 			pager.reset();
 		}

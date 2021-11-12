@@ -13,4 +13,10 @@ public interface NoticeDao {
 
 	void add(Notice item);
 
+	Notice getItem(int code);
+
+	void delete(int code);
+
+	void update(Notice item);
+
 }

@@ -36,6 +36,9 @@
 				<a href="/novel/delete/${item.code}">삭제</a>
 			</div>
 		</c:if>
+		<div>
+			<a href="/review/add?novel=${item.code}">감상평 쓰기</a>
+		</div>
 	</div>
 	<article class="detail-info">
 		<div>

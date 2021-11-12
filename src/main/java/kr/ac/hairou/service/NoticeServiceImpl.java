@@ -26,4 +26,21 @@ public class NoticeServiceImpl implements NoticeService {
 		dao.add(item);
 	}
 
+	@Override
+	public Notice getItem(int code) {
+		Notice item =  dao.getItem(code);
+		String contents = item.getContents().replace("\n", "<br>");
+		item.setContents(contents);
+		return item;
+	}
+
+	@Override
+	public void delete(int code) {
+		dao.delete(code);
+	}
+	
+	@Override
+	public void update(Notice item) {
+		dao.update(item);
+	}
 }

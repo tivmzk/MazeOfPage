@@ -117,7 +117,7 @@
 	<div class="wrapper flex">
 		<div class="flex-50 p-10">
 			<div class="article-title">
-				<h2 class="text-black">공지사항</h2>
+				<h2><a class="text-black" href="/notice/list">공지사항</a></h2>
 			</div>
 			<ul class="list">
 				<c:forEach var="item" items="${noticeList}">
@@ -130,7 +130,7 @@
 		</div>
 		<div class="flex-50 p-10">
 			<div class="article-title">
-				<h2 class="text-black">감상평</h2>
+				<h2 class="text-black"><a class="text-black" href="/review/list">감상평</a></h2>
 			</div>
 			<ul class="list">
 				<c:forEach var="item" items="${reviewList}">

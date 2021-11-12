@@ -5,10 +5,7 @@
 
 <div class="wrapper" id="notice-list-wrapper">
 	<div>
-		<h2>공지사항</h2>
-		<c:if test="${sessionScope.user.mgr == 1}">
-			<div class="notice-add-btn"><a href="add">작성</a></div>
-		</c:if>
+		<h2>감상평</h2>		
 	</div>
 	<div>
 		<ul>
@@ -18,14 +15,14 @@
 						<h3><a href="view/${item.code}">${item.title}</a></h3>
 					</div>
 					<div>
-						<span><a href="/profile/${item.mgr}">${item.nickname}</a></span> 
+						<a href="/novel/detail/${item.novel}">${item.novelTitle}</a>
+					</div>
+					<div>
+						<span><a href="/profile/${item.member}">${item.nickname}</a></span> 
 						<span><fmt:formatDate pattern="yyyy-MM-dd" value="${item.date}"/></span>
 					</div>
 					<c:if test="${sessionScope.user.mgr == 1}">
 						<div>
-							<div>
-								<a href="update/${item.code}">수정</a>
-							</div>
 							<div>
 								<a href="delete/${item.code}">삭제</a>
 							</div>

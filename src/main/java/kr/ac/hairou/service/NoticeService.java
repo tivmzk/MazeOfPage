@@ -11,4 +11,10 @@ public interface NoticeService {
 
 	void add(Notice item);
 
+	Notice getItem(int code);
+
+	void delete(int code);
+
+	void update(Notice item);
+
 }

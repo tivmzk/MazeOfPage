@@ -6,6 +6,6 @@
 		<li><a href="/notice/list">공지사항</a></li>
 		<li><a href="/novel/add">글쓰기</a></li>
 		<li><a href="/genre/list">장르</a></li>
-		<li><a href="/reiview/list">감상평</a></li>
+		<li><a href="/review/list">감상평</a></li>
 	</ul>
 </div>

@@ -28,4 +28,19 @@ public class NoticeDaoImpl implements NoticeDao {
 	public void add(Notice item) {
 		sql.insert("notice.add", item);
 	}
+	
+	@Override
+	public Notice getItem(int code) {
+		return sql.selectOne("notice.item", code);
+	}
+	
+	@Override
+	public void delete(int code) {
+		sql.delete("notice.delete", code);
+	}
+	
+	@Override
+	public void update(Notice item) {
+		sql.update("notice.update", item);
+	}
 }
