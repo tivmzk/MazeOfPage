@@ -14,6 +14,11 @@
 	</div>
 	<div>
 		<article class="flex novel-list py-30">
+			<c:if test="${list.size() < 1}">
+				<div class="noting">
+					작품이 없습니다
+				</div>
+			</c:if>
 			<c:forEach var="item" items="${list}">
 				<section class="flex novel-item">
 					<div class="thumbnail-normal">

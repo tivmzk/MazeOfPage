@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/* ---------------------- header ------------------------ */
+/* ---------------------- 헤더 ------------------------ */
 .logo h1 a {
   font-family: var(--font-logo);
   font-size: var(--font-size-logo);
@@ -146,7 +146,7 @@
 	background: var(--color-dark-gray);
 }
 
-/* --------------------------- index ------------------------------------*/
+/* --------------------------- 메인 페이지 ------------------------------------*/
 .text-title,
 .text-title a{
   color: var(--color-black);
@@ -330,6 +330,7 @@ div.thumbnail-small img{
 .list li span:last-child a:hover{
 	text-decoration: underline;
 }
+/*------------------------ 로그인 ------------------------*/
 .login-wrapper{
 	width: 450px;
 	height: 250px;
@@ -372,6 +373,7 @@ div.thumbnail-small img{
 .login-wrapper .login-form div:last-child button:active{
 	background: var(--color-dark-main);
 }
+/*------------------------ 회원가입 ------------------------*/
 .login-wrapper .signup{
 	color: var(--color-point-text);
 	text-decoration: none;
@@ -410,6 +412,7 @@ div.thumbnail-small img{
 .vaildation-btn button:hover{
 	background: #292929;
 }
+/*------------------------ 작품 목록 ------------------------*/
 .novel-list{
 	flex-wrap: wrap;
 	width: 100%;
@@ -584,8 +587,14 @@ div.thumbnail-small img{
 	width: 100%;
 	height: 100%;
 }
+.noting{
+	padding: 50px;
+	text-align: center;
+	color: var(--color-gray);
+	width: 100%;
+}
 
-/* novel detail */
+/*------------------------ 작품 목차 ------------------------*/
 
 .detail-header{
 	padding: var(--size-padding);
@@ -903,7 +912,77 @@ div.thumbnail-small img{
 	display: none !important;
 }
 
-/* episode add */
+/*------------------------ 에피소드 ------------------------*/
+#novel-view-wrapper{
+	padding: 0 200px;
+}
+#novel-view-wrapper .title{
+	font-size: var(--font-size-large);
+	font-weight: var(--font-weight-bold);
+	padding: 30px 0;
+	text-align: center;
+}
+#novel-view-wrapper .inner-wrapper img{
+	margin: 20px 0;
+}
+#novel-view-wrapper .option-wrapper{
+	display: flex;
+	flex-wrap: wrap;
+	padding: 100px 0;
+}
+#novel-view-wrapper .option-wrapper .option a{
+	padding: 10px 20px;
+	text-decoration: none;
+	color: var(--color-white);
+	background: var(--color-point-text);
+	border: 3px solid var(--color-main);
+	border-radius: 10px;
+	margin: 10px;
+	display: block;
+}
+#novel-view-wrapper .anchor-down{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background-image: url("/svg/arrow_down.svg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 2px solid var(--color-light-gray);
+	border-radius: 5px;
+}
+#novel-view-wrapper .anchor-up{
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background-image: url("/svg/arrow_up.svg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 2px solid var(--color-light-gray);
+	border-radius: 5px;
+}
+#novel-view-wrapper .undo{
+	position: absolute;
+	bottom: 40px;
+	right: 5px;
+	display: block;
+	width: 30px;
+	height: 30px;
+	background-image: url("/svg/undo.svg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	border: 2px solid var(--color-light-gray);
+	border-radius: 5px;
+}
+/*------------------------ 에피소드 추가 ------------------------*/
 .episode-form{
 	width: 700px;
 	margin: 50px auto;
@@ -963,7 +1042,7 @@ div.thumbnail-small img{
 	width: 100%;
 }
 
-/* modal */
+/*------------------------ 모달 ------------------------*/
 #modal-wrapper{
 	background: rgb(0, 0, 0, 0.3);
 	position: fixed;
@@ -1270,7 +1349,7 @@ div.thumbnail-small img{
 	text-decoration: underline;
 }
 
-/* 장르 목록 */
+/*------------------------ 장르 목록 ------------------------*/
 #genre-list-wrapper{
 	position: relative;
 }
