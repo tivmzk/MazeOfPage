@@ -1,5 +1,5 @@
 $(function() {
-	if (!curr_user || curr_user != profile_user) {
+	if (!curr_user.id || curr_user.id != profile_user) {
 		$('#modal-open-btn').remove();
 	}
 	else {

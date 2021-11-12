@@ -9,4 +9,6 @@ public interface NoticeService {
 
 	List<Notice> getList(Pager pager);
 
+	void add(Notice item);
+
 }

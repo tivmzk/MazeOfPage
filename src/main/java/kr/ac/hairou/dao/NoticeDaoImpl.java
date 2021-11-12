@@ -24,4 +24,8 @@ public class NoticeDaoImpl implements NoticeDao {
 		return sql.selectOne("notice.total");
 	}
 
+	@Override
+	public void add(Notice item) {
+		sql.insert("notice.add", item);
+	}
 }

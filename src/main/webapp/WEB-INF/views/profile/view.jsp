@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script>
-	const curr_user = `${sessionScope.user.id}`;
 	const profile_user = `${item.member}`;
 	const profile = {
 			nickname:`${item.nickname}`,

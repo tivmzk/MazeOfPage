@@ -11,4 +11,6 @@ public interface NoticeDao {
 
 	int getTotal(Pager pager);
 
+	void add(Notice item);
+
 }

@@ -8,7 +8,7 @@ const state = {
 /* 추천, 북마크 정보를 AJAX로 보내주는 함수 */
 function sendAJAX(uri, methodType, callback) {
 	const sendData = {
-		member: user,
+		member: curr_user.id,
 		novel: novel.code
 	};
 
@@ -46,7 +46,7 @@ function createEpisode(episode) {
 
 	html += '</div>';
 
-	if (episode.member == user) {
+	if (episode.member == curr_user.id) {
 		html += '<div class="btn-box">';
 		html += '<span class="epi-update">수정</span>';
 		html += '<span class="epi-delete">삭제</span>';
@@ -142,9 +142,9 @@ $(function() {
 	
 	/* 추천 버튼 이벤트 설정 */
 	$('.btn-box .recom').click(function() {
-		if (user) {
+		if (curr_user.id) {
 			let isRecom = false;
-			$.ajax(`/rest/recom?member=${user}&novel=${novel.code}`, {
+			$.ajax(`/rest/recom?member=${curr_user.id}&novel=${novel.code}`, {
 				success: function(result) {
 					isRecom = result;
 
@@ -174,9 +174,9 @@ $(function() {
 
 	/* 북마크 버튼 이벤트 설정 */
 	$('.btn-box .bookmark').click(function() {
-		if (user) {
+		if (curr_user.id) {
 			let isBookmark = false;
-			$.ajax(`/rest/bookmark?member=${user}&novel=${novel.code}`, {
+			$.ajax(`/rest/bookmark?member=${curr_user.id}&novel=${novel.code}`, {
 				success: function(result) {
 					isBookmark = result;
 

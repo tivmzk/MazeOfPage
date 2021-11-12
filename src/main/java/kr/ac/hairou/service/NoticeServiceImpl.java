@@ -21,4 +21,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return dao.getList(pager);
 	}
 
+	@Override
+	public void add(Notice item) {
+		dao.add(item);
+	}
+
 }

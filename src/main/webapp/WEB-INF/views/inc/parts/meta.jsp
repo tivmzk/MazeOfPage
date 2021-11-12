@@ -10,3 +10,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/elements.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
 <link rel="shortcut icon" href="${pageContext.request.contextPath}/img/Cat.png" />
+<script>
+	const curr_user = {
+			id:`${sessionScope.user.id}`,
+			nickname:`${sessionScope.user.nickname}`,
+			mgr:`${sessionScope.user.mgr}`
+	};
+</script>

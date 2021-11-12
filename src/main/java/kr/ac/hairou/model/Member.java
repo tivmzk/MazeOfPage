@@ -4,7 +4,7 @@ public class Member {
 	private String id;
 	private String password;
 	private String nickname;
-	private boolean mgr;
+	private int mgr;
 	
 	public String getId() {
 		return id;
@@ -24,10 +24,10 @@ public class Member {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public boolean isMgr() {
+	public int getMgr() {
 		return mgr;
 	}
-	public void setMgr(boolean mgr) {
+	public void setMgr(int mgr) {
 		this.mgr = mgr;
 	}
 }
