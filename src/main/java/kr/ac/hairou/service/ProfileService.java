@@ -6,4 +6,6 @@ public interface ProfileService {
 
 	Profile getItem(String member);
 
+	void update(Profile item);
+
 }

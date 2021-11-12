@@ -6,7 +6,7 @@
 <mapper namespace="profile">
 	<resultMap type="Profile" id="ProfileMap">
 		<id column="member" property="member"/>
-		<result column="contents" property="contentes"/>
+		<result column="contents" property="contents"/>
 		<result column="nickname" property="nickname"/>
 		<result column="recom" property="recom"/>
 		<collection column="code" javaType="ArrayList" ofType="Novel" property="novelList">
@@ -32,4 +32,27 @@
 		JOIN genre g ON g.code=n.genre
 		WHERE m.id=#{member};
 	</select>
+	
+	<select id="count" resultType="Integer">
+		SELECT COUNT(*)
+		FROM profile
+		WHERE member=#{member}
+	</select>
+	
+	<update id="update">
+		UPDATE profile
+		SET
+		contents=#{contents}
+		WHERE member=#{member}
+	</update>
+	<update id="updateNickname">
+		UPDATE member
+		SET
+		nickname=#{nickname}
+		WHERE id=#{member}
+	</update>
+	<insert id="add">
+		INSERT INTO profile
+		VALUES(#{member}, #{contents})
+	</insert>
 </mapper>

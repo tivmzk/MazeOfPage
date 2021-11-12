@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.ac.hairou.model.Profile;
@@ -22,5 +23,12 @@ public class ProfileController {
 		Profile item = service.getItem(member);
 		model.addAttribute("item", item);
 		return PATH+"view.main";
+	}
+	
+	@PostMapping("/{member}")
+	public String update(@PathVariable String member, Profile item) {
+		item.setMember(member);
+		service.update(item);
+		return "redirect:"+member;
 	}
 }

@@ -1,5 +1,8 @@
 $(function(){
-	
+	/*모달 열기*/
+	$('#modal-open-btn').click(function(){
+		modalOpen();
+	})
 	/*삭제 버튼 이벤트*/
 	$('#genre-list').on('click', '.genre-delete-btn', function(){
 		const code = $(this).parent().data('genre');

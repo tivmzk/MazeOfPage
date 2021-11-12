@@ -1,7 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script>
+	const curr_user = `${sessionScope.user.id}`;
+	const profile_user = `${item.member}`;
+	const profile = {
+			nickname:`${item.nickname}`,
+			contents:`${item.contents}`
+	};
+</script>
 <script src="/js/modal.js"></script>
+<script src="/js/profile.js"></script>
 <div class="wrapper">
 	<div>
 		<h2>프로필</h2>
@@ -13,7 +22,7 @@
 				<th>닉네임</th>
 				<td>${item.nickname}</td>
 			</tr>
-			<tr class="intro">
+			<tr class="contents">
 				<th>자기 소개</th>
 				<td>${item.contents}</td>
 			</tr>
@@ -35,16 +44,16 @@
 	</div>
 </div>
 <div id="modal-wrapper">
-	<div class="form">
+	<form method="post" class="form">
 		<h1>프로필 수정</h1>
 		<div>
-			<input type="text" class="nickname">
+			<input type="text" name="nickname" class="nickname">
 		</div>
 		<div>
-			<textarea name="" id="" cols="30" rows="10" class="intro"></textarea>
+			<textarea cols="30" rows="10" name="contents" class="contents"></textarea>
 		</div>
 		<div>
 			<button class="proflie-update-btn">확인</button>
 		</div>
-	</div>
+	</form>
 </div>

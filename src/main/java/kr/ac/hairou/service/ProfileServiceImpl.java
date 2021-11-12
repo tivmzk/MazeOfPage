@@ -16,4 +16,19 @@ public class ProfileServiceImpl implements ProfileService {
 		return dao.getItem(member);
 	}
 
+	@Override
+	public void update(Profile item) {
+		if(dao.exist(item)) {
+//			프로필이 존재할 경우
+			dao.update(item);
+			dao.updateNickname(item);
+		}
+		else {
+//			프로필이 없을 경우
+			dao.add(item);
+			dao.update(item);
+			dao.updateNickname(item);
+		}
+	}
+
 }

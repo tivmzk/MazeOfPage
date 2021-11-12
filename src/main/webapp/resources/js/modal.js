@@ -1,10 +1,6 @@
 $(function(){
 	modalClose();
 	
-	$('#modal-open-btn').click(function(){
-		$('#modal-wrapper').css('display', 'block');	
-	});
-	
 	$('#modal-wrapper').click(function(){
 		modalClose();
 	});
@@ -16,4 +12,7 @@ $(function(){
 
 function modalClose(){
 	$('#modal-wrapper').css('display', 'none');
+}
+function modalOpen(){
+	$('#modal-wrapper').css('display', 'block');
 }
