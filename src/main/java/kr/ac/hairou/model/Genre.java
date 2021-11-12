@@ -4,8 +4,15 @@ public class Genre {
 	private int code;
 	private String contents;
 	private int recom;
+	private int count;
 	
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getRecom() {
 		return recom;
 	}

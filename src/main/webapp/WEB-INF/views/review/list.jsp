@@ -9,6 +9,9 @@
 	</div>
 	<div class="inner-wrapper">
 		<ul class="post-list">
+			<c:if test="${list.size() < 1}">
+				<div class="noting">감상평이 없습니다</div>
+			</c:if>
 			<c:forEach var="item" items="${list}">
 				<li>
 					<div>

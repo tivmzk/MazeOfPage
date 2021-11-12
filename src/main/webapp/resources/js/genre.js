@@ -36,7 +36,7 @@ $(function() {
 			success: function(item) {
 				let html = `<div class="genre-item" data-genre="${item.code}">
 								<a href="/novel/list?keyword=${item.contents}&search=3">${item.contents}</a>
-								<span class="recom">${item.recom}</span>`
+								<span class="recom">${item.count}</span> `
 				if(curr_user.mgr == 1) html += `<span class="genre-delete-btn">X</span>`;
 				html += `</div>`;
 

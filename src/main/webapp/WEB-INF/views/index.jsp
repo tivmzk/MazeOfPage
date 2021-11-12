@@ -5,6 +5,12 @@
 
 <script src="/js/index.js"></script>
 
+<c:if test="${sessionScope.user.mgr == 1}">
+	<div id="dummy">
+		<a href="/dummy">더미</a>
+	</div>
+</c:if>
+
 <div class="visual">
 </div>
 

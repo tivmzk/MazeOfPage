@@ -165,13 +165,22 @@ public class NovelController {
 				FileManager.delete(item);
 				manager = new ThumbnailManager(image);
 				thumbnail = manager.upload();
-				
 				novel.setImage(thumbnail);
 			}
-			
+
 			service.update(novel);
 		}
-		catch(Exception e) {
+		catch(NullPointerException e) {
+			manager = new ThumbnailManager(image);
+			try {
+				thumbnail = manager.upload();
+				novel.setImage(thumbnail);
+				service.update(novel);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		

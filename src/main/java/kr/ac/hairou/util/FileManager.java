@@ -16,7 +16,7 @@ public interface FileManager {
 			}
 		}
 		else {
-			throw new Exception("파일이 존재하지 않습니다.");
+			throw new NullPointerException("파일이 존재하지 않습니다.");
 		}
 	}
 

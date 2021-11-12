@@ -147,6 +147,19 @@
 }
 
 /* --------------------------- 메인 페이지 ------------------------------------*/
+#dummy{
+	position: fixed;
+	top: 5px;
+	right: 5px;
+}
+#dummy a{
+	border: 1px solid var(--color-light-gray);
+	text-decoration: none;
+	color: var(--color-light-gray);
+	border-radius: 10px;
+	padding: 5px;
+	display: block;
+}
 .text-title,
 .text-title a{
   color: var(--color-black);
@@ -1040,6 +1053,24 @@ div.thumbnail-small img{
 	background-position: right;
 	cursor: pointer;
 	width: 100%;
+}
+.episode-form .form-item .option-wrapper .episode-option .option-delete{
+	position: absolute;
+	right: -40px;
+}
+.episode-form .form-item .option-wrapper .episode-option .option-delete button{
+	width: 30px;
+	height: 30px;
+	background: var(--color-red);
+	color: var(--color-white);
+	border: none;
+	border-radius: 10px;
+}
+.episode-form .form-item .option-wrapper .episode-option .option-delete button:hover{
+	background: var(--color-hightlight-red);
+}
+.episode-form .form-item .option-wrapper .episode-option .option-delete button:active{
+	background: var(--color-dark-red);
 }
 
 /*------------------------ 모달 ------------------------*/

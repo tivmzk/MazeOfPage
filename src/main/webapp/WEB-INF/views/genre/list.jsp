@@ -16,7 +16,7 @@
 		<c:forEach var="item" items="${list}">
 			<div class="genre-item" data-genre="${item.code}">
 				<a href="/novel/list?keyword=${item.contents}&search=3">${item.contents}</a> 
-				<span class="recom">${item.recom}</span>
+				<span class="recom">${item.count}</span>
 				<c:if test="${sessionScope.user.mgr == 1}">
 					<span class="genre-delete-btn">X</span>
 				</c:if>

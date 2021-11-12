@@ -83,11 +83,7 @@ public class RootController {
 	
 	@GetMapping("/dummy")
 	public String dummy(){
-		List<Genre> list = genreService.getList(new Pager());
-		for(Genre item : list) {
-			novelService.dummy(item.getCode());
-		}
-		
+		novelService.dummy();
 		return "redirect:.";
 	}
 	

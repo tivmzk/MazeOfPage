@@ -23,6 +23,7 @@ public class GenreController {
 	public String list(Model model) {
 		Pager pager = new Pager();
 		pager.setPerPage(service.getTotal());
+		pager.setOrder(1);
 		List<Genre> list = service.getList(pager);
 		model.addAttribute("list", list);
 		return PATH+"list.main";

@@ -8,8 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.hairou.dao.NovelDao;
 import kr.ac.hairou.dao.ThumbnailDao;
+import kr.ac.hairou.model.Genre;
 import kr.ac.hairou.model.Novel;
+import kr.ac.hairou.model.Thumbnail;
+import kr.ac.hairou.util.FileManager;
 import kr.ac.hairou.util.Pager;
+import kr.ac.hairou.util.PreviewManager;
 
 @Service
 public class NovelServiceImpl implements NovelService {
@@ -17,19 +21,40 @@ public class NovelServiceImpl implements NovelService {
 	NovelDao dao;
 	@Autowired
 	ThumbnailDao tdao;
-
+	@Autowired
+	GenreService genreService;
 	@Override
-	public void dummy(int genre) {
-		for(int i = 0; i < 10; i++) {
-			Novel item = new Novel();
-			item.setMember("user123");
-			item.setGenre(genre);
-			item.setTitle(String.format("장르 %d 소설", genre));
-			item.setInfo(String.format("장르 %d 소설의 내용", genre));
-			item.setRecom((int)(Math.random() * 1000));
-			
-			dao.add(item);
+	public void dummy() {
+		Pager pager = new Pager();
+		int total = genreService.getTotal();
+		pager.setTotal(total);
+		List<Genre> list = genreService.getList(pager);
+		FileManager manager = new PreviewManager();
+		
+		for(Genre genre : list) {
+			for(int i = 0; i < 10; i++) {
+				Novel item = new Novel();
+				item.setMember("user123");
+				item.setGenre(genre.getCode());
+				item.setTitle(String.format("장르 %d 소설", genre.getCode()));
+				item.setInfo(String.format("장르 %d 소설의 내용", genre.getCode()));
+				item.setRecom((int)(Math.random() * 100));
+				Thumbnail thumbnail = null;
+				
+				try {
+					thumbnail = manager.upload();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				item.setImage(thumbnail);
+				
+				add(item);
+			}
 		}
+		
+		
+		
 	}
 
 	@Override

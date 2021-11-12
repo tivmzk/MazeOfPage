@@ -5,7 +5,7 @@ const pager = {};
 function addOption(isFirst) {
 	let html = '';
 
-	html += '<div class="episode-option mb-5">';
+	html += '<div class="episode-option mb-5 pos-relative">';
 
 	html += '<div class="option-contents">';
 	html += '<input type="text" placeholder="선택지 내용" name="action"/>';
@@ -36,7 +36,7 @@ function addOption(isFirst) {
 function loadOption(option, isFirst) {
 	let html = '';
 
-	html += '<div class="episode-option mb-5">';
+	html += '<div class="episode-option mb-5 pos-relative">';
 	html += '<div class="option-contents">';
 	html += `<input type="text" placeholder="선택지 내용" name="action" value="${option.action==null ? '' : option.action}"/>`;
 	html += '</div>'

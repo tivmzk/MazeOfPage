@@ -5,11 +5,23 @@
   
 <mapper namespace="genre">
 	<select id="list" resultType="Genre">
-		SELECT genre.code, genre.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE novel.code=recommend.novel)) AS recom
-		FROM genre
-		LEFT OUTER JOIN novel ON genre.code=novel.genre
-		GROUP BY genre.code, genre.contents
-		ORDER BY recom DESC
+		WITH CNT AS (SELECT g.code, COUNT(*) AS count
+		FROM novel n
+		JOIN genre g ON n.genre=g.code
+		GROUP BY g.code)
+		
+		SELECT g.code, g.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE n.code=recommend.novel)) AS recom,
+		NVL(c.count, 0) AS count
+		FROM genre g
+		LEFT JOIN cnt c ON c.code=g.code
+		LEFT JOIN novel n ON n.genre=g.code
+		GROUP BY g.code, g.contents
+		<if test="order == 0">
+			ORDER BY recom DESC
+		</if>
+		<if test="order ==1">
+			ORDER BY c.count DESC
+		</if>
 		LIMIT #{offset}, #{perPage}
 	</select>
 	<select id="total" resultType="Integer">
@@ -24,11 +36,18 @@
 		</selectKey>
 	</insert>
 	<select id="item" resultType="Genre">
-		SELECT genre.code, genre.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE novel.code=recommend.novel)) AS recom
-		FROM genre
-		LEFT OUTER JOIN novel ON genre.code=novel.genre
-		WHERE genre.code=#{code}
-		GROUP BY genre.code, genre.contents
+		WITH CNT AS (SELECT g.code, COUNT(*) AS COUNT
+		FROM novel n
+		JOIN genre g ON n.genre=g.code
+		GROUP BY g.code)
+		
+		SELECT g.code, g.contents, SUM((SELECT COUNT(*) AS recom FROM recommend WHERE n.code=recommend.novel)) AS recom,
+		NVL(c.count, 0) AS count
+		FROM genre g
+		LEFT JOIN cnt c ON c.code=g.code
+		LEFT JOIN novel n ON n.genre=g.code
+		WHERE g.code=#{code}
+		GROUP BY g.code, g.contents
 	</select>
 	<delete id="delete">
 		DELETE FROM genre
