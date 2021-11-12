@@ -27,6 +27,7 @@
   --color-green: #21ac1a;
   --color-dark-green: #0e9914;
   --color-hightlight-green: #2fc140;
+  --color-fog: #f9f9f9;
 
   --size-wrapper: 1000px;
   --size-padding: 10px;
@@ -171,6 +172,12 @@
 .mr-5{
 	margin-right: 5px;
 }
+.mr-20{
+	margin-right: 20px;
+}
+.mr-30{
+	margin-right: 30px;
+}
 
 .round {
   border-radius: 5px;
@@ -279,4 +286,8 @@
 
 .bootstrap-none-h{
 	margin: 0;
+}
+
+.pos-relative{
+	position: relative;
 }

@@ -42,7 +42,7 @@
 				<textarea rows="20" cols="50" name="info"></textarea>
 			</div>
 			<div class="py-30 flex justify-end">
-				<div class="btn">
+				<div class="button">
 					<button>확인</button>
 				</div>
 			</div>

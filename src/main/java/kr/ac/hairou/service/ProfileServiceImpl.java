@@ -13,7 +13,10 @@ public class ProfileServiceImpl implements ProfileService {
 	
 	@Override
 	public Profile getItem(String member) {
-		return dao.getItem(member);
+		Profile item = dao.getItem(member);
+		if(item.getContents() != null)
+			item.setContents(item.getContents().replace("\n", "<br>"));
+		return item;
 	}
 
 	@Override

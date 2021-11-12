@@ -28,6 +28,7 @@ public class ProfileController {
 	@PostMapping("/{member}")
 	public String update(@PathVariable String member, Profile item) {
 		item.setMember(member);
+		item.setContents(item.getContents().replace("<br>", "\n"));
 		service.update(item);
 		return "redirect:"+member;
 	}

@@ -1,12 +1,12 @@
 $(function(){
 	modalClose();
 	
-	$('#modal-wrapper').click(function(){
+	$('#modal-wrapper').mousedown(function(){
 		modalClose();
 	});
 	
-	$('#modal-wrapper').children().click(function(){
-		return false;
+	$('#modal-wrapper').children().mousedown(function(e){
+		e.stopPropagation();
 	});
 });
 

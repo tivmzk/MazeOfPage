@@ -66,7 +66,8 @@
   outline: none;
 }
 .button button,
-.button a {
+.button a,
+.button span {
   background: var(--color-main);
   padding: 7px 15px;
   color: var(--color-white);
@@ -74,14 +75,32 @@
   border-radius: 5px;
   text-decoration: none;
   cursor: pointer;
+  display: block;
 }
 .button button:hover,
-.button a:hover {
+.button a:hover,
+.button span:hover {
   background: var(--color-hightlight-main);
 }
 .button button:active,
-.button a:active {
+.button a:active,
+.button span:active{
   background: var(--color-dark-main);
+}
+.button.btn-gray a,
+.button.btn-gray span,
+.button.btn-gray button{
+	background: var(--color-gray);
+}
+.button.btn-gray a:hover,
+.button.btn-gray span:hover,
+.button.btn-gray button:hover{
+	background: var(--color-light-gray);
+}
+.button.btn-gray a:active,
+.button.btn-gray span:active,
+.button.btn-gray button:active{
+	background: var(--color-dark-gray);
 }
 .user-box{
 	position: relative;
@@ -306,6 +325,10 @@ div.thumbnail-small img{
 .list li span:last-child a{
 	font-size: var(--font-size-small);
 	color: var(--color-gray);
+	text-decoration: none;
+}
+.list li span:last-child a:hover{
+	text-decoration: underline;
 }
 .login-wrapper{
 	width: 450px;
@@ -583,6 +606,22 @@ div.thumbnail-small img{
 	position: absolute;
 	right: 10px;
 	top: 10px;
+}
+.detail-header .review{
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+.detail-header .review a{
+	text-decoration: none;
+	color: var(--color-point-text);
+	padding-right: 15px;
+	background-image: url("/svg/right_point.svg");
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: contain;
+	font-size: var(--font-size-xsmall);
+	font-weight: var(--font-weight-light);
 }
 .detail-header #novel-delete-btn a{
 	background: var(--color-red);
@@ -941,4 +980,356 @@ div.thumbnail-small img{
 	background: var(--color-white);
 	padding: 20px 30px;
 	border-radius: 10px;
+}
+#modal-wrapper .form .title{
+	font-size: var(--font-size-xlarge);
+	font-weight: var(--fonst-weight-bold);
+	padding: 5px 0;
+}
+#modal-wrapper .form .input-wrapper input[type="text"],
+#modal-wrapper .form .input-wrapper textarea{
+	width: 100%;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid var(--color-light-gray);
+	margin: 15px 0;
+}
+/* ------------------------------공지사항, 감상평-------------------------- */
+#post-list-wrapper .header{
+	position: relative;
+}
+#post-list-wrapper .header .notice-add-btn{
+	position: absolute;
+	right : var(--size-padding);
+	top: var(--size-padding);
+}
+#post-list-wrapper .header .notice-add-btn a{
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-light);
+	padding: 5px 10px;
+	background : var(--color-point-text);
+	color: var(--color-white);
+	border-radius: 5px;
+}
+#post-list-wrapper .inner-wrapper .post-list{
+	list-style: none;
+}
+#post-list-wrapper .inner-wrapper .post-list li{
+	border: 1px solid var(--color-light-gray);
+	margin: 10px 0;
+	border-radius: 2px;
+	padding: 5px 30px;
+	position: relative;
+}
+#post-list-wrapper .inner-wrapper .post-list .title{
+	color: var(--color-black);
+	font-size: var(--font-size-large);
+	text-decoration: none;
+}
+#post-list-wrapper .inner-wrapper .post-list .title:hover{
+	text-decoration: underline;
+}
+#post-list-wrapper .inner-wrapper .post-list .novel{
+	text-decoration: none;
+	color: var(--color-point-text);
+	font-size: var(--font-size-small);
+}
+#post-list-wrapper .inner-wrapper .post-list .novel:hover{
+	text-decoration: underline;
+}
+#post-list-wrapper .inner-wrapper .post-list .nickname{
+	color: var(--color-dark-gray);
+	font-size: var(--font-size-normal);
+	text-decoration: none;
+	margin-right: 10px;
+}
+#post-list-wrapper .inner-wrapper .post-list .nickname:hover{
+	text-decoration: underline;
+}
+#post-list-wrapper .inner-wrapper .post-list .date{
+	color: var(--color-gray);
+	font-size: var(--font-size-xsmall);
+	text-decoration: none;
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box{
+	position:absolute;
+	top: 10px;
+	right : 10px;
+	display: flex;
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box a{
+	padding: 5px 10px;
+	text-decoration: none;
+	color: var(--color-white);
+	border-radius: 5px;
+	font-size: var(--font-size-xsmall);
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box .update{
+	background: var(--color-green);
+	margin-right: 5px;
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box .update:hover{
+	background: var(--color-hightlight-green);
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box .update:active{
+	background: var(--color-dark-green);
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box .delete{
+	background: var(--color-red);
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box .delete:hover{
+	background: var(--color-hightlight-red);
+}
+#post-list-wrapper .inner-wrapper .post-list li .btn-box .delete:active{
+	background: var(--color-dark-red);
+}
+#post-view-wrapper .back{
+	font-size: var(--font-size-small);
+	font-weight: var(--font-weight-normal);
+	color: var(--color-point-text);
+	position: absolute;
+	bottom: 5px;
+	right: 10px;
+	background-image: url("/svg/right_point.svg") !important;
+	background-position: right center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	padding-right: 20px;
+}
+#post-view-wrapper .form{
+	border: 1px solid var(--color-light-gray);
+	margin: 30px 5px;
+	border-radius: 5px;
+}
+#post-view-wrapper .form > div{
+	padding: 5px 10px;
+}
+#post-view-wrapper .form > div:first-child{
+	border-bottom: 1px solid var(--color-light-gray);
+	
+}
+#post-view-wrapper .form .title{
+	font-weight: var(--font-weight-bold);
+	font-size: var(--font-size-large);
+	color: black;
+	padding-bottom: 5px;
+}
+#post-view-wrapper .form .nickname{
+	color: var(--color-black);
+	font-size: var(--font-size-small);
+	text-decoration: none;
+}
+#post-view-wrapper .form .nickname:hover{
+	text-decoration: underline;
+}
+#post-view-wrapper .form .date{
+	color: var(--color-gray);
+	font-size: var(--font-size-xsmall);
+}
+#post-view-wrapper .form .contents-wrapper{
+	min-height: 500px;
+}
+#post-view-wrapper .form .contents-wrapper .contents{
+	padding: 10px 0;
+}
+#post-view-wrapper .form .btn-box{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	display: flex;
+}
+#post-view-wrapper .form .btn-box a{
+	padding: 5px 10px;
+	text-decoration: none;
+	color: var(--color-white);
+	border-radius: 5px;
+	font-size: var(--font-size-xsmall);
+}
+#post-view-wrapper .form .btn-box .update{
+	background: var(--color-green);
+	margin-right: 5px;
+}
+#post-view-wrapper .form .btn-box .update:hover{
+	background: var(--color-hightlight-green);
+}
+#post-view-wrapper .form .btn-box .update:active{
+	background: var(--color-dark-green);
+}
+#post-view-wrapper .form .btn-box .delete{
+	background: var(--color-red);
+}
+#post-view-wrapper .form .btn-box .delete:hover{
+	background: var(--color-hightlight-red);
+}
+#post-view-wrapper .form .btn-box .delete:active{
+	background: var(--color-dark-red);
+}
+#post-view-wrapper .form .novel{
+	color: var(--color-point-text);
+	text-decoration: none;
+	display: block;
+}
+#post-view-wrapper .form .novel:hover{
+	text-decoration: underline;
+}
+#post-edit-wrapper .inner-wrapper{
+	padding : 15px 5px;
+}
+#post-edit-wrapper .inner-wrapper .title label{
+	display: block;
+	color: var(--color-dark-gray);
+	padding: 5px 0 10px 0;
+}
+#post-edit-wrapper .inner-wrapper .title input{
+	width: 100%;
+	height: 40px;
+	border-radius: 5px;
+	border: 1px solid var(--color-light-gray);
+	padding: 0 5px;
+}
+#post-edit-wrapper .inner-wrapper .contents label{
+	display: block;
+	color: var(--color-dark-gray);
+	padding: 10px 0;
+}
+#post-edit-wrapper .inner-wrapper .contents textarea{
+	width: 100%;
+	min-height: 500px;
+	border-radius: 5px;
+	padding: 5px;
+	border: 1px solid var(--color-light-gray);
+}
+#post-edit-wrapper .inner-wrapper .btn-box{
+	display: flex;
+	padding: 20px 5px;
+	justify-content: flex-end;
+}
+#post-edit-wrapper .inner-wrapper .btn-box .back{
+	display: block;
+}
+/*--------------------------- 프로필 ------------------------*/
+#profile-wrapper .update{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: var(--color-green);
+	padding: 5px 10px;
+	text-decoration: none;
+	color: var(--color-white);
+	border-radius: 5px;
+	font-size: var(--font-size-xsmall);
+	cursor: pointer;
+}
+#profile-wrapper .update:hover{
+	background: var(--color-hightlight-green);
+}
+#profile-wrapper .update:active{
+	background: var(--color-dark-green);
+}
+#profile-wrapper .profile-table{
+	border-collapse: collapse;
+	border: 1px solid var(--color-light-gray);
+	border-radius: 10px;
+	width: 800px;
+	margin: 50px auto;
+}
+#profile-wrapper .profile-table th,
+#profile-wrapper .profile-table td{
+	border: 1px solid var(--color-light-gray);
+}
+#profile-wrapper ul{
+	list-style: none;
+}
+#profile-wrapper .profile-table th{
+	width: 200px;
+	padding: 10px;
+}
+#profile-wrapper .profile-table td{
+	padding: 10px;
+}
+#profile-wrapper .profile-table .contents td{
+	height: 400px;
+	vertical-align: top;
+}
+#profile-wrapper .profile-table li{
+	padding: 5px 0;
+}
+#profile-wrapper .profile-table .title{
+	color: var(--color-point-text);
+	text-decoration: none;
+}
+#profile-wrapper .profile-table .title:hover{
+	text-decoration: underline;
+}
+#profile-wrapper .profile-table .genre{
+	color: var(--color-gray);
+	text-decoration: none;
+	font-size: var(--font-size-small);
+}
+#profile-wrapper .profile-table .genre:hover{
+	text-decoration: underline;
+}
+
+/* 장르 목록 */
+#genre-list-wrapper{
+	position: relative;
+}
+#genre-list-wrapper .add{
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+#genre-list-wrapper .add span{
+	background: var(--color-point-text);
+	color: var(--color-white);
+	width: 20px;
+	height: 20px;
+	line-height: 18px;
+	display: inline-block;
+	text-align: center;
+	border-radius: 5px;
+	cursor: pointer;
+}
+#genre-list-wrapper #genre-list{
+	width: 800px;
+	margin: 25px auto;
+	display: flex;
+	flex-wrap: wrap;
+}
+#genre-list-wrapper #genre-list .genre-item{
+	background: var(--color-fog);
+	border-radius: 10px;
+	border: var(--border-bold-size) solid var(--color-accent);
+	margin: 15px;
+	white-space: nowrap;
+	padding: 5px 10px;
+}
+#genre-list-wrapper #genre-list .genre-item a{
+	color: var(--color-black);
+	text-decoration: none;
+}
+#genre-list-wrapper #genre-list .genre-item a:hover{
+	text-decoration: underline;
+}
+#genre-list-wrapper #genre-list .genre-item .recom{
+	font-size: var(--font-size-small);
+	color: var(--color-dark-gray);
+}
+#genre-list-wrapper #genre-list .genre-item .genre-delete-btn{
+	background: var(--color-red);
+	border-radius: 5px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	cursor: pointer;
+	line-height: 18px;
+	color: var(--color-white);
+	text-align: center;
+	user-select: none;
+}
+#genre-list-wrapper #genre-list .genre-item .genre-delete-btn:hover{
+	background: var(--color-hightlight-red);	
+}
+#genre-list-wrapper #genre-list .genre-item .genre-delete-btn:active{
+	background: var(--color-dark-red);
 }

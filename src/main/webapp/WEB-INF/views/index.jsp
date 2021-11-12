@@ -135,7 +135,7 @@
 			<ul class="list">
 				<c:forEach var="item" items="${reviewList}">
 					<li class="flex item-center">
-						<span><a href="/review/view/${item.code}">${item.title}</a></span>
+						<span><a href="/review/view/${item.code}">[${item.novelTitle}] ${item.title}</a></span>
 						 <span><a href="/profile/${item.member}">${item.nickname}</a></span>
 					</li>
 				</c:forEach>

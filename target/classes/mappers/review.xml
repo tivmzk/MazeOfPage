@@ -5,7 +5,7 @@
   
 <mapper namespace="review">
 	<select id="list" resultType="Review">
-		SELECT r.*, n.title, m.nickname
+		SELECT r.*, n.title AS novelTitle, m.nickname
 		FROM review r
 		JOIN novel n ON r.novel=n.code
 		JOIN member m ON r.member=m.id
@@ -21,7 +21,7 @@
 		VALUES(NULL, #{member}, #{novel}, #{title}, #{contents}, NOW())
 	</insert>
 	<select id="item" resultType="Review">
-		SELECT r.*, n.title, m.nickname
+		SELECT r.*, n.title AS novelTitle, m.nickname
 		FROM review r
 		JOIN novel n ON r.novel=n.code
 		JOIN member m ON r.member=m.id

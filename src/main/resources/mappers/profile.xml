@@ -18,14 +18,11 @@
 
 	<select id="item" resultMap="ProfileMap">
 		SELECT m.id AS member, p.contents, m.nickname, 
-		(SELECT COUNT(*)
-		FROM recommend
-		JOIN novel ON novel.code=recommend.novel
-		GROUP BY recommend.novel, novel.member
-		HAVING novel.member=#{member}) AS recom,
-		n.code,
-		n.title,
-		g.contents AS genreContents
+		(SELECT COUNT(*) 
+		FROM recommend r 
+		JOIN novel n ON r.novel=n.code
+		WHERE n.member=#{member}) AS recom,
+		n.code, n.title, g.contents AS genreContents
 		FROM member m
 		LEFT OUTER JOIN profile p ON m.id=p.member
 		JOIN novel n ON n.member=m.id

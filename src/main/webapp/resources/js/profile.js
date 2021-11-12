@@ -6,7 +6,7 @@ $(function() {
 		/*수정 버튼 막기*/
 		$('#modal-open-btn').click(function() {
 			$('#modal-wrapper .form .nickname').val(profile.nickname);
-			$('#modal-wrapper .form .contents').val(profile.contents);
+			$('#modal-wrapper .form .contents').val(profile.contents.replace(/<br>/gi, ''));
 			modalOpen();
 		});
 		
