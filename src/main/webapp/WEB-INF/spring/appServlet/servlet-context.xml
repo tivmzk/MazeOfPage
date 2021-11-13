@@ -45,4 +45,29 @@
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="2" />
 	</beans:bean>
+	
+	<interceptors>
+		<interceptor>
+			<mapping path="/novel/**"/>
+			<mapping path="/episode/update/**"/>
+			<mapping path="/episode/add/**"/>
+			<mapping path="/review/**"/>
+			
+			<exclude-mapping path="/novel/list"/>
+			<exclude-mapping path="/novel/detail/**"/>
+			<exclude-mapping path="/review/list"/>
+			<exclude-mapping path="/review/view/**"/>
+			<exclude-mapping path="/"/>
+			
+			<beans:bean class="kr.ac.hairou.util.UserInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/notice/**"/>
+			
+			<exclude-mapping path="/notice/view/**"/>
+			<exclude-mapping path="/notice/list"/>
+			
+			<beans:bean class="kr.ac.hairou.util.AdminInterceptor" />
+		</interceptor>
+	</interceptors>
 </beans:beans>

@@ -2,6 +2,7 @@ package kr.ac.hairou.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.hairou.dao.ProfileDao;
 import kr.ac.hairou.model.Profile;
@@ -11,14 +12,17 @@ public class ProfileServiceImpl implements ProfileService {
 	@Autowired
 	ProfileDao dao;
 	
+	@Transactional
 	@Override
 	public Profile getItem(String member) {
 		Profile item = dao.getItem(member);
+		
 		if(item.getContents() != null)
 			item.setContents(item.getContents().replace("\n", "<br>"));
 		return item;
 	}
-
+	
+	@Transactional
 	@Override
 	public void update(Profile item) {
 		if(dao.exist(item)) {

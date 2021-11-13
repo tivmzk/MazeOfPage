@@ -19,9 +19,6 @@ public class PreviewManager implements FileManager {
 		File file = new File(UPLOAD_PATH+"preview"+rand+".jpg");
 		File newFile = new File(UPLOAD_PATH+thumbnail.getFullname());
 		Files.copy(file, newFile);
-		if(!newFile.createNewFile()) {
-			System.out.println("파일이 이미 존재합니다.");
-		}
 		
 		return thumbnail;
 	}

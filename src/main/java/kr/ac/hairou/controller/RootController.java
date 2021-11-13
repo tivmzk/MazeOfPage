@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.ac.hairou.model.Genre;
 import kr.ac.hairou.model.GenreRank;
@@ -93,11 +94,12 @@ public class RootController {
 	}
 	
 	@PostMapping("/login")
-	public String login(Member member, HttpSession session) {
+	public String login(Member member, HttpSession session, RedirectAttributes attr) {
 		Member item = memberService.getItem(member);
 		
 		if(item == null) {
-			return "login.main";
+			attr.addFlashAttribute("warn", "아이디 또는 비밀번호가 틀렸습니다");
+			return "redirect:login";
 		}
 		
 		session.setAttribute("user", item);

@@ -6,17 +6,25 @@
 <mapper namespace="novel">
 	<sql id="search">
 		<where>
+			<!-- 타이틀로 검색 -->
 			<if test="search == 1">
 				n.title LIKE CONCAT('%', #{keyword}, '%')
 			</if>
+			<!-- 작성자로 검색 -->
 			<if test="search == 2">
 				n.member IN (SELECT id FROM member WHERE nickname LIKE CONCAT('%', #{keyword}, '%'))
 			</if>
+			<!-- 장르로 검색 -->
 			<if test="search == 3">
 				n.genre IN (SELECT CODE FROM genre WHERE contents LIKE CONCAT('%', #{keyword}, '%'))
 			</if>
+			<!-- 닉네임으로 검색하면서 특정 작품은 제외 -->
 			<if test="search == 4">
 				n.member IN (SELECT id FROM member WHERE nickname LIKE CONCAT('%', #{keyword}, '%') AND n.code != #{keyword2})
+			</if>
+			<!-- 북마크로 검색 -->
+			<if test="search == 5">
+				n.code IN (SELECT b.novel FROM bookmark b WHERE b.member=#{keyword})
 			</if>
 		</where>
 	</sql>

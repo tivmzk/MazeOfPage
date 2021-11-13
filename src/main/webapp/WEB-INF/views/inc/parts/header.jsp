@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script src="/js/user_menu.js"></script>
+<script>
+	const msg = `${warn}`;
+
+	if(msg){
+		alert(msg);
+	}
+</script>
 <div class="wrapper flex justify-between item-center">
 	<div class="logo">
 		<h1 class="text-black"><a href="/">Maze of Page</a></h1>
@@ -15,7 +22,7 @@
 			</select>
 		</div>
 		<div class="search-box">
-			<input type="text" class="input-text" name="keyword" value="${pager.keyword}">
+			<input type="text" class="input-text" name="keyword" value="${pager.search == 5 ? '' : pager.keyword}">
 			<button class="icon">
 				<img alt="" src="/svg/search.svg">
 			</button>
@@ -25,8 +32,9 @@
 		<div class="user-box">
 			<span class="nickname">${sessionScope.user.nickname}</span>님 환영합니다
 			<ul class="user-menu">
-				<li><a href="/logout">로그아웃</a></li>
 				<li><a href="/profile/${sessionScope.user.id}">프로필</a></li>
+				<li><a href="/novel/list?search=5&order=0&keyword=${sessionScope.user.id}">북마크</a></li>
+				<li><a href="/logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</c:if>
