@@ -23,6 +23,8 @@ public class NovelServiceImpl implements NovelService {
 	ThumbnailDao tdao;
 	@Autowired
 	GenreService genreService;
+	
+	@Transactional
 	@Override
 	public void dummy() {
 		Pager pager = new Pager();

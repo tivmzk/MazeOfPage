@@ -61,6 +61,7 @@ function createEpisode(episode) {
 /* 에피소드를 로드하는 함수 */
 function loadEpisodes(page) {
 	state.page = page;
+	state.list = null;
 	
 	$.ajax('/rest/episode', {
 		method: 'GET',
@@ -93,6 +94,7 @@ function loadEpisodes(page) {
 			pagnation.children('.page-list').remove();
 			
 			const pagerList = result.pager.list;
+			state.list = pagerList;
 			
 			for(let i = 0; i < pagerList.length; i++){
 				const pageList = $('<li>').addClass('page-list');
@@ -231,7 +233,7 @@ $(function() {
 					현재 보여주고 있는 리스트를 초기화하고 받아온 episodes에 삭제한 episode를 반영해서
 					다시 생성후 리스트에 추가
 					*/
-					const list = $('.detail-list .list-contents .list');
+					/*const list = $('.detail-list .list-contents .list');
 					list.empty();
 					episodes = episodes.filter(episode => {
 						if (episode.code == result && episode.isStart == 1) {
@@ -252,9 +254,13 @@ $(function() {
 					for (episode of episodes) {
 						const item = createEpisode(episode);
 						list.append(item);
+					}*/
+					if(state.list.length == 1){
+						$(`.detail-list .list-contents .list li[data-epi=${result}]`).remove();
 					}
-
-
+					else{
+						loadEpisodes(state.page);
+					}
 				},
 				error: xhr => {
 					console.log('episode delete : ' + xhr.statusText);

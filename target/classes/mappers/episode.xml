@@ -56,6 +56,14 @@
 		<include refid="order" />
 		LIMIT #{offset}, #{perPage}
 	</select>
+	<select id="list_no_option" resultType="Episode">
+		SELECT e.*, n.member AS member
+		FROM episode e
+		JOIN novel n ON n.code=e.novel
+		<include refid="search" />
+		<include refid="order" />
+		LIMIT #{offset}, #{perPage}
+	</select>
 	<select id="item" resultMap="EpisodeMap">
 		SELECT e.*, n.member AS member, o.code AS ocode, o.mepisode, o.oepisode, o.action
 		FROM episode e

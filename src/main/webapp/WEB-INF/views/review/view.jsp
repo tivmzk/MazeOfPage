@@ -11,7 +11,7 @@
 		<div>
 			<h3 class="title">${item.title}</h3>
 			<a class="novel" href="/novel/detail/${item.novel}">${item.novelTitle}</a>
-			<span class="nickname">${item.nickname}</span>
+			<a href="/profile/${item.member}" class="nickname">${item.nickname}</a>
 			<span class="date"><fmt:formatDate value="${item.date}" pattern="yyyy-MM-dd"/></span>
 			<c:if test="${item.member == sessionScope.user.id}">
 				<div class="btn-box">

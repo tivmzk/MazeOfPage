@@ -23,6 +23,11 @@ public class EpisodeDaoImpl implements EpisodeDao {
 	public List<Episode> getList(Pager pager) {
 		return sql.selectList("episode.list", pager);
 	}
+	
+	@Override
+	public List<Episode> getListNoOption(Pager pager) {
+		return sql.selectList("episode.list_no_option", pager);
+	}
 
 	@Override
 	public Episode getItem(Pager pager) {

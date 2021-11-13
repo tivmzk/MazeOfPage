@@ -24,11 +24,19 @@ public class EpisodeServiceImpl implements EpisodeService {
 		return dao.getTotal(code);
 	}
 
+	@Transactional
 	@Override
 	public List<Episode> getList(Pager pager) {
 		int total = dao.getTotal(Integer.parseInt(pager.getKeyword()));
 		pager.setTotal(total);
-		return dao.getList(pager);
+		List<Episode> list = dao.getListNoOption(pager);
+		
+		for(Episode item : list) {
+			List<Option> options = optionDao.list(item.getCode());
+			item.setOptions(options);
+		}
+		
+		return list;
 	}
 
 	@Override
@@ -72,7 +80,8 @@ public class EpisodeServiceImpl implements EpisodeService {
 		optionDao.deleteAll(code);
 		dao.delete(code);
 	}
-
+	
+	@Transactional
 	@Override
 	public void update(Episode item) {
 		dao.update(item);

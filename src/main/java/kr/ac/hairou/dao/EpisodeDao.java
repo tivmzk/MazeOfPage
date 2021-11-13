@@ -10,7 +10,9 @@ public interface EpisodeDao {
 	int getTotal(int code);
 
 	List<Episode> getList(Pager pager);
-
+	
+	List<Episode> getListNoOption(Pager pager);
+	
 	Episode getItem(Pager pager);
 
 	void add(Episode item);

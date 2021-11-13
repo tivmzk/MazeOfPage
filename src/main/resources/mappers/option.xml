@@ -22,4 +22,9 @@
 		DELETE FROM option
 		WHERE code=#{code}
 	</delete>
+	<select id="list" resultType="Option">
+		SELECT *
+		FROM option
+		WHERE mepisode=#{code}
+	</select>
 </mapper>
