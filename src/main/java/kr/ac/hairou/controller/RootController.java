@@ -28,6 +28,12 @@ import kr.ac.hairou.service.NovelService;
 import kr.ac.hairou.service.ReviewService;
 import kr.ac.hairou.util.Pager;
 
+/*
+ * 메인 페이지, 로그인, 회원가입을 담당하는 컨트롤러입니다
+ * 
+ * 테스트를 위한 dummy나 회원가입을 위한 ajax를 받기도 합니다
+ * 
+ * */
 @Controller
 public class RootController {
 	@Autowired
@@ -40,7 +46,13 @@ public class RootController {
 	MemberService memberService;
 	@Autowired
 	ReviewService reviewService;
-	
+	/*
+	 * 메인 페이지에 오는 사용자를 위한 메소드
+	 * 메인 페이지에 배치된 컨텐츠를 채우기 위해
+	 * NovelService, GenreService, ReviewService, NoticeService를 사용
+	 * 받아오는 리스트의 수를 제한하기 위해 pager를 사용한다
+	 * pager를 사용하면 검색창에 keyword가 남기 때문에 pager를 초기화 해준다
+	 * */
 	@RequestMapping("/")
 	public String index(Model model, Pager pager) {
 		try {
@@ -82,17 +94,23 @@ public class RootController {
 		return "index.main";
 	}
 	
+//	테스트를 위한 더미를 생성하는 메소드
 	@GetMapping("/dummy")
 	public String dummy(){
 		novelService.dummy();
 		return "redirect:.";
 	}
 	
+//	로그인 페이지로 보내는 메소드
 	@GetMapping("/login")
 	public String login() {
 		return "login.main";
 	}
 	
+	/*
+	 * 로그인을 할 지 안할지 판단하는 메서드 로그인에 실패하면 RedirectAttributes로 jsp에 메세지를 보낸다
+	 * FlashAttribute에 넣은 값은 한번 사용하면 사라지는 휘발성이다
+	 */
 	@PostMapping("/login")
 	public String login(Member member, HttpSession session, RedirectAttributes attr) {
 		Member item = memberService.getItem(member);
@@ -107,23 +125,32 @@ public class RootController {
 		return "redirect:/";
 	}
 	
+//	로그아웃을 담당하는 메서드
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
 		return "redirect:.";
 	}
 	
+//	회원가입 페이지로 보내주는 메서드
 	@GetMapping("/signup")
 	public String signup(){
 		return "signup.main";
 	}
 	
+//	회원가입을 처리하는 메서드
 	@PostMapping("/signup")
 	public String signup(Member item){
 		memberService.add(item);
 		return "redirect:login";
 	}
 	
+	/*
+	 * 회원가입시 닉네임이 중복인가 아닌가를 ajax한 것을 처리하는 메서드
+	 * 
+	 * @ResponseBody를 사용해서 html이 아닌 값 자체를 보낸 수 있고
+	 * Jackson 라이브러리를 사용해서 문자열이 아니여도 반환할 수 있다
+	 */
 	@ResponseBody
 	@GetMapping("/check_nickname/{nickname}")
 	public boolean checkNickname(@PathVariable String nickname){
@@ -138,6 +165,7 @@ public class RootController {
 			return false;
 	}
 	
+//	회원가입시 아이디가 중복인가 아닌가를 ajax한 것을 처리하는 메서드
 	@ResponseBody
 	@GetMapping("/check_id/{id}")
 	public boolean checkId(@PathVariable String id){

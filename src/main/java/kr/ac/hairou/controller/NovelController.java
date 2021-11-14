@@ -31,6 +31,7 @@ import kr.ac.hairou.util.Pager;
 import kr.ac.hairou.util.PreviewManager;
 import kr.ac.hairou.util.ThumbnailManager;
 
+
 @Controller
 @RequestMapping("/novel")
 public class NovelController {

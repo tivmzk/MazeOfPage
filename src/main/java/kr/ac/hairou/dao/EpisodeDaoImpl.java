@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.util.Pager;
 
+/*episode를 DB에서 꺼내거나 넣는 DAO 클래스
+전체적으로 SqlSession에게 일을 시키는 일을 한다*/
 @Repository
 public class EpisodeDaoImpl implements EpisodeDao {
 	@Autowired
