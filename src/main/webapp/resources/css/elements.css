@@ -216,7 +216,7 @@
   font-size: var(--font-size-normal);
 }
 div.visual {
-  background-image: url("/img/visual.jpg");
+  background-image: url("/img/main_visual.jpg");
   height: 420px;
   background-position: center;
   background-repeat: no-repeat;
