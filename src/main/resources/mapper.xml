@@ -24,5 +24,6 @@
 		<mapper resource="mappers/option.xml"/>
 		<mapper resource="mappers/profile.xml"/>
 		<mapper resource="mappers/review.xml"/>
+		<mapper resource="mappers/comments.xml"/>
 	</mappers>
 </configuration>

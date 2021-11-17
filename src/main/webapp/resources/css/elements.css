@@ -921,9 +921,6 @@ div.thumbnail-small img{
 	height: 20px;
 	display: inline-block !important;
 }
-.empty-msg.hide{
-	display: none !important;
-}
 
 /*------------------------ 에피소드 ------------------------*/
 #novel-view-wrapper{

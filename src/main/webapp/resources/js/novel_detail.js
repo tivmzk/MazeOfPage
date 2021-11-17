@@ -255,8 +255,8 @@ $(function() {
 						const item = createEpisode(episode);
 						list.append(item);
 					}*/
-					if(state.list.length == 1){
-						$(`.detail-list .list-contents .list li[data-epi=${result}]`).remove();
+					if(episodes.length == 1){
+						loadEpisodes(1);
 					}
 					else{
 						loadEpisodes(state.page);
