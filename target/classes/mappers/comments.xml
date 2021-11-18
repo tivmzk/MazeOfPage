@@ -42,4 +42,9 @@
 		contents = #{contents}
 		WHERE code = #{code}
 	</update>
+	<select id="total" resultType="Integer">
+		SELECT COUNT(*)
+		FROM comments
+		WHERE review=#{code}
+	</select>
 </mapper>

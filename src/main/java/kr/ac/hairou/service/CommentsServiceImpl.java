@@ -34,4 +34,9 @@ public class CommentsServiceImpl implements CommentsService {
 	public void update(Comments item) {
 		dao.update(item);
 	}
+
+	@Override
+	public int total(int code) {
+		return dao.total(code);
+	}
 }

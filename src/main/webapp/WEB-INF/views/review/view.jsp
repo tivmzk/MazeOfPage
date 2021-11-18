@@ -43,7 +43,7 @@
 				댓글 <span class="comments-total"></span>개
 			</div>
 			<div>
-				정렬
+				<button class="comments-sort">정렬</button>
 			</div>
 		</div>
 		<div>

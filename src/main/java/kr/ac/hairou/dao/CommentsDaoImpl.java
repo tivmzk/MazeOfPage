@@ -38,4 +38,9 @@ public class CommentsDaoImpl implements CommentsDao {
 	public void update(Comments item) {
 		sql.update("comments.update", item);
 	}
+	
+	@Override
+	public int total(int code) {
+		return sql.selectOne("comments.total", code);
+	}
 }

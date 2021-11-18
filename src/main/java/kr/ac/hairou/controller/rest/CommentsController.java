@@ -44,4 +44,9 @@ public class CommentsController {
 		service.update(item);
 		return item;
 	}
+	
+	@GetMapping("/total")
+	public int total(int code) {
+		return service.total(code);
+	}
 }

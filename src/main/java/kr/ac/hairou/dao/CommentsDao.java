@@ -17,4 +17,6 @@ public interface CommentsDao {
 
 	void update(Comments item);
 
+	int total(int code);
+
 }

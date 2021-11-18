@@ -15,4 +15,6 @@ public interface CommentsService {
 
 	void update(Comments item);
 
+	int total(int code);
+
 }

@@ -12,6 +12,12 @@
 	.comments-button
 	댓글 등록 버튼
 	
+	.comments-total
+	댓글 총 개수
+	
+	.comments-sort
+	댓글 정렬 버튼
+	
 	review_code
 	review의 기본키
 	
@@ -21,25 +27,25 @@
 
 const state = {
 	keyword: `${review_code}`,
-	order: '1'
+	order: 1
 };
 
 let is_editing = false;
 
 /*댓글 요소를 만드는 함수*/
 function createComments(item){
-	item.date = new Date(item.date);
+	const temp = new Date(item.date);
 	const date = {
-		year:item.date.getFullYear(),
-		mon:item.date.getMonth()+1,
-		day:item.date.getDate()
+		year:temp.getFullYear(),
+		mon:temp.getMonth()+1,
+		day:temp.getDate()
 	};
 	
 	const html  = $(`<div data-comments=${item.code}>`)
 	.addClass('comments-item');
 	const header = $(`<div>`)
 	.append(`<a href="/profile/${item.member}">${item.nickname}</a>`)
-	.append(`<span>${date.year}/${date.mon}/${date.day}</span>`);
+	.append(`<span>${date.year}-${date.mon}-${date.day}</span>`);
 	
 	const contents = $(`<div>`)
 	.append($('<p>').text(item.contents).addClass('contents'));
@@ -65,7 +71,40 @@ function createComments(item){
 	return html;
 }
 
+/*댓글 개수 읽어오기*/
+function loadCount(){
+	$.ajax('/rest/comments/total?code=' + review_code, {
+		success: result => {
+			$('.comments-total').text(result);	
+		},
+		error: xhr => {
+			console.log('댓글 개수 : '+xhr.statusText);
+		}
+	});
+}
+
+/*댓글 리스트 받아와서 초기화 하기*/
+function loadComments(){
+	$.ajax(`/rest/comments`, {
+		contentType: 'application/json',
+		dataType: 'json',
+		data:state,
+		success: result => {
+			loadCount();
+			$('.comments-wrapper .comments-list .comments-item').remove();
+			for(const item of result){
+				const comments = createComments(item);
+				$('.comments-wrapper .comments-list').append(comments);
+			}
+		},
+		error: xhr => {
+			console.log(xhr.statusText);
+		}
+	});
+}
+
 $(function(){
+	loadComments();
 	
 	/*댓글 등록 버튼 이벤트*/
 	$('.comments-wrapper .comments-button').click(function(){
@@ -87,6 +126,7 @@ $(function(){
 			dataType: 'json',
 			data: JSON.stringify(item),
 			success: result => {
+				loadComments();
 				const comments = createComments(result);
 				$('.comments-wrapper .comments-list').prepend(comments);
 				$('.comments-wrapper .comments-input').val('');
@@ -97,24 +137,6 @@ $(function(){
 		})
 	});
 	
-	/*
-		댓글 리스트 받아와서 초기화 하기
-	*/
-	$.ajax(`/rest/comments`, {
-		contentType: 'application/json',
-		dataType: 'json',
-		data:state,
-		success: result => {
-			for(const item of result){
-				const comments = createComments(item);
-				$('.comments-wrapper .comments-list').append(comments);
-			}
-		},
-		error: xhr => {
-			console.log(xhr.statusText);
-		}
-	});
-	
 	/*댓글 삭제 버튼*/
 	$('.comments-wrapper').on('click', '.btn-box .delete', function(){
 		const code = $(this).closest('.comments-item').data('comments');
@@ -122,6 +144,7 @@ $(function(){
 		$.ajax('/rest/comments?code='+code, {
 			method: 'DELETE',
 			success: result => {
+				loadComments();
 				$(`.comments-wrapper .comments-list .comments-item[data-comments="${result}"]`).remove();
 			},
 			error: xhr => {
@@ -183,5 +206,12 @@ $(function(){
 				console.log("댓글 수정 : "+xhr.statusText);
 			}
 		});
+	});
+	
+	/*댓글 정렬 버튼*/
+	$('.comments-wrapper .comments-sort').click(function(){
+		state.order = ++state.order % 2;
+		
+		loadComments();
 	});
 });
