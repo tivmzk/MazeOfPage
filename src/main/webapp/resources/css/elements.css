@@ -1429,7 +1429,9 @@ div.thumbnail-small img{
 .comments-wrapper .comments-list .btn-box button:hover{
 	background: var(--color-white-gray);
 }
-
+.comments-wrapper .comments-list .comments-item:last-child{
+	margin-bottom: 50px;
+}
 /*--------------------------- 프로필 ------------------------*/
 #profile-wrapper .update{
 	position: absolute;
