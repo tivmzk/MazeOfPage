@@ -44,8 +44,8 @@ function createComments(item){
 	const html  = $(`<div data-comments=${item.code}>`)
 	.addClass('comments-item');
 	const header = $(`<div>`)
-	.append(`<a href="/profile/${item.member}">${item.nickname}</a>`)
-	.append(`<span>${date.year}-${date.mon}-${date.day}</span>`);
+	.append(`<a class="nickname" href="/profile/${item.member}">${item.nickname}</a>`)
+	.append(`<span class="date">${date.year}-${date.mon}-${date.day}</span>`);
 	
 	const contents = $(`<div>`)
 	.append($('<p>').text(item.contents).addClass('contents'));
@@ -53,7 +53,7 @@ function createComments(item){
 	if(	review_member == curr_user.id ||
 		curr_user.mgr == 1){
 		const wrapper = $('<div>')
-		.append($('<span class="menu-btn">').text('메뉴'))
+		.append($('<span class="menu-btn">'))
 		.addClass('menu-wrapper hide');
 		
 		const btn_box = $('<div>')
@@ -103,12 +103,36 @@ function loadComments(){
 	});
 }
 
-$(function(){
-	loadComments();
-	
-	/*댓글 등록 버튼 이벤트*/
-	$('.comments-wrapper .comments-button').click(function(){
-		if(!`${curr_user.id}`){
+function updateComments() {
+	const input = $('#modal-wrapper .input');
+
+	const item = {
+		code: `${input.data('comments')}`,
+		contents: `${input.val()}`
+	};
+
+	$.ajax('/rest/comments', {
+		method: 'PUT',
+		dataType: 'json',
+		contentType: 'application/json',
+		data: JSON.stringify(item),
+		success: result => {
+			const comments = $(`.comments-wrapper .comments-list .comments-item[data-comments="${result.code}"]`);
+			comments.find('.contents').text(result.contents);
+			comments.find('.menu-wrapper').addClass('hide');
+			comments.find('.btn-box').addClass('hide');
+			is_editing = false;
+			input.val('');
+			modalClose();
+		},
+		error: xhr => {
+			console.log("댓글 수정 : " + xhr.statusText);
+		}
+	});
+}
+
+function uploadComments(){
+	if(!`${curr_user.id}`){
 			alert("로그인이 필요합니다");
 			return;
 		}
@@ -134,7 +158,21 @@ $(function(){
 			error: xhr => {
 				console.log("댓글 달기 : " + xhr.statusText);
 			}
-		})
+		});
+}
+
+$(function(){
+	loadComments();
+	
+	/*댓글 등록 버튼 이벤트*/
+	$('.comments-wrapper .comments-button').click(function(){
+		uploadComments();
+	});
+	
+	$('.comments-wrapper .comments-input').keypress(function(key){
+		if(key.keyCode == 13){
+			uploadComments();
+		}
 	});
 	
 	/*댓글 삭제 버튼*/
@@ -181,36 +219,20 @@ $(function(){
 	
 	/*댓글 수정*/
 	$('#modal-wrapper .update').click(function(){
-		const input = $('#modal-wrapper .input');
-		
-		const item = {
-			code:`${input.data('comments')}`,
-			contents:`${input.val()}`
-		};
-		
-		$.ajax('/rest/comments', {
-			method: 'PUT',
-			dataType: 'json',
-			contentType: 'application/json',
-			data:JSON.stringify(item),
-			success: result => {
-				const comments = $(`.comments-wrapper .comments-list .comments-item[data-comments="${result.code}"]`);
-				comments.find('.contents').text(result.contents);
-				comments.find('.menu-wrapper').addClass('hide');
-				comments.find('.btn-box').addClass('hide');
-				is_editing = false;
-				input.val('');
-				modalClose();
-			},
-			error: xhr => {
-				console.log("댓글 수정 : "+xhr.statusText);
-			}
-		});
+		updateComments();
+	});
+	
+	$('#modal-wrapper .input').keypress(function(key){
+		if(key.keyCode == 13){
+			updateComments();
+		}
 	});
 	
 	/*댓글 정렬 버튼*/
 	$('.comments-wrapper .comments-sort').click(function(){
 		state.order = ++state.order % 2;
+		
+		$(this).toggleClass('desc');
 		
 		loadComments();
 	});

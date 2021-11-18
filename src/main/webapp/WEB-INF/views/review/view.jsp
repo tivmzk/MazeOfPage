@@ -38,19 +38,19 @@
 		</div>
 	</div>
 	<div class="comments-wrapper">
-		<div>
+		<div class="header">
 			<div>
 				댓글 <span class="comments-total"></span>개
 			</div>
 			<div>
-				<button class="comments-sort">정렬</button>
+				<button class="comments-sort desc">정렬</button>
 			</div>
 		</div>
-		<div>
+		<div class="inner-wrapper">
 			<div>
-				<textarea class="comments-input" placeholder="댓글을 입력하세요"></textarea>
+				<input class="comments-input" placeholder="댓글을 입력하세요"/>
 			</div>
-			<div>
+			<div class="button">
 				<button class="comments-button">확인</button>
 			</div>
 		</div>
@@ -62,15 +62,12 @@
 
 <div id="modal-wrapper">
 	<div class="form">
-		<h1 class="title">댓글 수정</h1>
+		<h1 class="title pb-10">댓글 수정</h1>
 		<div class="input-wrapper">
-			<div class="flex justify-between item-center">
-				<div class="mr-30">
-					<textarea class="input"></textarea>
-				</div>
-				<div class="button btn-gray">
-					<button class="cancel">취소</button>
-				</div>
+			<div>
+				<input class="comments-input input" type="text"></input>
+			</div>
+			<div class="flex justify-end">
 				<div class="button">
 					<button class="update">확인</button>
 				</div>
