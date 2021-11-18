@@ -1078,6 +1078,7 @@ div.thumbnail-small img{
 	left: 0;
 	width: 100vw;
 	height: 100vh;
+	display: none;
 }
 #modal-wrapper .form{
 	position: absolute;

@@ -1,6 +1,4 @@
 $(function(){
-	modalClose();
-	
 	$('#modal-wrapper').mousedown(function(){
 		modalClose();
 	});
