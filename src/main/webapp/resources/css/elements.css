@@ -1559,3 +1559,9 @@ div.thumbnail-small img{
 #genre-list-wrapper #genre-list .genre-item .genre-delete-btn:active{
 	background: var(--color-dark-red);
 }
+
+.empty_msg{
+	color: var(--color-light-gray);
+	text-align: center;
+	font-size: var(--font-size-small);
+}

@@ -33,6 +33,11 @@
 					</c:if>
 				</li>
 			</c:forEach>
+			<c:if test="${list.size() < 1}">
+				<li class="empty_msg">
+					공지사항이 없습니다
+				</li>
+			</c:if>
 		</ul>
 	</div>
 	<div class="flex justify-center pb-60">

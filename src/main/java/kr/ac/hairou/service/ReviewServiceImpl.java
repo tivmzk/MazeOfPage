@@ -4,8 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import kr.ac.hairou.dao.CommentsDao;
 import kr.ac.hairou.dao.ReviewDao;
+import kr.ac.hairou.model.Comments;
 import kr.ac.hairou.model.Review;
 import kr.ac.hairou.util.Pager;
 
@@ -13,6 +16,8 @@ import kr.ac.hairou.util.Pager;
 public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	ReviewDao dao;
+	@Autowired
+	CommentsDao commentsDao;
 	
 	@Override
 	public List<Review> getList(Pager pager) {
@@ -35,9 +40,16 @@ public class ReviewServiceImpl implements ReviewService {
 	public void update(Review item) {
 		dao.update(item);
 	}
-
+	
+	@Transactional
 	@Override
 	public void delete(int code) {
+		Pager pager = new Pager();
+		pager.setKeyword(""+code);
+		List<Comments> list = commentsDao.getList(pager);
+		for(Comments item : list) {
+			commentsDao.delete(item.getCode());
+		}
 		dao.delete(code);
 	}
 

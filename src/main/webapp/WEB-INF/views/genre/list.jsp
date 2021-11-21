@@ -22,6 +22,11 @@
 				</c:if>
 			</div>
 		</c:forEach>
+		<c:if test="${list.size() < 1}">
+			<div class="empty_msg">
+				장르가 없습니다
+			</div>
+		</c:if>
 	</article>
 </div>
 <div id="modal-wrapper">

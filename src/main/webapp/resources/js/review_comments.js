@@ -38,14 +38,16 @@ function createComments(item) {
 	const date = {
 		year: temp.getFullYear(),
 		mon: temp.getMonth() + 1,
-		day: temp.getDate()
+		day: temp.getDate(),
+		hour: temp.getHours(),
+		min: temp.getMinutes()
 	};
 
 	const html = $(`<div data-comments=${item.code}>`)
 		.addClass('comments-item');
 	const header = $(`<div>`)
 		.append(`<a class="nickname" href="/profile/${item.member}">${item.nickname}</a>`)
-		.append(`<span class="date">${date.year}-${date.mon}-${date.day}</span>`);
+		.append(`<span class="date">${date.year}-${date.mon}-${date.day} ${date.hour}:${date.min}</span>`);
 
 	const contents = $(`<div>`)
 		.append($('<p>').text(item.contents).addClass('contents'));
@@ -76,6 +78,13 @@ function loadCount() {
 	$.ajax('/rest/comments/total?code=' + review_code, {
 		success: result => {
 			$('.comments-total').text(result);
+			
+			if(result == 0){
+				$('.comments-wrapper .comments-list').append('<div class="empty_msg py-50">댓글이 없습니다</div>');
+			}
+			else{
+				$('.comments-wrapper .comments-list').find('.empty_msg').remove();
+			}
 		},
 		error: xhr => {
 			console.log('댓글 개수 : ' + xhr.statusText);
@@ -153,6 +162,7 @@ function uploadComments() {
 			const comments = createComments(result);
 			$('.comments-wrapper .comments-list').prepend(comments);
 			$('.comments-wrapper .comments-input').val('');
+			loadCount();
 		},
 		error: xhr => {
 			console.log("댓글 달기 : " + xhr.statusText);
@@ -183,6 +193,7 @@ $(function() {
 			success: result => {
 				$(`.comments-wrapper .comments-list .comments-item[data-comments="${result}"]`).remove();
 				is_editing = false;
+				loadCount();
 			},
 			error: xhr => {
 				console.log("댓글 삭제 : " + xhr.statusText);
