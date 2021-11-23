@@ -32,9 +32,7 @@
 			</c:if>
 		</div>
 		<div class="contents-wrapper">
-			<p class="contents">
-				${item.contents}
-			</p>
+			<pre class="contents">${item.contents}</pre>
 		</div>
 	</div>
 	<div class="comments-wrapper">
