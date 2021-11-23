@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.ac.hairou.dao.NovelDao;
 import kr.ac.hairou.dao.ThumbnailDao;
+import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.model.Genre;
 import kr.ac.hairou.model.Novel;
 import kr.ac.hairou.model.Thumbnail;
@@ -23,6 +24,8 @@ public class NovelServiceImpl implements NovelService {
 	ThumbnailDao tdao;
 	@Autowired
 	GenreService genreService;
+	@Autowired
+	EpisodeService epiService;
 	
 	@Transactional
 	@Override
@@ -85,6 +88,15 @@ public class NovelServiceImpl implements NovelService {
 	@Transactional
 	@Override
 	public void delete(int code) {
+		Pager pager = new Pager();
+		pager.setSearch(1);
+		pager.setKeyword(""+code);
+		List<Episode> list = epiService.getList(pager);
+		
+		for(Episode item : list) {
+			epiService.delete(item.getCode());
+		}
+		
 		tdao.delete(code);
 		dao.delete(code);
 	}
