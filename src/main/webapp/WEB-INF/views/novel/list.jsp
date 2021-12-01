@@ -22,7 +22,7 @@
 			<c:forEach var="item" items="${list}">
 				<section class="flex novel-item">
 					<div class="thumbnail-normal">
-						<a href="/novel/detail/${item.code}"><img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}"></a>
+						<a href="/novel/detail/${item.code}"><img alt="${item.title}" src="${item.image.fullname}"></a>
 					</div>
 					<div class="px-10">
 						<div class="text-ellipsis overflow-hidden">

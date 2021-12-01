@@ -61,7 +61,7 @@
 		</div>
 	
 		<div class="thumbnail">
-			<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+			<img alt="${item.title}" src="${item.image.fullname}">
 		</div>
 	</article>
 	<div class="detail-contents">
@@ -106,7 +106,7 @@
 					<li class="flex">
 						<div class="thumbnail">
 							<a href="/novel/detail/${otherNovel.code}">
-								<img alt="${otherNovel.title}" src="/thumbnail/${otherNovel.image == null ? otherNovel.preview : otherNovel.image.fullname}">
+								<img alt="${otherNovel.title}" src="${otherNovel.image.fullname}">
 							</a>
 						</div>
 						<div class="info">

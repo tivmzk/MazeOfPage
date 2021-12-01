@@ -85,7 +85,7 @@ function changeTheme(list){
 
 		html += '<div class="thumbnail-small">';
 		html += `<a href="/novel/detail/${item.code}">`;
-		html += `<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">`;
+		html += `<img alt="${item.title}" src="${item.image.fullname}">`;
 		html += '</a>';
 		html += '</div>';
 

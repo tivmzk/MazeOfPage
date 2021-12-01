@@ -24,6 +24,11 @@ public class Thumbnail {
 		this.filename = filename;
 	}
 	public String getFullname() {
-		return String.format("%s_%s", uuid, filename);
+		if(uuid == null) {
+			return String.format("/resources/thumbnail/%s", filename);
+		}
+		else {
+			return String.format("/thumbnail/%s_%s", uuid, filename);
+		}
 	}
 }

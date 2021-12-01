@@ -33,7 +33,7 @@
 							<span>썸네일을<br> 등록하려면 클릭</span>
 						</div>
 						<div class="input">
-							<img id="input-image" src="/thumbnail/${novel.image == null ? novel.preview : novel.image.fullname}">
+							<img id="input-image" src="${novel.image.fullname}">
 						</div>
 					</div>
 				</div>

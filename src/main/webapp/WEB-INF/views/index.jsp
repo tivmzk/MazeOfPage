@@ -24,7 +24,7 @@
 				<section class="novel-wrapper">
 					<div class="thumbnail-large">
 						<a href="/novel/detail/${item.code}">
-							<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+							<img alt="${item.title}" src="${item.image.fullname}">
 						</a>
 					</div>
 					<div class="text-ellipsis overflow-hidden">
@@ -61,7 +61,7 @@
 					<section class="flex theme">
 						<div class="thumbnail-small">
 							<a href="/novel/detail/${item.code}">
-								<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+								<img alt="${item.title}" src="${item.image.fullname}">
 							</a>
 						</div>
 						<div class="px-10">
@@ -98,7 +98,7 @@
 					<div class="novel-wrapper">
 						<div class="thumbnail-large">
 							<a href="/novel/detail/${item.code}"> 
-								<img alt="${item.title}" src="/thumbnail/${item.image == null ? item.preview : item.image.fullname}">
+								<img alt="${item.title}" src="${item.image.fullname}">
 							</a>
 						</div>
 						<div class="text-ellipsis overflow-hidden">
