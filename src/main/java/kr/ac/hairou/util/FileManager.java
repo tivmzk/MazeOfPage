@@ -5,7 +5,7 @@ import java.io.File;
 import kr.ac.hairou.model.Thumbnail;
 
 public interface FileManager {
-	final String UPLOAD_PATH = "D:/thumbnail/";
+	final String UPLOAD_PATH = "D:/";
 	Thumbnail upload() throws Exception;
 	static void delete(Thumbnail item) throws Exception{
 		File f = new File(UPLOAD_PATH+item.getFullname());
