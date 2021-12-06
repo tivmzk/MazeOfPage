@@ -1,5 +1,9 @@
 @charset "UTF-8";
 /* 컨테이너 */
+body{
+	min-height: 100vh;
+	position: relative;
+}
 #header {
   padding: 15px 0;
 }
@@ -23,9 +27,15 @@
 #nav ul li a:active {
   background: var(--color-dark-main);
 }
+#main{
+	padding-bottom: 100px;
+}
 #footer {
   background: var(--color-footer);
   padding: 20px 0;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
 }
 #footer p {
   font-size: var(--font-size-xsmall);

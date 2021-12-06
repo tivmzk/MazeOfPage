@@ -13,7 +13,7 @@
 	<nav id="nav">
 		<tiles:insertAttribute name="nav" />
 	</nav>
-	<main>
+	<main id="main">
 		<tiles:insertAttribute name="main" />
 	</main>
 	<footer id="footer">
