@@ -96,8 +96,9 @@ public class RootController {
 	
 //	테스트를 위한 더미를 생성하는 메소드
 	@GetMapping("/dummy")
-	public String dummy(){
-		novelService.dummy();
+	public String dummy(HttpSession session){
+		Member member = (Member) session.getAttribute("user");
+		novelService.dummy(member);
 		return "redirect:.";
 	}
 	

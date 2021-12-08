@@ -36,6 +36,7 @@ body{
   width: 100%;
   position: absolute;
   bottom: 0px;
+  z-index: -1;
 }
 #footer p {
   font-size: var(--font-size-xsmall);

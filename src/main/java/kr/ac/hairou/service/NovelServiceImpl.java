@@ -10,6 +10,7 @@ import kr.ac.hairou.dao.NovelDao;
 import kr.ac.hairou.dao.ThumbnailDao;
 import kr.ac.hairou.model.Episode;
 import kr.ac.hairou.model.Genre;
+import kr.ac.hairou.model.Member;
 import kr.ac.hairou.model.Novel;
 import kr.ac.hairou.model.Thumbnail;
 import kr.ac.hairou.util.FileManager;
@@ -29,7 +30,7 @@ public class NovelServiceImpl implements NovelService {
 	
 	@Transactional
 	@Override
-	public void dummy() {
+	public void dummy(Member member) {
 		Pager pager = new Pager();
 		int total = genreService.getTotal();
 		pager.setTotal(total);
@@ -39,7 +40,7 @@ public class NovelServiceImpl implements NovelService {
 		for(Genre genre : list) {
 			for(int i = 0; i < 10; i++) {
 				Novel item = new Novel();
-				item.setMember("user123");
+				item.setMember(member.getId());
 				item.setGenre(genre.getCode());
 				item.setTitle(String.format("장르 %d 소설", genre.getCode()));
 				item.setInfo(String.format("장르 %d 소설의 내용", genre.getCode()));
